@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -10,25 +11,27 @@ const Footer = () => {
         </div>
         <div className="footer-section">
           <h3>Contacto</h3>
-          <p>Dirección: Calle Principal #123, Bogotá, Colombia</p>
-          <p>Teléfono: +57 (1) 123-4567</p>
+          <p>Dirección: Cl. 67 #7-94, Bogotá, Colombia</p>
+          <p>Teléfono: (571) 7469090 Ext 1190</p>
           <p>Email: info@meridianconsulting.com.co</p>
         </div>
         <div className="footer-section">
           <h3>Enlaces Rápidos</h3>
           <ul>
-            <li><a href="/servicios">Servicios</a></li>
-            <li><a href="/nosotros">Nosotros</a></li>
-            <li><a href="/contacto">Contacto</a></li>
-            <li><a href="/proyectos">Proyectos</a></li>
+            <li><Link to="/servicios">Servicios</Link></li>
+            <li><Link to="/nosotros">Nosotros</Link></li>
+            <li><Link to="/contacto">Contacto</Link></li>
           </ul>
         </div>
       </div>
       <div className="footer-bottom">
         <p>&copy; {new Date().getFullYear()} Meridian Consulting LTDA. Todos los derechos reservados.</p>
+        <p>
+          <Link to="/privacidad">Política de Privacidad</Link> | <Link to="/terminos">Términos de Uso</Link>
+        </p>
       </div>
     </footer>
   );
 };
 
-export default Footer; 
+export default Footer;

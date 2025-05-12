@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -43,4 +46,8 @@ h1 {
 
 p {
   font-size: 1.2rem;
+}
+
+.main-content {
+  flex: 1;
 }
