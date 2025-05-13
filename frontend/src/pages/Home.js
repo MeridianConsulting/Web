@@ -1,35 +1,158 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
 // Importar imágenes y logos
-import fondo from '../assets/img/fondo.jpeg';
+import heroImage1 from '../assets/img/fondo.jpeg';
+import heroImage2 from '../assets/img/fondo2.png';
+import heroImage3 from '../assets/img/fondo3.png';
+// Importar todos los logos de clientes disponibles
 import logoEcopetrol from '../assets/img/Logo_Ecopetrol.png';
 import logoRepsol from '../assets/img/Repsol_2012_logo.png';
 import logoFrontera from '../assets/img/FRONTERA-ENERGY-LOGO.png';
 import logoHalliburton from '../assets/img/halliburton-logo.png';
 import logoVale from '../assets/img/Vale-Colombia-Ltda-300x300.webp';
 import logoArgos from '../assets/img/logo_Argos.webp';
-
+import logoPacific from '../assets/img/PACIFIC.png';
+import logoPacificRubiales from '../assets/img/Pacific Rubiales.png';
+import logoHocol from '../assets/img/Hocol.webp';
+import logoEnergyCompany from '../assets/img/Energy.gif';
+import logoPetrominerales from '../assets/img/petrominerales.jpeg';
+import logoEnergold from '../assets/img/Energold Drilling.png';
+import logoColumbus from '../assets/img/Columbus.webp';
+import logoPetrobras from '../assets/img/Petrobras.webp';
 // Imágenes para testimonios (usando las disponibles)
 import testimonial1 from '../assets/img/channels4_profile.jpg';
 import testimonial2 from '../assets/img/Image.jpg';
 import testimonial3 from '../assets/img/unnamed.png';
-
 // Iconos de redes sociales
 import iconFacebook from '../assets/img/facebook_white.png';
 import iconLinkedin from '../assets/img/linkedin_white.png';
 import iconTwitter from '../assets/img/twitter_white.png';
+import ceoImage1 from '../assets/img/CEO1.jpg'; 
+import ceoImage2 from '../assets/img/CEO2.jpg'; 
+import ceoImage3 from '../assets/img/CEO3.jpg'; 
 
 const Home = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [autoplay, setAutoplay] = useState(true);
+
+  const heroSlides = [
+    {
+      image: heroImage1,
+      title: "Consultoría en Hidrocarburos y Minería",
+      subtitle: "18 años de experiencia a tu servicio",
+      cta: "Conoce Más",
+      link: "/servicios"
+    },
+    {
+      image: heroImage2,
+      title: "Soluciones Integrales y Sostenibles",
+      subtitle: "Optimizando recursos con responsabilidad ambiental",
+      cta: "Nuestros Servicios",
+      link: "/servicios"
+    },
+    {
+      image: heroImage3,
+      title: "Experiencia y Profesionalismo",
+      subtitle: "Más de 200 proyectos exitosos en 15 países",
+      cta: "Contáctanos",
+      link: "/contacto"
+    }
+  ];
+
+  const nextSlide = () => {
+    setCurrentSlide((prevSlide) => (prevSlide === heroSlides.length - 1 ? 0 : prevSlide + 1));
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prevSlide) => (prevSlide === 0 ? heroSlides.length - 1 : prevSlide - 1));
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+    setAutoplay(false);
+    setTimeout(() => setAutoplay(true), 10000);
+  };
+
+  useEffect(() => {
+    let interval;
+    if (autoplay) {
+      interval = setInterval(() => {
+        nextSlide();
+      }, 7000);
+    }
+    return () => clearInterval(interval);
+  }, [autoplay, currentSlide]);
+
   return (
     <div className="home-container">
-      {/* Sección Hero */}
-      <section className="hero" aria-label="Banner principal">
-        <div className="hero__overlay"></div>
-        <div className="hero__content">
-          <h1 className="hero__title">Consultoría en Hidrocarburos y Minería</h1>
-          <p className="hero__subtitle">18 años de experiencia a tu servicio</p>
-          <Link to="/servicios" className="btn btn--primary">Conoce Más</Link>
+      {/* Hero Slider Section */}
+      <section className="hero-slider" aria-label="Presentación principal">
+        <div className="hero-slider__container">
+          {heroSlides.map((slide, index) => (
+            <div 
+              key={index} 
+              className={`hero-slide ${index === currentSlide ? 'active' : ''}`}
+              style={{ backgroundImage: `url(${slide.image})` }}
+            >
+              <div className="hero-slide__overlay"></div>
+              <div className="hero-slide__content">
+                <h1 className="hero-slide__title">{slide.title}</h1>
+                <p className="hero-slide__subtitle">{slide.subtitle}</p>
+                <div className="hero-slide__cta">
+                  <Link to={slide.link} className="btn btn--primary btn--large">
+                    {slide.cta}
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+          
+          <div className="hero-slider__controls">
+            <button 
+              className="hero-slider__arrow hero-slider__arrow--prev" 
+              onClick={prevSlide}
+              aria-label="Slide anterior"
+            >
+              <span>&#10094;</span>
+            </button>
+            <div className="hero-slider__dots">
+              {heroSlides.map((_, index) => (
+                <button 
+                  key={index} 
+                  className={`hero-slider__dot ${index === currentSlide ? 'active' : ''}`} 
+                  onClick={() => goToSlide(index)}
+                  aria-label={`Ir a slide ${index + 1}`}
+                />
+              ))}
+            </div>
+            <button 
+              className="hero-slider__arrow hero-slider__arrow--next" 
+              onClick={nextSlide}
+              aria-label="Siguiente slide"
+            >
+              <span>&#10095;</span>
+            </button>
+          </div>
+          
+          <div className="hero-slider__scroll-indicator">
+            <div className="scroll-icon"></div>
+            <span>Desplaza para descubrir</span>
+          </div>
+          
+          <div className="hero-slider__stats">
+            <div className="hero-stat">
+              <span className="hero-stat__number">18+</span>
+              <span className="hero-stat__text">Años de experiencia</span>
+            </div>
+            <div className="hero-stat">
+              <span className="hero-stat__number">200+</span>
+              <span className="hero-stat__text">Proyectos completados</span>
+            </div>
+            <div className="hero-stat">
+              <span className="hero-stat__number">15+</span>
+              <span className="hero-stat__text">Países con operaciones</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -210,6 +333,64 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Sección Equipo Directivo */}
+      <section className="executive-team" aria-label="Nuestro equipo directivo">
+        <div className="container">
+          <h2 className="section-title">Nuestro Equipo Directivo</h2>
+          <p className="section-subtitle">Liderazgo y experiencia al servicio de nuestros clientes</p>
+          
+          <div className="executive-team__grid">
+            <div className="executive-card">
+              <div className="executive-card__image">
+                <img src={ceoImage1} alt="William Augusto Franco - Gerente General" />
+              </div>
+              <div className="executive-card__content">
+                <h3 className="executive-card__name">William Augusto Franco</h3>
+                <p className="executive-card__position">Gerente General</p>
+                <p className="executive-card__id">79613401</p>
+                <div className="executive-card__social">
+                  <a href="#" aria-label="LinkedIn de William Augusto Franco">
+                    <img src={iconLinkedin} alt="LinkedIn" className="social-icon" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="executive-card">
+              <div className="executive-card__image">
+                <img src={ceoImage2} alt="César Augusto Urrego - Subgerente" />
+              </div>
+              <div className="executive-card__content">
+                <h3 className="executive-card__name">César Augusto Urrego</h3>
+                <p className="executive-card__position">Subgerente</p>
+                <p className="executive-card__id">79490148</p>
+                <div className="executive-card__social">
+                  <a href="#" aria-label="LinkedIn de César Augusto Urrego">
+                    <img src={iconLinkedin} alt="LinkedIn" className="social-icon" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="executive-card">
+              <div className="executive-card__image">
+                <img src={ceoImage3} alt="Nora Gisell Moreno Moreno - Gerente Administrativa Y Financiera" />
+              </div>
+              <div className="executive-card__content">
+                <h3 className="executive-card__name">Nora Gisell Moreno Moreno</h3>
+                <p className="executive-card__position">Gerente Administrativa Y Financiera</p>
+                <p className="executive-card__id">52030991</p>
+                <div className="executive-card__social">
+                  <a href="#" aria-label="LinkedIn de Nora Gisell Moreno Moreno">
+                    <img src={iconLinkedin} alt="LinkedIn" className="social-icon" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Sección CTA (Call to Action) */}
       <section className="cta" aria-label="Llamada a la acción">
         <div className="container">
@@ -227,24 +408,96 @@ const Home = () => {
       <section className="clients" aria-label="Nuestros clientes">
         <div className="container">
           <h2 className="section-title">Confían en nosotros</h2>
-          <div className="clients__logos">
-            <div className="client-logo">
-              <img src={logoEcopetrol} alt="Logo Ecopetrol" />
-            </div>
-            <div className="client-logo">
-              <img src={logoRepsol} alt="Logo Repsol" />
-            </div>
-            <div className="client-logo">
-              <img src={logoFrontera} alt="Logo Frontera" />
-            </div>
-            <div className="client-logo">
-              <img src={logoHalliburton} alt="Logo Halliburton" />
-            </div>
-            <div className="client-logo">
-              <img src={logoVale} alt="Logo Vale" />
-            </div>
-            <div className="client-logo">
-              <img src={logoArgos} alt="Logo Argos" />
+          <div className="clients-marquee-container">
+            <div className="clients-marquee">
+              <div className="clients-marquee__content">
+                <div className="client-logo">
+                  <img src={logoEcopetrol} alt="Logo Ecopetrol" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoRepsol} alt="Logo Repsol" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoFrontera} alt="Logo Frontera" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoHalliburton} alt="Logo Halliburton" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoVale} alt="Logo Vale" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoArgos} alt="Logo Argos" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoPacific} alt="Logo Pacific" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoPacificRubiales} alt="Logo Pacific Rubiales" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoHocol} alt="Logo Hocol" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoEnergyCompany} alt="Logo Energy Company" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoPetrominerales} alt="Logo Petrominerales" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoEnergold} alt="Logo Energold Drilling" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoColumbus} alt="Logo Columbus" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoPetrobras} alt="Logo Petrobras" />
+                </div>
+                
+                {/* Duplicados para el efecto de desplazamiento continuo */}
+                <div className="client-logo">
+                  <img src={logoEcopetrol} alt="Logo Ecopetrol" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoRepsol} alt="Logo Repsol" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoFrontera} alt="Logo Frontera" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoHalliburton} alt="Logo Halliburton" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoVale} alt="Logo Vale" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoArgos} alt="Logo Argos" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoPacific} alt="Logo Pacific" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoPacificRubiales} alt="Logo Pacific Rubiales" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoHocol} alt="Logo Hocol" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoEnergyCompany} alt="Logo Energy Company" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoPetrominerales} alt="Logo Petrominerales" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoEnergold} alt="Logo Energold Drilling" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoColumbus} alt="Logo Columbus" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoPetrobras} alt="Logo Petrobras" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
