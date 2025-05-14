@@ -38,6 +38,9 @@
     <!-- Preconnect to important third-party domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
   <body>
     <noscript>Necesita habilitar JavaScript para visualizar correctamente este sitio web.</noscript>
@@ -75,5 +78,18 @@
     <!-- End Google Tag Manager -->
     
     <!-- The build step will place the bundled scripts into the <body> tag. -->
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({
+          duration: 800,
+          easing: 'ease-in-out',
+          once: true,
+          offset: 100,
+          delay: 100
+        });
+      });
+    </script>
   </body>
 </html>

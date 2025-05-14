@@ -34,6 +34,7 @@ import ceoImage3 from '../assets/img/CEO3.jpg';
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [autoplay, setAutoplay] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
 
   const heroSlides = [
     {
@@ -82,6 +83,27 @@ const Home = () => {
     }
     return () => clearInterval(interval);
   }, [autoplay, currentSlide]);
+
+  // Efecto para detectar el scroll y aplicar clase al header
+  useEffect(() => {
+    const handleScroll = () => {
+      const header = document.querySelector('.main-header');
+      if (window.scrollY > 50) {
+        setScrolled(true);
+        header?.classList.add('scrolled');
+      } else {
+        setScrolled(false);
+        header?.classList.remove('scrolled');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <div className="home-container">
@@ -160,11 +182,11 @@ const Home = () => {
       {/* Sección de Servicios */}
       <section className="services" aria-label="Nuestros servicios">
         <div className="container">
-          <h2 className="section-title">Nuestros Servicios</h2>
-          <p className="section-subtitle">Soluciones integrales para la industria</p>
+          <h2 className="section-title" data-aos="fade-up">Nuestros Servicios</h2>
+          <p className="section-subtitle" data-aos="fade-up" data-aos-delay="100">Soluciones integrales para la industria</p>
           
           <div className="services__grid">
-            <div className="service-card">
+            <div className="service-card" data-aos="fade-up" data-aos-delay="150">
               <div className="service-card__icon">
                 <i className="service-icon geo-icon"></i>
               </div>
@@ -175,7 +197,7 @@ const Home = () => {
               <Link to="/servicios/geociencia" className="service-card__link">Más información</Link>
             </div>
 
-            <div className="service-card">
+            <div className="service-card" data-aos="fade-up" data-aos-delay="200">
               <div className="service-card__icon">
                 <i className="service-icon oil-icon"></i>
               </div>
@@ -186,7 +208,7 @@ const Home = () => {
               <Link to="/servicios/petroleos" className="service-card__link">Más información</Link>
             </div>
 
-            <div className="service-card">
+            <div className="service-card" data-aos="fade-up" data-aos-delay="250">
               <div className="service-card__icon">
                 <i className="service-icon mining-icon"></i>
               </div>
@@ -197,7 +219,7 @@ const Home = () => {
               <Link to="/servicios/mineria" className="service-card__link">Más información</Link>
             </div>
 
-            <div className="service-card">
+            <div className="service-card" data-aos="fade-up" data-aos-delay="300">
               <div className="service-card__icon">
                 <i className="service-icon data-icon"></i>
               </div>
@@ -208,7 +230,7 @@ const Home = () => {
               <Link to="/servicios/datos" className="service-card__link">Más información</Link>
             </div>
 
-            <div className="service-card">
+            <div className="service-card" data-aos="fade-up" data-aos-delay="350">
               <div className="service-card__icon">
                 <i className="service-icon energy-icon"></i>
               </div>
@@ -219,7 +241,7 @@ const Home = () => {
               <Link to="/servicios/bioenergia" className="service-card__link">Más información</Link>
             </div>
 
-            <div className="service-card">
+            <div className="service-card" data-aos="fade-up" data-aos-delay="400">
               <div className="service-card__icon">
                 <i className="service-icon env-icon"></i>
               </div>
@@ -237,7 +259,7 @@ const Home = () => {
       <section className="about" aria-label="Acerca de nosotros">
         <div className="container">
           <div className="about__content">
-            <div className="about__text">
+            <div className="about__text" data-aos="fade-right">
               <h2 className="section-title">Meridian Consulting LTDA</h2>
               <p className="about__description">
                 Con más de 18 años de experiencia en el mercado y más de 200 contratos verificados, 
@@ -256,7 +278,7 @@ const Home = () => {
               </div>
               <Link to="/nosotros" className="btn btn--secondary">Conoce Nuestra Historia</Link>
             </div>
-            <div className="about__stats">
+            <div className="about__stats" data-aos="fade-left" data-aos-delay="200">
               <div className="stat-item">
                 <span className="stat-item__number">18+</span>
                 <span className="stat-item__text">Años de experiencia</span>
@@ -281,9 +303,9 @@ const Home = () => {
       {/* Sección de Testimonios */}
       <section className="testimonials" aria-label="Testimonios de clientes">
         <div className="container">
-          <h2 className="section-title">Lo que dicen nuestros clientes</h2>
+          <h2 className="section-title" data-aos="fade-up">Lo que dicen nuestros clientes</h2>
           <div className="testimonials__grid">
-            <div className="testimonial-card">
+            <div className="testimonial-card" data-aos="fade-up" data-aos-delay="100">
               <div className="testimonial-card__content">
                 <p className="testimonial-card__quote">
                   "Meridian Consulting ha sido un socio invaluable en nuestros proyectos de exploración. 
@@ -299,7 +321,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="testimonial-card">
+            <div className="testimonial-card" data-aos="fade-up" data-aos-delay="200">
               <div className="testimonial-card__content">
                 <p className="testimonial-card__quote">
                   "El equipo de Meridian demostró un conocimiento excepcional en la optimización de 
@@ -315,7 +337,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="testimonial-card">
+            <div className="testimonial-card" data-aos="fade-up" data-aos-delay="300">
               <div className="testimonial-card__content">
                 <p className="testimonial-card__quote">
                   "Su enfoque en la sostenibilidad ambiental mientras maximizan los resultados 
@@ -337,11 +359,11 @@ const Home = () => {
       {/* Sección Equipo Directivo */}
       <section className="executive-team" aria-label="Nuestro equipo directivo">
         <div className="container">
-          <h2 className="section-title">Nuestro Equipo Directivo</h2>
-          <p className="section-subtitle">Liderazgo y experiencia al servicio de nuestros clientes</p>
+          <h2 className="section-title" data-aos="fade-up">Nuestro Equipo Directivo</h2>
+          <p className="section-subtitle" data-aos="fade-up" data-aos-delay="100">Liderazgo y experiencia al servicio de nuestros clientes</p>
           
           <div className="executive-team__grid">
-            <div className="executive-card">
+            <div className="executive-card" data-aos="fade-up" data-aos-delay="150">
               <div className="executive-card__image">
                 <img src={ceoImage1} alt="William Augusto Franco - Gerente General" />
               </div>
@@ -357,7 +379,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="executive-card">
+            <div className="executive-card" data-aos="fade-up" data-aos-delay="250">
               <div className="executive-card__image">
                 <img src={ceoImage2} alt="César Augusto Urrego - Subgerente" />
               </div>
@@ -373,7 +395,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="executive-card">
+            <div className="executive-card" data-aos="fade-up" data-aos-delay="350">
               <div className="executive-card__image">
                 <img src={ceoImage3} alt="Nora Gisell Moreno Moreno - Gerente Administrativa Y Financiera" />
               </div>
@@ -395,7 +417,7 @@ const Home = () => {
       {/* Sección CTA (Call to Action) */}
       <section className="cta" aria-label="Llamada a la acción">
         <div className="container">
-          <div className="cta__content">
+          <div className="cta__content" data-aos="zoom-in">
             <h2 className="cta__title">¿Listo para optimizar tu proyecto?</h2>
             <p className="cta__text">
               Nuestro equipo de expertos está preparado para ayudarte a alcanzar tus objetivos.
@@ -408,8 +430,8 @@ const Home = () => {
       {/* Sección de Clientes */}
       <section className="clients" aria-label="Nuestros clientes">
         <div className="container">
-          <h2 className="section-title">Confían en nosotros</h2>
-          <div className="clients-marquee-container">
+          <h2 className="section-title" data-aos="fade-up">Confían en nosotros</h2>
+          <div className="clients-marquee-container" data-aos="fade-up" data-aos-delay="100">
             <div className="clients-marquee">
               <div className="clients-marquee__content">
                 <div className="client-logo">
