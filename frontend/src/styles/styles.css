@@ -898,39 +898,9 @@ a {
   left: 12%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 150px;
   z-index: 10;
-}
-
-.hero-slider__progress {
-  width: 120px;
-  height: 2px;
-  background-color: rgba(255, 255, 255, 0.2);
-  margin-right: var(--spacing-lg);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-slider__progress-bar {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 0;
-  background-color: var(--color-accent);
-  transition: width 0.1s linear;
-}
-
-.hero-slider.playing .hero-slider__progress-bar {
-  animation: progressAnimation 7s linear forwards;
-}
-
-@keyframes progressAnimation {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
 }
 
 .hero-slider__arrows {
@@ -965,14 +935,10 @@ a {
 }
 
 .hero-slider__dots {
-  position: absolute;
-  right: 5%;
-  top: 50%;
-  transform: translateY(-50%);
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-  z-index: 10;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
 }
 
 .hero-slider__dot {
@@ -1209,16 +1175,6 @@ a {
     transform: translateX(-50%);
   }
   
-  .hero-slider__dots {
-    flex-direction: row;
-    right: auto;
-    left: 50%;
-    top: auto;
-    bottom: 100px;
-    transform: translateX(-50%);
-    gap: var(--spacing-sm);
-  }
-  
   .hero-slider__scroll-indicator {
     bottom: 170px;
     display: none;
@@ -1264,18 +1220,9 @@ a {
     height: 40px;
   }
   
-  .hero-slider__progress {
-    width: 80px;
-  }
-  
   .hero-slider__controls {
     bottom: 120px;
-    width: 180px;
-    justify-content: center;
-  }
-  
-  .hero-slider__dots {
-    bottom: 80px;
+    width: 120px;
   }
   
   .hero-slider__stats {
@@ -1319,20 +1266,7 @@ a {
   
   .hero-slider__controls {
     bottom: 90px;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-md);
-    width: auto;
-  }
-  
-  .hero-slider__progress {
-    margin-right: 0;
-    margin-bottom: var(--spacing-sm);
     width: 100px;
-  }
-  
-  .hero-slider__dots {
-    bottom: 50px;
   }
   
   .hero-slider__dot {

@@ -122,6 +122,7 @@ const Home = () => {
                   className={`hero-slider__dot ${index === currentSlide ? 'active' : ''}`} 
                   onClick={() => goToSlide(index)}
                   aria-label={`Ir a slide ${index + 1}`}
+                  style={{ display: index === currentSlide ? 'block' : 'none' }}
                 />
               ))}
             </div>
