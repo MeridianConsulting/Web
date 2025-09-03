@@ -19,6 +19,13 @@ import logoPetrominerales from '../assets/img/petrominerales.jpeg';
 import logoEnergold from '../assets/img/Energold Drilling.png';
 import logoColumbus from '../assets/img/Columbus.webp';
 import logoPetrobras from '../assets/img/Petrobras.webp';
+import logoNumero1 from '../assets/img/Numero1.png';
+import logoNumero2 from '../assets/img/Numero1.png';
+import logoNumero3 from '../assets/img/Numero1.png';
+import logoNumero4 from '../assets/img/Numero4.png';
+import logoNumero5 from '../assets/img/Numero5.png';
+import logoNumero6 from '../assets/img/Numero6.png';
+import logoNumero7 from '../assets/img/Numero7.png';
 // Imágenes para testimonios (usando las disponibles)
 import testimonial1 from '../assets/img/channels4_profile.jpg';
 import testimonial2 from '../assets/img/Image.jpg';
@@ -27,20 +34,24 @@ import testimonial3 from '../assets/img/unnamed.png';
 import iconFacebook from '../assets/img/facebook_white.png';
 import iconLinkedin from '../assets/img/linkedin_white.png';
 import iconTwitter from '../assets/img/twitter_white.png';
-import ceoImage1 from '../assets/img/CEO1.jpg'; 
-import ceoImage2 from '../assets/img/CEO2.jpg'; 
-import ceoImage3 from '../assets/img/CEO3.jpg'; 
+import CEO1 from '../assets/img/CEO1.png';
+import CEO2 from '../assets/img/CEO2.png';
+import CEO3 from '../assets/img/CEO3.png';
+import CEO4 from '../assets/img/CEO4.png';
+import CEO5 from '../assets/img/CEO5.png';
+import CEO6 from '../assets/img/CEO6.png';
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [autoplay, setAutoplay] = useState(true);
   const [scrolled, setScrolled] = useState(false);
+  
 
   const heroSlides = [
     {
       image: heroImage1,
       title: "Consultoría en Hidrocarburos y Minería",
-      subtitle: "18 años de experiencia a tu servicio",
+      subtitle: "Más de 22 años de experiencia a tu servicio",
       cta: "Conoce Más",
       link: "/servicios"
     },
@@ -54,7 +65,7 @@ const Home = () => {
     {
       image: heroImage3,
       title: "Experiencia y Profesionalismo",
-      subtitle: "Más de 200 proyectos exitosos en 15 países",
+      subtitle: "Más de 230 proyectos exitosos en 15 países",
       cta: "Contáctanos",
       link: "/contacto"
     }
@@ -157,23 +168,161 @@ const Home = () => {
             </button>
           </div>
           
-          <div className="hero-slider__scroll-indicator">
-            <div className="scroll-icon"></div>
-            <span>Desplaza para descubrir</span>
-          </div>
+        
           
           <div className="hero-slider__stats">
             <div className="hero-stat">
-              <span className="hero-stat__number">18+</span>
+              <span className="hero-stat__number">22+</span>
               <span className="hero-stat__text">Años de experiencia</span>
             </div>
             <div className="hero-stat">
-              <span className="hero-stat__number">200+</span>
+              <span className="hero-stat__number">230+</span>
               <span className="hero-stat__text">Proyectos completados</span>
             </div>
             <div className="hero-stat">
               <span className="hero-stat__number">15+</span>
-              <span className="hero-stat__text">Países con operaciones</span>
+              <span className="hero-stat__text">Operaciones Con Municipios de Colombia</span>
+            </div>
+          </div>
+        </div>
+      </section>
+            {/* Sección de Clientes */}
+      <section className="clients" aria-label="Nuestros clientes">
+        <div className="container">
+          <h2 className="section-title" data-aos="fade-up">Confían en nosotros</h2>
+          <div className="clients-marquee-container" data-aos="fade-up" data-aos-delay="100">
+            <div className="clients-marquee">
+              <div className="clients-marquee__content">
+                <div className="client-logo">
+                  <img src={logoEcopetrol} alt="Logo Ecopetrol" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoRepsol} alt="Logo Repsol" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoFrontera} alt="Logo Frontera" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoHalliburton} alt="Logo Halliburton" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoVale} alt="Logo Vale" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoArgos} alt="Logo Argos" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoPacific} alt="Logo Pacific" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoPacificRubiales} alt="Logo Pacific Rubiales" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoHocol} alt="Logo Hocol" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoEnergyCompany} alt="Logo Energy Company" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoPetrominerales} alt="Logo Petrominerales" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoEnergold} alt="Logo Energold Drilling" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoColumbus} alt="Logo Columbus" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoPetrobras} alt="Logo Petrobras" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoNumero1} alt="Logo Numero 1" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoNumero2} alt="Logo Numero 2" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoNumero3} alt="Logo Numero 3" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoNumero4} alt="Logo Numero 4" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoNumero5} alt="Logo Numero 5" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoNumero6} alt="Logo Numero 6" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoNumero7} alt="Logo Numero 7" />
+                </div>
+                
+                {/* Duplicados para el efecto de desplazamiento continuo */}
+                <div className="client-logo">
+                  <img src={logoEcopetrol} alt="Logo Ecopetrol" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoRepsol} alt="Logo Repsol" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoFrontera} alt="Logo Frontera" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoHalliburton} alt="Logo Halliburton" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoVale} alt="Logo Vale" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoArgos} alt="Logo Argos" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoPacific} alt="Logo Pacific" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoPacificRubiales} alt="Logo Pacific Rubiales" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoHocol} alt="Logo Hocol" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoEnergyCompany} alt="Logo Energy Company" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoPetrominerales} alt="Logo Petrominerales" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoEnergold} alt="Logo Energold Drilling" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoColumbus} alt="Logo Columbus" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoPetrobras} alt="Logo Petrobras" />
+                </div>
+                 <div className="client-logo">
+                  <img src={logoNumero1} alt="Logo Numero 1" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoNumero2} alt="Logo Numero 2" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoNumero3} alt="Logo Numero 3" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoNumero4} alt="Logo Numero 4" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoNumero5} alt="Logo Numero 5" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoNumero6} alt="Logo Numero 6" />
+                </div>
+                <div className="client-logo">
+                  <img src={logoNumero7} alt="Logo Numero 7" />
+                </div>
+                
+              </div>
             </div>
           </div>
         </div>
@@ -194,7 +343,7 @@ const Home = () => {
               <p className="service-card__description">
                 Estudios geológicos especializados y modelado de reservorios para optimizar la exploración.
               </p>
-              <Link to="/servicios/geociencia" className="service-card__link">Más información</Link>
+              <Link to="/servicios/geociencia" className="service-card__link"></Link>
             </div>
 
             <div className="service-card" data-aos="fade-up" data-aos-delay="200">
@@ -205,7 +354,7 @@ const Home = () => {
               <p className="service-card__description">
                 Optimización de procesos de perforación y producción para maximizar el rendimiento.
               </p>
-              <Link to="/servicios/petroleos" className="service-card__link">Más información</Link>
+              <Link to="/servicios/petroleos" className="service-card__link"></Link>
             </div>
 
             <div className="service-card" data-aos="fade-up" data-aos-delay="250">
@@ -216,7 +365,7 @@ const Home = () => {
               <p className="service-card__description">
                 Planificación y supervisión de operaciones mineras con enfoque en sostenibilidad.
               </p>
-              <Link to="/servicios/mineria" className="service-card__link">Más información</Link>
+              <Link to="/servicios/mineria" className="service-card__link"></Link>
             </div>
 
             <div className="service-card" data-aos="fade-up" data-aos-delay="300">
@@ -227,7 +376,7 @@ const Home = () => {
               <p className="service-card__description">
                 Manejo y análisis de datos geofísicos y de producción para toma de decisiones.
               </p>
-              <Link to="/servicios/datos" className="service-card__link">Más información</Link>
+              <Link to="/servicios/datos" className="service-card__link"></Link>
             </div>
 
             <div className="service-card" data-aos="fade-up" data-aos-delay="350">
@@ -238,7 +387,7 @@ const Home = () => {
               <p className="service-card__description">
                 Desarrollo de proyectos de biocombustibles y energías limpias para un futuro sostenible.
               </p>
-              <Link to="/servicios/bioenergia" className="service-card__link">Más información</Link>
+              <Link to="/servicios/bioenergia" className="service-card__link"></Link>
             </div>
 
             <div className="service-card" data-aos="fade-up" data-aos-delay="400">
@@ -249,7 +398,7 @@ const Home = () => {
               <p className="service-card__description">
                 Análisis de impacto ambiental y desarrollo de estrategias de mitigación efectivas.
               </p>
-              <Link to="/servicios/ambiental" className="service-card__link">Más información</Link>
+              <Link to="/servicios/ambiental" className="service-card__link"></Link>
             </div>
           </div>
         </div>
@@ -262,7 +411,7 @@ const Home = () => {
             <div className="about__text" data-aos="fade-right">
               <h2 className="section-title">Meridian Consulting LTDA</h2>
               <p className="about__description">
-                Con más de 18 años de experiencia en el mercado y más de 200 contratos verificados, 
+                Con más de 18 años de experiencia en el mercado y más de 230 contratos verificados, 
                 somos líderes en consultoría para la industria de hidrocarburos y minería en Colombia 
                 y el mercado internacional.
               </p>
@@ -270,13 +419,27 @@ const Home = () => {
                 Nuestro equipo de profesionales cuenta con un promedio de 25 años de trayectoria en el sector, 
                 garantizando soluciones de la más alta calidad para su empresa.
               </p>
-              <div className="about__certifications">
-                <span className="certification">ISO 9001</span>
-                <span className="certification">ISO 14001</span>
-                <span className="certification">ISO 45001</span>
-                <span className="certification">RUC 2024</span>
-              </div>
-              <Link to="/nosotros" className="btn btn--secondary">Conoce Nuestra Historia</Link>
+    <section className="certificados" aria-label="Certificados de calidad">
+        <div className="container">
+          <h2 className="section-title">Certificaciones</h2>
+           <div className="certificados__grid">
+             <a href="/pdf/ISO_9001.pdf" target="_blank" rel="noopener noreferrer" className="btn btn--pdf">
+                ISO 9001
+            </a>
+            <a href="/pdf/ISO_14001.pdf" target="_blank" rel="noopener noreferrer" className="btn btn--pdf">
+                ISO 14001
+              </a>
+            <a href="/pdf/ISO_45001.pdf" target="_blank" rel="noopener noreferrer" className="btn btn--pdf">
+                ISO 45001
+            </a>
+            <a href="/pdf/CertificadoRUC.pdf" target="_blank" rel="noopener noreferrer" className="btn btn--pdf">
+                Certificado RUC
+            </a>
+          </div>
+        </div>
+      </section>
+
+
             </div>
             <div className="about__stats" data-aos="fade-left" data-aos-delay="200">
               <div className="stat-item">
@@ -284,12 +447,12 @@ const Home = () => {
                 <span className="stat-item__text">Años de experiencia</span>
               </div>
               <div className="stat-item">
-                <span className="stat-item__number">200+</span>
+                <span className="stat-item__number">230+</span>
                 <span className="stat-item__text">Contratos completados</span>
               </div>
               <div className="stat-item">
-                <span className="stat-item__number">25+</span>
-                <span className="stat-item__text">Años de experiencia promedio</span>
+                <span className="stat-item__number">2+</span>
+                <span className="stat-item__text">Contamos con mas de 2 sedes</span>
               </div>
               <div className="stat-item">
                 <span className="stat-item__number">15+</span>
@@ -356,63 +519,82 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Sección Equipo Directivo */}
-      <section className="executive-team" aria-label="Nuestro equipo directivo">
-        <div className="container">
-          <h2 className="section-title" data-aos="fade-up">Nuestro Equipo Directivo</h2>
-          <p className="section-subtitle" data-aos="fade-up" data-aos-delay="100">Liderazgo y experiencia al servicio de nuestros clientes</p>
-          
-          <div className="executive-team__grid">
-            <div className="executive-card" data-aos="fade-up" data-aos-delay="150">
-              <div className="executive-card__image">
-                <img src={ceoImage1} alt="William Augusto Franco - Gerente General" />
-              </div>
-              <div className="executive-card__content">
-                <h3 className="executive-card__name">William Augusto Franco</h3>
-                <p className="executive-card__position">Gerente General</p>
-                <p className="executive-card__id">79613401</p>
-                <div className="executive-card__social">
-                  <a href="#" aria-label="LinkedIn de William Augusto Franco">
-                    <img src={iconLinkedin} alt="LinkedIn" className="social-icon" />
-                  </a>
-                </div>
-              </div>
-            </div>
+      {/* Sección de Mujeres que Inspiran */}
+      
+<section className="inspiradoras">
+  <div className="contenedor">
+    <h2>Mujeres que Inspiran</h2>
 
-            <div className="executive-card" data-aos="fade-up" data-aos-delay="250">
-              <div className="executive-card__image">
-                <img src={ceoImage2} alt="César Augusto Urrego - Subgerente" />
-              </div>
-              <div className="executive-card__content">
-                <h3 className="executive-card__name">César Augusto Urrego</h3>
-                <p className="executive-card__position">Subgerente</p>
-                <p className="executive-card__id">79490148</p>
-                <div className="executive-card__social">
-                  <a href="#" aria-label="LinkedIn de César Augusto Urrego">
-                    <img src={iconLinkedin} alt="LinkedIn" className="social-icon" />
-                  </a>
-                </div>
-              </div>
-            </div>
+    <p className="descripcion">
+      “Celebramos la fuerza, la visión y el legado de estas mujeres, cuyo liderazgo transforma realidades, abre caminos y deja una huella imborrable en nuestra comunidad.”
+    </p>
 
-            <div className="executive-card" data-aos="fade-up" data-aos-delay="350">
-              <div className="executive-card__image">
-                <img src={ceoImage3} alt="Nora Gisell Moreno Moreno - Gerente Administrativa Y Financiera" />
-              </div>
-              <div className="executive-card__content">
-                <h3 className="executive-card__name">Nora Gisell Moreno Moreno</h3>
-                <p className="executive-card__position">Gerente Administrativa Y Financiera</p>
-                <p className="executive-card__id">52030991</p>
-                <div className="executive-card__social">
-                  <a href="#" aria-label="LinkedIn de Nora Gisell Moreno Moreno">
-                    <img src={iconLinkedin} alt="LinkedIn" className="social-icon" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    {/* Apartado Coordinadoras */}
+    <h1>COORDINADORAS</h1>
+    <div className="cards">
+      <div className="card">
+        <img src={CEO1} alt="Nora Moreno"/>
+        <h3>Nora Moreno</h3>
+        <p>“Lidera con visión y equilibrio la gestión de los recursos.”</p>
+      </div>
+      <div className="card">
+        <img src={CEO2} alt="Ana Gamez" />
+        <h3>Ana Gamez</h3>
+        <p>“Organiza y optimiza procesos clave para el buen funcionamiento.”</p>
+      </div>
+      <div className="card">
+        <img src={CEO3} alt="Eliana Alarcón" />
+        <h3>Eliana Alarcón</h3>
+        <p>“Aporta orden y eficiencia a cada tarea diaria.”</p>      
+      </div>
+      <div className="cards">
+      <div className="card">
+        <img src={CEO4} alt="Paola Gil" />
+        <h3>Paola Gil</h3>
+        <p>“Apoya con precisión y constancia cada proceso operativo.”</p>      
+      </div>
+      <div className="card">
+        <img src={CEO5} alt="Lin Zambrano" />
+        <h3>Lin Zambrano</h3>
+        <p>“Impulsa el avance de los proyectos con enfoque y detalle.”</p>      
+      </div>
+         <div className="cards">
+      <div className="card">
+        <img src={CEO6} alt="Zandra Mayorga" />
+        <h3>Zandra Mayorga</h3>
+        <p>“Cuida y mantiene los espacios con compromiso y dedicación.”</p>      
+      </div>
+    </div>
+    </div>
+    </div>
+
+    {/* Apartado Medios */}
+    <h1>MEDIOS</h1>
+    <div className="cards">
+      <div className="card">
+        <img src={CEO4} alt="Paola Gil" />
+        <h3>Paola Gil</h3>
+        <p>“Apoya con precisión y constancia cada proceso operativo.”</p>      
+      </div>
+      <div className="card">
+        <img src={CEO5} alt="Lin Zambrano" />
+        <h3>Lin Zambrano</h3>
+        <p>“Impulsa el avance de los proyectos con enfoque y detalle.”</p>      
+      </div>
+    </div>
+
+    {/* Apartado Asistentes */}
+    <h1>ASISTENTES</h1>
+    <div className="cards">
+      <div className="card">
+        <img src={CEO6} alt="Zandra Mayorga" />
+        <h3>Zandra Mayorga</h3>
+        <p>“Cuida y mantiene los espacios con compromiso y dedicación.”</p>      
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Sección CTA (Call to Action) */}
       <section className="cta" aria-label="Llamada a la acción">
@@ -427,106 +609,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Sección de Clientes */}
-      <section className="clients" aria-label="Nuestros clientes">
-        <div className="container">
-          <h2 className="section-title" data-aos="fade-up">Confían en nosotros</h2>
-          <div className="clients-marquee-container" data-aos="fade-up" data-aos-delay="100">
-            <div className="clients-marquee">
-              <div className="clients-marquee__content">
-                <div className="client-logo">
-                  <img src={logoEcopetrol} alt="Logo Ecopetrol" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoRepsol} alt="Logo Repsol" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoFrontera} alt="Logo Frontera" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoHalliburton} alt="Logo Halliburton" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoVale} alt="Logo Vale" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoArgos} alt="Logo Argos" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoPacific} alt="Logo Pacific" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoPacificRubiales} alt="Logo Pacific Rubiales" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoHocol} alt="Logo Hocol" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoEnergyCompany} alt="Logo Energy Company" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoPetrominerales} alt="Logo Petrominerales" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoEnergold} alt="Logo Energold Drilling" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoColumbus} alt="Logo Columbus" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoPetrobras} alt="Logo Petrobras" />
-                </div>
-                
-                {/* Duplicados para el efecto de desplazamiento continuo */}
-                <div className="client-logo">
-                  <img src={logoEcopetrol} alt="Logo Ecopetrol" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoRepsol} alt="Logo Repsol" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoFrontera} alt="Logo Frontera" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoHalliburton} alt="Logo Halliburton" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoVale} alt="Logo Vale" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoArgos} alt="Logo Argos" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoPacific} alt="Logo Pacific" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoPacificRubiales} alt="Logo Pacific Rubiales" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoHocol} alt="Logo Hocol" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoEnergyCompany} alt="Logo Energy Company" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoPetrominerales} alt="Logo Petrominerales" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoEnergold} alt="Logo Energold Drilling" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoColumbus} alt="Logo Columbus" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoPetrobras} alt="Logo Petrobras" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+
     </div>
   );
 };
+
 
 export default Home; 
