@@ -4,13 +4,16 @@ import './styles/styles.css';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Blog from './components/Blog'; // ✅ Importación correcta
+import Blog from './components/Blog'; 
 import Home from './pages/Home';
 import Services from './pages/Services';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 import Thanks from './pages/Thanks';
+
+// ✅ Importamos el botón de WhatsApp
+import WhatsAppButton from './components/WhatsAppButton';
 
 function App() {
   return (
@@ -24,11 +27,14 @@ function App() {
             <Route path="/servicios" element={<Services />} />
             <Route path="/nosotros" element={<About />} />
             <Route path="/contacto" element={<Contact />} />
-            <Route path="/blog" element={<Blog />} /> {/* ✅ Aquí renderizamos el blog */}
-            <Route path="*" element={<NotFound />} /> {/* Ruta para todo lo que no existe */}
+            <Route path="/blog" element={<Blog />} /> 
+            <Route path="*" element={<NotFound />} /> 
           </Routes>
         </main>
         <Footer />
+
+        {/* ✅ Botón flotante de WhatsApp, siempre visible */}
+        <WhatsAppButton />
       </div>
     </Router>
   );

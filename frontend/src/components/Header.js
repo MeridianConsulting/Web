@@ -45,7 +45,8 @@ const Header = () => {
     <a href="#" className="nav-dropdown" onClick={e => e.preventDefault()}>Otros Servicios ▾</a>
     <div className="dropdown-content">
       <li><a href="https://servicedesk.meridianltda.com/front/ticket.php" target="_blank">GLPI</a></li>
-      <li><a href="https://hseq.ejemplo.com" target="_blank">Reportes HSEQ</a></li>
+      <li><a href="https://hseq.meridianltda.com" target="_blank">Reportes HSEQ</a></li>
+      <li><a href="https://evaluacion.de.desempeño.com" target="_blank">Evaluación De Desempeño</a></li>
     </div>  
   </li>
 </ul>

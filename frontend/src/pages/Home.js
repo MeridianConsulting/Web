@@ -41,6 +41,9 @@ import CEO4 from '../assets/img/CEO4.png';
 import CEO5 from '../assets/img/CEO5.png';
 import CEO6 from '../assets/img/CEO6.png';
 
+// ✅ Importar estilos
+import "../styles/styles.css";
+
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [autoplay, setAutoplay] = useState(true);
@@ -327,82 +330,64 @@ const Home = () => {
           </div>
         </div>
       </section>
+{/* ==================== NUESTROS SERVICIOS ==================== */}
+<section className="services" aria-label="Nuestros servicios">
+  <div className="services-container">
+    <h2 className="services-title">Nuestros Servicios</h2>
+    <p className="services-subtitle">Soluciones integrales para la industria</p>
 
-      {/* Sección de Servicios */}
-      <section className="services" aria-label="Nuestros servicios">
-        <div className="container">
-          <h2 className="section-title" data-aos="fade-up">Nuestros Servicios</h2>
-          <p className="section-subtitle" data-aos="fade-up" data-aos-delay="100">Soluciones integrales para la industria</p>
-          
-          <div className="services__grid">
-            <div className="service-card" data-aos="fade-up" data-aos-delay="150">
-              <div className="service-card__icon">
-                <i className="service-icon geo-icon"></i>
-              </div>
-              <h3 className="service-card__title">Consultoría Geo-científica</h3>
-              <p className="service-card__description">
-                Estudios geológicos especializados y modelado de reservorios para optimizar la exploración.
-              </p>
-              <Link to="/servicios/geociencia" className="service-card__link"></Link>
-            </div>
+    <div className="services-grid">
+      <div className="service-card">
+        <div className="service-icon">🗺️</div>
+        <h3 className="service-title">Consultoría Geo-científica</h3>
+        <p className="service-description">
+          Estudios geológicos especializados y modelado de reservorios para optimizar la exploración.
+        </p>
+      </div>
 
-            <div className="service-card" data-aos="fade-up" data-aos-delay="200">
-              <div className="service-card__icon">
-                <i className="service-icon oil-icon"></i>
-              </div>
-              <h3 className="service-card__title">Ingeniería de Petróleos</h3>
-              <p className="service-card__description">
-                Optimización de procesos de perforación y producción para maximizar el rendimiento.
-              </p>
-              <Link to="/servicios/petroleos" className="service-card__link"></Link>
-            </div>
+      <div className="service-card">
+        <div className="service-icon">⚙️</div>
+        <h3 className="service-title">Ingeniería de Petróleos</h3>
+        <p className="service-description">
+          Optimización de procesos de perforación y producción para maximizar el rendimiento.
+        </p>
+      </div>
 
-            <div className="service-card" data-aos="fade-up" data-aos-delay="250">
-              <div className="service-card__icon">
-                <i className="service-icon mining-icon"></i>
-              </div>
-              <h3 className="service-card__title">Consultoría para Minería</h3>
-              <p className="service-card__description">
-                Planificación y supervisión de operaciones mineras con enfoque en sostenibilidad.
-              </p>
-              <Link to="/servicios/mineria" className="service-card__link"></Link>
-            </div>
+      <div className="service-card">
+        <div className="service-icon">⛏️</div>
+        <h3 className="service-title">Consultoría para Minería</h3>
+        <p className="service-description">
+          Planificación y supervisión de operaciones mineras con enfoque en sostenibilidad.
+        </p>
+      </div>
 
-            <div className="service-card" data-aos="fade-up" data-aos-delay="300">
-              <div className="service-card__icon">
-                <i className="service-icon data-icon"></i>
-              </div>
-              <h3 className="service-card__title">Gestión de Información Técnica</h3>
-              <p className="service-card__description">
-                Manejo y análisis de datos geofísicos y de producción para toma de decisiones.
-              </p>
-              <Link to="/servicios/datos" className="service-card__link"></Link>
-            </div>
+      <div className="service-card">
+        <div className="service-icon">📊</div>
+        <h3 className="service-title">Gestión de Información Técnica</h3>
+        <p className="service-description">
+          Manejo y análisis de datos geofísicos y de producción para toma de decisiones.
+        </p>
+      </div>
 
-            <div className="service-card" data-aos="fade-up" data-aos-delay="350">
-              <div className="service-card__icon">
-                <i className="service-icon energy-icon"></i>
-              </div>
-              <h3 className="service-card__title">Bioenergía y Renovables</h3>
-              <p className="service-card__description">
-                Desarrollo de proyectos de biocombustibles y energías limpias para un futuro sostenible.
-              </p>
-              <Link to="/servicios/bioenergia" className="service-card__link"></Link>
-            </div>
+      <div className="service-card">
+        <div className="service-icon">🌱</div>
+        <h3 className="service-title">Bioenergía y Renovables</h3>
+        <p className="service-description">
+          Desarrollo de proyectos de biocombustibles y energías limpias para un futuro sostenible.
+        </p>
+      </div>
 
-            <div className="service-card" data-aos="fade-up" data-aos-delay="400">
-              <div className="service-card__icon">
-                <i className="service-icon env-icon"></i>
-              </div>
-              <h3 className="service-card__title">Gestión Ambiental</h3>
-              <p className="service-card__description">
-                Análisis de impacto ambiental y desarrollo de estrategias de mitigación efectivas.
-              </p>
-              <Link to="/servicios/ambiental" className="service-card__link"></Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="service-card">
+        <div className="service-icon">🌍</div>
+        <h3 className="service-title">Gestión Ambiental</h3>
+        <p className="service-description">
+          Análisis de impacto ambiental y desarrollo de estrategias de mitigación efectivas.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Sección Acerca de Nosotros */}
       <section className="about" aria-label="Acerca de nosotros">
@@ -443,7 +428,7 @@ const Home = () => {
             </div>
             <div className="about__stats" data-aos="fade-left" data-aos-delay="200">
               <div className="stat-item">
-                <span className="stat-item__number">18+</span>
+                <span className="stat-item__number">22+</span>
                 <span className="stat-item__text">Años de experiencia</span>
               </div>
               <div className="stat-item">
@@ -463,60 +448,91 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Sección de Testimonios */}
+      {/* Sección de Preguntas frecuentes */}
       <section className="testimonials" aria-label="Testimonios de clientes">
-        <div className="container">
-          <h2 className="section-title" data-aos="fade-up">Lo que dicen nuestros clientes</h2>
-          <div className="testimonials__grid">
-            <div className="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-              <div className="testimonial-card__content">
-                <p className="testimonial-card__quote">
-                  "Meridian Consulting ha sido un socio invaluable en nuestros proyectos de exploración. 
-                  Su experiencia y profesionalismo han superado nuestras expectativas."
-                </p>
-                <div className="testimonial-card__author">
-                  <img src={testimonial1} alt="Foto de Carlos Ramírez" className="testimonial-card__image" />
-                  <div className="testimonial-card__info">
-                    <h4 className="testimonial-card__name">Carlos Ramírez</h4>
-                    <p className="testimonial-card__position">Director de Operaciones, Ecopetrol</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+      {/* ==================== PREGUNTAS FRECUENTES ==================== */}
+<section className="faq">
+  <h2>Preguntas Frecuentes</h2>
+  <div className="faq-list">
 
-            <div className="testimonial-card" data-aos="fade-up" data-aos-delay="200">
-              <div className="testimonial-card__content">
-                <p className="testimonial-card__quote">
-                  "El equipo de Meridian demostró un conocimiento excepcional en la optimización de 
-                  nuestros procesos de extracción, lo que resultó en un aumento significativo de la productividad."
-                </p>
-                <div className="testimonial-card__author">
-                  <img src={testimonial2} alt="Foto de Ana Martínez" className="testimonial-card__image" />
-                  <div className="testimonial-card__info">
-                    <h4 className="testimonial-card__name">Ana Martínez</h4>
-                    <p className="testimonial-card__position">Gerente de Proyectos, Repsol</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+    {/* Preguntas originales */}
+    <div className="faq-item">
+      <h3 className="faq-question">¿Qué servicios ofrece Meridian Consulting Ltda.?</h3>
+      <p className="faq-answer">
+        Ofrecemos consultoría geo-científica, ingeniería de petróleos, minería sostenible, 
+        gestión de información técnica, bioenergía, renovables y gestión ambiental.
+      </p>
+    </div>
 
-            <div className="testimonial-card" data-aos="fade-up" data-aos-delay="300">
-              <div className="testimonial-card__content">
-                <p className="testimonial-card__quote">
-                  "Su enfoque en la sostenibilidad ambiental mientras maximizan los resultados 
-                  operativos es exactamente lo que buscábamos en un consultor."
-                </p>
-                <div className="testimonial-card__author">
-                  <img src={testimonial3} alt="Foto de Miguel Sánchez" className="testimonial-card__image" />
-                  <div className="testimonial-card__info">
-                    <h4 className="testimonial-card__name">Miguel Sánchez</h4>
-                    <p className="testimonial-card__position">Director Técnico, Vale</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className="faq-item">
+      <h3 className="faq-question">¿Dónde se encuentra ubicada la empresa?</h3>
+      <p className="faq-answer">
+        Nuestra oficina principal está ubicada en Bogotá, Colombia, pero prestamos 
+        servicios a nivel nacional e internacional.
+      </p>
+    </div>
+
+    <div className="faq-item">
+      <h3 className="faq-question">¿Cómo puedo solicitar una cotización?</h3>
+      <p className="faq-answer">
+        Puedes hacerlo a través del formulario de contacto en nuestra página web o 
+        escribirnos directamente a nuestro WhatsApp corporativo.
+      </p>
+    </div>
+
+    <div className="faq-item">
+      <h3 className="faq-question">¿Trabajan con empresas internacionales?</h3>
+      <p className="faq-answer">
+      Sí, tenemos experiencia con clientes internacionales en proyectos de exploración, sísmica, interpretación, minería y energías renovables entre otros.
+      </p>
+    </div>
+
+    {/* Nuevas preguntas */}
+    <div className="faq-item">
+      <h3 className="faq-question">¿Qué experiencia tiene Meridian Consulting LTDA en el sector energético?</h3>
+      <p className="faq-answer">
+      Contamos con más de 22 años de experiencia en consultoría geo-científica, ingeniería de petróleos y minería sostenible, trabajando con empresas líderes del sector.
+      </p>
+    </div>
+
+    <div className="faq-item">
+      <h3 className="faq-question">¿Atienden proyectos en zonas rurales o de difícil acceso?</h3>
+      <p className="faq-answer">
+        Sí, disponemos de equipos técnicos especializados para brindar soporte en proyectos 
+        ubicados en áreas rurales o de difícil acceso.
+      </p>
+    </div>
+
+    <div className="faq-item">
+      <h3 className="faq-question">¿Ofrecen servicios de capacitación o formación?</h3>
+      <p className="faq-answer">
+       Sí, brindamos capacitaciones y entrenamientos técnicos a equipos de trabajo en temas relacionados con geociencias, ingeniería, Energías renovables, operaciones de pozo y gestión ambiental.
+      </p>
+    </div>
+
+    <div className="faq-item">
+      <h3 className="faq-question">¿Pueden adaptar sus servicios a las necesidades específicas de mi empresa?</h3>
+      <p className="faq-answer">
+   Por supuesto, cada proyecto se diseña a la medida de los requerimientos del cliente, asegurando soluciones personalizadas y la aplicación de la lecciones aprendidas.
+      </p>
+    </div>
+
+    <div className="faq-item">
+      <h3 className="faq-question">¿Qué tecnologías utilizan en sus consultorías?</h3>
+      <p className="faq-answer">
+       Utilizamos software especializado en modelado de reservorios, análisis geofísico, interpretación y procesamiento de datos, gestión de datos, Sistemas de Información geográfica, bases de datos y sistemas innovadores de monitoreo ambiental.
+      </p>
+    </div>
+
+    <div className="faq-item">
+      <h3 className="faq-question">¿Cuál es el proceso para iniciar un proyecto con ustedes?</h3>
+      <p className="faq-answer">
+        El proceso inicia con una reunión de diagnóstico, luego se diseña la propuesta técnica y finalmente se establece un plan de trabajo conjunto.
+      </p>
+    </div>
+  </div>
+</section>
+
       </section>
 
       {/* Sección de Mujeres que Inspiran */}
@@ -526,73 +542,47 @@ const Home = () => {
     <h2>Mujeres que Inspiran</h2>
 
     <p className="descripcion">
-      “Celebramos la fuerza, la visión y el legado de estas mujeres, cuyo liderazgo transforma realidades, abre caminos y deja una huella imborrable en nuestra comunidad.”
+     “Estas mujeres, con liderazgo y compromiso, inspiran, transforman y dejan un legado de resiliencia y visión para las futuras generaciones.”
     </p>
 
     {/* Apartado Coordinadoras */}
-    <h1>COORDINADORAS</h1>
     <div className="cards">
       <div className="card">
         <img src={CEO1} alt="Nora Moreno"/>
         <h3>Nora Moreno</h3>
-        <p>“Lidera con visión y equilibrio la gestión de los recursos.”</p>
+        <p>“Liderando con visión y organización.”</p>
       </div>
       <div className="card">
         <img src={CEO2} alt="Ana Gamez" />
         <h3>Ana Gamez</h3>
-        <p>“Organiza y optimiza procesos clave para el buen funcionamiento.”</p>
+        <p>“Precisión y experiencia en cada cifra.”</p>
       </div>
       <div className="card">
         <img src={CEO3} alt="Eliana Alarcón" />
         <h3>Eliana Alarcón</h3>
-        <p>“Aporta orden y eficiencia a cada tarea diaria.”</p>      
+        <p>“Impulsando ideas que generan resultados.”</p>      
       </div>
       <div className="cards">
       <div className="card">
         <img src={CEO4} alt="Paola Gil" />
         <h3>Paola Gil</h3>
-        <p>“Apoya con precisión y constancia cada proceso operativo.”</p>      
+        <p>“Coordinación eficiente, proyectos exitosos.”</p>      
       </div>
       <div className="card">
         <img src={CEO5} alt="Lin Zambrano" />
         <h3>Lin Zambrano</h3>
-        <p>“Impulsa el avance de los proyectos con enfoque y detalle.”</p>      
+        <p>“Garantizando transparencia y confianza.”</p>      
       </div>
          <div className="cards">
       <div className="card">
         <img src={CEO6} alt="Zandra Mayorga" />
         <h3>Zandra Mayorga</h3>
-        <p>“Cuida y mantiene los espacios con compromiso y dedicación.”</p>      
+        <p>“Orden y control en cada balance.”</p>      
       </div>
     </div>
     </div>
     </div>
-
-    {/* Apartado Medios */}
-    <h1>MEDIOS</h1>
-    <div className="cards">
-      <div className="card">
-        <img src={CEO4} alt="Paola Gil" />
-        <h3>Paola Gil</h3>
-        <p>“Apoya con precisión y constancia cada proceso operativo.”</p>      
-      </div>
-      <div className="card">
-        <img src={CEO5} alt="Lin Zambrano" />
-        <h3>Lin Zambrano</h3>
-        <p>“Impulsa el avance de los proyectos con enfoque y detalle.”</p>      
-      </div>
     </div>
-
-    {/* Apartado Asistentes */}
-    <h1>ASISTENTES</h1>
-    <div className="cards">
-      <div className="card">
-        <img src={CEO6} alt="Zandra Mayorga" />
-        <h3>Zandra Mayorga</h3>
-        <p>“Cuida y mantiene los espacios con compromiso y dedicación.”</p>      
-      </div>
-    </div>
-  </div>
 </section>
 
 
