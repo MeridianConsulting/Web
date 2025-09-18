@@ -6,6 +6,13 @@ import { Zoom, Slide } from "react-awesome-reveal";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import "./About.css";
+import CEO1 from '../assets/img/CEO1.png';
+import CEO2 from '../assets/img/CEO2.png';
+import CEO3 from '../assets/img/CEO3.png';
+import CEO4 from '../assets/img/CEO4.png';
+import CEO5 from '../assets/img/CEO5.png';
+import CEO6 from '../assets/img/CEO6.png';
+
 
 const About = () => {
   useEffect(() => {
@@ -202,6 +209,57 @@ const About = () => {
           </Slide>
         </div>
       </section>
+       {/* Sección de Mujeres que Inspiran */}
+            
+      <section className="inspiradoras">
+        <div className="contenedor">
+          <h2>Mujeres que Inspiran</h2>
+      
+          <p className="descripcion">
+           “Estas mujeres, con liderazgo y compromiso, inspiran, transforman y dejan un legado de resiliencia y visión para las futuras generaciones.”
+          </p>
+      
+          {/* Apartado Coordinadoras */}
+          <div className="cards">
+            <div className="card">
+              <img src={CEO1} alt="Nora Moreno"/>
+              <h3>Nora Moreno</h3>
+              <p>“Liderando con visión y organización.”</p>
+            </div>
+            <div className="card">
+              <img src={CEO2} alt="Ana Gamez" />
+              <h3>Ana Gamez</h3>
+              <p>“Precisión y experiencia en cada cifra.”</p>
+            </div>
+            <div className="card">
+              <img src={CEO3} alt="Eliana Alarcón" />
+              <h3>Eliana Alarcón</h3>
+              <p>“Impulsando ideas que generan resultados.”</p>      
+            </div>
+            <div className="cards">
+            <div className="card">
+              <img src={CEO4} alt="Paola Gil" />
+              <h3>Paola Gil</h3>
+              <p>“Coordinación eficiente, proyectos exitosos.”</p>      
+            </div>
+            <div className="card">
+              <img src={CEO5} alt="Lin Zambrano" />
+              <h3>Lin Zambrano</h3>
+              <p>“Garantizando transparencia y confianza.”</p>      
+            </div>
+               <div className="cards">
+            <div className="card">
+              <img src={CEO6} alt="Zandra Mayorga" />
+              <h3>Zandra Mayorga</h3>
+              <p>“Orden y control en cada balance.”</p>      
+            </div>
+          </div>
+          </div>
+          </div>
+          </div>
+      </section>
+      
+      
 
       {/* CTA */}
       <section className="cta premium-cta" aria-label="Llamada a la acción">

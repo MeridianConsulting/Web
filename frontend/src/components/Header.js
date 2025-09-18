@@ -39,6 +39,7 @@ const Header = () => {
   <li><Link to="/" onClick={closeMenu}>Inicio</Link></li>
   <li><Link to="/servicios" onClick={closeMenu}>Servicios</Link></li>
   <li><Link to="/nosotros" onClick={closeMenu}>Nosotros</Link></li>
+  <li><Link to="/innovacion" onClick={closeMenu}>Innovación</Link></li> 
   <li><Link to="/contacto" onClick={closeMenu}>Contacto</Link></li>
   <li><Link to="/blog" onClick={closeMenu}>Blog</Link></li> {/* 🔥 Nuevo link */}
   <li>

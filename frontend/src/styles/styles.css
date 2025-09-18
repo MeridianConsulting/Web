@@ -2340,10 +2340,108 @@ body {
   gap: 8px;
 }
 
+/* Contenedor de cada campo */
 .form-group {
-  margin-bottom: 20px;
-  animation: fadeIn 1.4s ease;
+  position: relative;
+  margin-bottom: 18px;
 }
+
+/* Inputs base (ajústalo si ya tienes estilos) */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d9e2ef;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  font-size: 1rem;
+  background: #fff;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #004b99;
+  box-shadow: 0 0 0 3px rgba(0, 75, 153, 0.12);
+}
+
+/* Estado de error */
+.form-group.has-error input,
+.form-group.has-error select,
+.form-group.has-error textarea {
+  border: 2px solid #fbc02d;                  /* Amarillo institucional */
+  background: #fff9e6;
+  box-shadow: 0 0 0 3px rgba(251, 192, 45, 0.18);
+  animation: shake 0.25s linear;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-3px); }
+}
+
+/* Burbuja de error */
+.error-bubble {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 2;
+  background: #002855;                        /* Azul institucional */
+  color: #fff;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  border-left: 4px solid #fbc02d;             /* Acento amarillo */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  animation: pop 0.18s ease-out;
+  max-width: 520px;
+}
+
+.error-bubble::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 18px;
+  border-width: 0 7px 7px 7px;
+  border-style: solid;
+  border-color: transparent transparent #002855 transparent;
+}
+
+@keyframes pop {
+  from { opacity: 0; transform: translateY(-4px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Botón (mismo que te propuse antes) */
+.submit-button {
+  background: linear-gradient(135deg, #002855, #004b99);
+  color: #fff;
+  font-weight: 600;
+  padding: 14px 35px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.35s ease;
+  box-shadow: 0 4px 10px rgba(0, 40, 85, 0.28);
+  position: relative;
+  overflow: hidden;
+}
+.submit-button::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 215, 0, 0.35), transparent);
+  transition: all 0.5s;
+}
+.submit-button:hover { transform: translateY(-3px) scale(1.03); }
+.submit-button:hover::before { left: 100%; }
+
 
 label {
   display: block;
@@ -2376,6 +2474,7 @@ textarea:focus {
   box-shadow: 0 0 10px rgba(52, 152, 219, 0.4);
 }
 
+/* Estilo para el botón de envío */
 .submit-button {
   background-color: #3498db;
   color: white;

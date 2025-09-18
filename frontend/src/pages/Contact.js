@@ -1,8 +1,55 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import whatsappIcon from '../assets/img/whatsapp-icon.png';
 import StaticMap from '../components/StaticMap';
 
 const Contact = () => {
+  const [errors, setErrors] = useState({});
+  const formRef = useRef(null);
+
+  const emailOk = (v) => /^\S+@\S+\.\S+$/.test(v);
+
+  const validate = (form) => {
+    const e = {};
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const subject = form.subject.value;
+    const company = form.company.value.trim(); // opcional
+    const message = form.message.value.trim();
+
+    if (!name) e.name = 'Por favor ingresa tu nombre completo.';
+    if (!email) e.email = 'El correo es obligatorio.';
+    else if (!emailOk(email)) e.email = 'Ingresa un correo válido (ej. usuario@dominio.com).';
+    if (!subject) e.subject = 'Selecciona un asunto.';
+    if (!message) e.message = 'Cuéntanos brevemente tu mensaje.';
+
+    return e;
+  };
+
+  const handleSubmit = (ev) => {
+    const form = ev.target;
+    const e = validate(form);
+    setErrors(e);
+
+    const hasErrors = Object.keys(e).length > 0;
+    if (hasErrors) {
+      ev.preventDefault();
+      // Enfocar y desplazar al primer error
+      const firstKey = Object.keys(e)[0];
+      const firstField = form[firstKey];
+      if (firstField && firstField.focus) {
+        firstField.focus();
+        firstField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  };
+
+  // Validación por campo (onInput/onBlur) para ir limpiando errores
+  const clearError = (key) => setErrors((s) => {
+    const n = { ...s };
+    delete n[key];
+    return n;
+  });
+
   return (
     <div className="contact-container">
       <h1>Contáctenos</h1>
@@ -14,9 +61,7 @@ const Contact = () => {
           <p><i className="fas fa-phone-alt"></i> <strong>Teléfono:</strong> +57 (1) 123-4567</p>
           <p><i className="fas fa-envelope"></i> <strong>Email:</strong> info@meridian.com.co</p>
           <p><i className="fas fa-clock"></i> <strong>Horario:</strong> Lunes a Viernes, 7:30 AM - 5:00 PM</p>
-          
 
-          {/* Mapa con punto fijo */}
           <div className="map-container" style={{ marginTop: '20px' }}>
             <StaticMap />
           </div>
@@ -25,56 +70,106 @@ const Contact = () => {
         {/* Columna derecha */}
         <div className="contact-form">
           <h3>Envíenos un mensaje</h3>
+
           <form
+            ref={formRef}
             action="https://formsubmit.co/info@meridian.com.co"
             method="POST"
+            noValidate
+            onSubmit={handleSubmit}
           >
-            {/* Paso 3: configuración de redirección y captchas */}
+            {/* Configuración oculta */}
             <input type="hidden" name="_next" value="http://localhost:3000/gracias" />
-
             <input type="hidden" name="_captcha" value="false" />
-
-            {/* ✅ Paso 4: establecer asunto del correo */}
             <input type="hidden" name="_subject" value="Nuevo mensaje desde el formulario de MERIDIAN" />
 
-            <div className="form-group">
+            {/* Nombre */}
+            <div className={`form-group ${errors.name ? 'has-error' : ''}`}>
               <label htmlFor="name">Nombre completo</label>
-              <input type="text" id="name" name="name" required />
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Escriba su nombre completo"
+                onInput={() => clearError('name')}
+                onBlur={(e) => {
+                  if (!e.target.value.trim()) setErrors((s) => ({ ...s, name: 'Por favor ingresa tu nombre completo.' }));
+                }}
+              />
+              {errors.name && <span className="error-bubble">{errors.name}</span>}
             </div>
 
-            <div className="form-group">
+            {/* Email */}
+            <div className={`form-group ${errors.email ? 'has-error' : ''}`}>
               <label htmlFor="email">Correo electrónico</label>
-              <input type="email" id="email" name="email" required />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="ejemplo@correo.com"
+                onInput={() => clearError('email')}
+                onBlur={(e) => {
+                  const v = e.target.value.trim();
+                  if (!v) setErrors((s) => ({ ...s, email: 'El correo es obligatorio.' }));
+                  else if (!emailOk(v)) setErrors((s) => ({ ...s, email: 'Ingresa un correo válido (ej. usuario@dominio.com).' }));
+                }}
+              />
+              {errors.email && <span className="error-bubble">{errors.email}</span>}
             </div>
 
-            <div className="form-group">
+            {/* Asunto */}
+            <div className={`form-group ${errors.subject ? 'has-error' : ''}`}>
               <label htmlFor="subject">Asunto</label>
-              <select id="subject" name="subject" required>
-                <option value="">Seleccione un asunto</option>
+              <select
+                id="subject"
+                name="subject"
+                onChange={() => clearError('subject')}
+                onBlur={(e) => {
+                  if (!e.target.value) setErrors((s) => ({ ...s, subject: 'Selecciona un asunto.' }));
+                }}
+                defaultValue=""
+              >
+                <option value="" disabled hidden>Seleccione un asunto...</option>
                 <option value="Laboral">Laboral</option>
                 <option value="Comercial">Comercial</option>
                 <option value="Contable-financiero">Contable-financiero</option>
                 <option value="HSEQ">Temas HSEQ</option>
                 <option value="Otros temas">Otros temas</option>
               </select>
+              {errors.subject && <span className="error-bubble">{errors.subject}</span>}
             </div>
 
+            {/* Empresa (opcional) */}
             <div className="form-group">
-              <label htmlFor="company">Empresa</label>
-              <input type="text" id="company" name="company" />
+              <label htmlFor="company">Empresa (opcional)</label>
+              <input
+                type="text"
+                id="company"
+                name="company"
+                placeholder="Ingrese el nombre de su empresa"
+              />
             </div>
 
-            <div className="form-group">
+            {/* Mensaje */}
+            <div className={`form-group ${errors.message ? 'has-error' : ''}`}>
               <label htmlFor="message">Mensaje</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Escriba su mensaje aquí..."
+                onInput={() => clearError('message')}
+                onBlur={(e) => {
+                  if (!e.target.value.trim()) setErrors((s) => ({ ...s, message: 'Cuéntanos brevemente tu mensaje.' }));
+                }}
+              />
+              {errors.message && <span className="error-bubble">{errors.message}</span>}
             </div>
 
             <button type="submit" className="submit-button">Enviar</button>
           </form>
         </div>
       </div>
-
-
     </div>
   );
 };
