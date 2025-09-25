@@ -1,44 +1,18 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-
-// Ícono azul
-const blueIcon = new L.Icon({
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-  className: 'custom-blue-icon'
-});
+import React from "react";
 
 const StaticMap = () => {
-  // Coordenadas exactas Cl. 67 #7 - 35, Bogotá
-  const position = [4.653424, -74.059197];
-
   return (
-    <div style={{ height: '400px', width: '100%' }}>
-      <MapContainer 
-        center={position} 
-        zoom={19} 
-        style={{ height: '100%', width: '100%' }} 
-        scrollWheelZoom={true}  // ✅ activar zoom con la rueda
-        dragging={true}        // ✅ permitir mover el mapa
-        doubleClickZoom={true} // ✅ zoom con doble clic
-        zoomControl={true}     // ✅ controles de zoom visibles
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={position} icon={blueIcon}>
-          <Popup>
-            Meridian Consulting Ltda <br /> Cl. 67 #7 - 35, Bogotá
-          </Popup>
-        </Marker>
-      </MapContainer>
+    <div style={{ width: "100%", height: "400px" }}>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.682739500953!2d-74.0589609!3d4.6505566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9a414e892f5f%3A0xb073e71cf03eebd4!2sEdificio%20Plaza%2067!5e0!3m2!1ses!2sco!4v1758828078573!5m2!1ses!2sco"
+        width="100%"
+        height="100%"
+        style={{ border: 0 }}
+        allowFullScreen=""
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title="Mapa Plaza 67"
+      ></iframe>
     </div>
   );
 };

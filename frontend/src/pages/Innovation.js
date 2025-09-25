@@ -1,25 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "./Innovation.css";   // Importa los estilos
 
 const Innovation = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,   // duración de las animaciones
+      once: true,       // se ejecuta solo una vez
+      offset: 120,      // distancia desde el viewport
+    });
+  }, []);
+
   return (
     <div className="innovation-page">
       {/* Hero */}
-      <section className="innovation-hero">
-        <h1>Innovación para un Futuro Competitivo</h1>
-        <p>
+      <section className="innovation-hero" data-aos="fade-up">
+        <h1 data-aos="fade-right">Innovación para un Futuro Competitivo</h1>
+        <p data-aos="fade-left" data-aos-delay="200">
           En <strong>MERIDIAN CONSULTING</strong> estamos desarrollando el 
           <strong> Proyecto de Investigación Geotermia Paipa-Iza</strong>, 
           que busca evaluar el potencial geotérmico integrando inteligencia artificial,
           modelamiento computacional y soluciones sostenibles para Colombia.
         </p>
-        <a href="/contacto" className="cta-btn">
+        <a href="/contacto" className="cta-btn" data-aos="zoom-in" data-aos-delay="400">
           🚀 Quiero Innovar
         </a>
       </section>
 
       {/* Objetivo General */}
-      <section className="innovation-goal">
+      <section className="innovation-goal" data-aos="fade-right">
         <h2>Objetivo General</h2>
         <p>
           Evaluar el potencial geotérmico del complejo Paipa-Iza, integrando análisis 
@@ -29,45 +39,47 @@ const Innovation = () => {
         </p>
       </section>
 
-<section className="innovation-components" data-aos="fade-up">
-  <h2>Componentes Estratégicos</h2>
-  <table className="innovation-table">
-    <thead>
-      <tr>
-        <th>Eje</th>
-        <th>Descripción</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1. Información base</td>
-        <td>Revisión bibliográfica, adquisición de datos del SGC, caracterización de rocas y aguas termales.</td>
-      </tr>
-      <tr>
-        <td>2. Modelos predictivos IA</td>
-        <td>Aplicación de Machine Learning (Random Forest, SVM, CNN, etc.) sobre datos geoquímicos, geofísicos y sensores remotos.</td>
-      </tr>
-      <tr>
-        <td>3. Simulación geoquímica</td>
-        <td>Uso de plugins en CMG, modelado roca-fluido, calibración con datos reales y proyecciones 3D.</td>
-      </tr>
-      <tr>
-        <td>4. Diseño conceptual</td>
-        <td>Diseño de sistemas de aprovechamiento y modelación termoquímica del ciclo de generación de energía.</td>
-      </tr>
-      <tr>
-        <td>5. Proyección y apropiación</td>
-        <td>Indicadores de impacto, planes de adopción y validación con la comunidad.</td>
-      </tr>
-      <tr>
-        <td>6. Entregables científicos</td>
-        <td>Artículos indexados, libro, manual técnico y aplicación web.</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+      {/* Componentes Estratégicos (tabla intacta) */}
+      <section className="innovation-components" data-aos="fade-up">
+        <h2>Componentes Estratégicos</h2>
+        <table className="innovation-table">
+          <thead>
+            <tr>
+              <th>Eje</th>
+              <th>Descripción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1. Información base</td>
+              <td>Revisión bibliográfica, adquisición de datos del SGC, caracterización de rocas y aguas termales.</td>
+            </tr>
+            <tr>
+              <td>2. Modelos predictivos IA</td>
+              <td>Aplicación de Machine Learning (Random Forest, SVM, CNN, etc.) sobre datos geoquímicos, geofísicos y sensores remotos.</td>
+            </tr>
+            <tr>
+              <td>3. Simulación geoquímica</td>
+              <td>Uso de plugins en CMG, modelado roca-fluido, calibración con datos reales y proyecciones 3D.</td>
+            </tr>
+            <tr>
+              <td>4. Diseño conceptual</td>
+              <td>Diseño de sistemas de aprovechamiento y modelación termoquímica del ciclo de generación de energía.</td>
+            </tr>
+            <tr>
+              <td>5. Proyección y apropiación</td>
+              <td>Indicadores de impacto, planes de adopción y validación con la comunidad.</td>
+            </tr>
+            <tr>
+              <td>6. Entregables científicos</td>
+              <td>Artículos indexados, libro, manual técnico y aplicación web.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
       {/* Aliados Estratégicos */}
-      <section className="innovation-allies">
+      <section className="innovation-allies" data-aos="fade-left">
         <h2>Aliados Estratégicos</h2>
         <ul>
           <li><strong>Meridian:</strong> Desarrollo de plugins, modelamiento avanzado.</li>
@@ -79,7 +91,7 @@ const Innovation = () => {
       </section>
 
       {/* Tecnologías Clave */}
-      <section className="innovation-tech">
+      <section className="innovation-tech" data-aos="fade-up">
         <h2>Tecnologías Clave Aplicadas</h2>
         <ul>
           <li>Azure Machine Learning Studio</li>
@@ -92,13 +104,15 @@ const Innovation = () => {
       </section>
 
       {/* CTA Final */}
-      <section className="innovation-cta">
+      <section className="innovation-cta" data-aos="zoom-in-up">
         <h2>¿Listo para innovar?</h2>
         <p>
           Conversemos y construyamos juntos las soluciones que tu empresa necesita 
           para destacar en el futuro.
         </p>
-        <a href="/contacto" className="cta-btn">Contáctanos</a>
+        <a href="/contacto" className="cta-btn" data-aos="flip-up" data-aos-delay="200">
+          Contáctanos
+        </a>
       </section>
     </div>
   );

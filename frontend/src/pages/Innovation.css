@@ -1,19 +1,49 @@
 /* ====== Layout General ====== */
 .innovation-page {
-  font-family: 'Segoe UI', sans-serif;
-  color: #222;
+  font-family: "Segoe UI", sans-serif;
   background: #f9f9f9;
-  line-height: 1.7;
-  padding: 60px 8%;
+  line-height: 1.8;
+  padding: 70px 10%;
+  color: #333;
 }
 
-/* Títulos */
+/* ====== Secciones generales ====== */
+.innovation-page section {
+  margin: 80px auto;
+  padding: 60px 50px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.innovation-page section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.innovation-page section p,
+.innovation-page section li {
+  color: #333;
+  font-size: 1.05rem;
+}
+
+/* ====== Títulos ====== */
+.innovation-page h1,
+.innovation-page h2 {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.innovation-page h1 {
+  font-size: 2.6rem;
+  color: #fbc02d; /* Amarillo institucional */
+}
+
 .innovation-page h2 {
   font-size: 2rem;
-  margin-bottom: 30px;
-  text-align: center;
-  color: #002855;
-  position: relative;
+  color: #002855; /* Azul institucional */
 }
 
 .innovation-page h2::after {
@@ -26,19 +56,53 @@
   border-radius: 2px;
 }
 
-/* Secciones */
-.innovation-page section {
-  margin: 70px auto;
-  padding: 50px 40px;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* ====== Hero ====== */
+.innovation-hero {
+  background: linear-gradient(135deg, #002855, #004b99);
+  text-align: center;
+  padding: 100px 70px;
+  border-radius: 20px;
+  color: #fff;
 }
 
-.innovation-page section:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+.innovation-hero h1 {
+  color: #fbc02d;
+  margin-bottom: 20px;
+}
+
+.innovation-hero p {
+  font-size: 1.2rem;
+  max-width: 850px;
+  margin: 0 auto 35px;
+  color: #f1f1f1;
+}
+
+/* ====== Botón CTA ====== */
+.cta-btn {
+  display: inline-block;
+  background: #fbc02d;
+  color: #002855;
+  padding: 14px 32px;
+  border-radius: 40px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+  background: #002855;
+  color: #fff;
+  transform: scale(1.07);
+}
+
+/* ====== Objetivo General ====== */
+.innovation-goal p {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  text-align: center;
 }
 
 /* ====== Tabla de Componentes Estratégicos ====== */
@@ -46,8 +110,8 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 1rem;
-  margin-top: 20px;
-  border-radius: 12px;
+  margin-top: 35px;
+  border-radius: 14px;
   overflow: hidden;
 }
 
@@ -57,15 +121,15 @@
 }
 
 .innovation-table th {
-  padding: 18px;
+  padding: 20px;
   text-align: left;
   font-size: 1.1rem;
   font-weight: 600;
 }
 
 .innovation-table td {
-  padding: 16px 18px;
-  line-height: 1.6;
+  padding: 18px 20px;
+  line-height: 1.8;
   color: #333;
 }
 
@@ -73,78 +137,107 @@
   background: #f4f6f9;
 }
 
-.innovation-table tr:hover {
-  background: rgba(251, 192, 45, 0.12);
-  transition: background 0.3s ease;
-}
-
 .innovation-table td:first-child {
   font-weight: 600;
   color: #002855;
-  width: 28%;
+  width: 30%;
 }
 
-/* ====== Animaciones ====== */
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ====== Aliados Estratégicos ====== */
+.innovation-allies ul {
+  list-style: none;
+  padding: 0;
+  max-width: 800px;
+  margin: 40px auto 0;
 }
 
-.innovation-page section {
-  animation: fadeInUp 0.8s ease forwards;
+.innovation-allies li {
+  margin: 18px 0;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  padding-left: 32px;
+  position: relative;
+  color: #333;
 }
 
-/* ====== Responsividad ====== */
+.innovation-allies li strong {
+  color: #002855;
+}
+
+.innovation-allies li::before {
+  content: "✔";
+  color: #fbc02d;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* ====== Tecnologías Clave ====== */
+.innovation-tech {
+  background: #002855;
+  color: #fff;
+  text-align: center;
+}
+
+.innovation-tech h2 {
+  color: #fbc02d;
+}
+
+.innovation-tech ul {
+  list-style: none;
+  padding: 0;
+  max-width: 800px;
+  margin: 40px auto 0;
+  text-align: left;
+}
+
+.innovation-tech li {
+  margin: 16px 0;
+  padding-left: 32px;
+  position: relative;
+  font-size: 1.1rem;
+  color: #001aff;
+}
+
+.innovation-tech li::before {
+  content: "⚡";
+  position: absolute;
+  left: 0;
+  color: #fbc02d;
+  font-size: 1.2rem;
+}
+
+/* ====== CTA Final ====== */
+.innovation-cta {
+  text-align: center;
+}
+
+.innovation-cta h2 {
+  color: #002855;
+}
+
+.innovation-cta p {
+  margin-bottom: 25px;
+  font-size: 1.2rem;
+  color: #444;
+}
+
+/* ====== Responsive ====== */
 @media (max-width: 992px) {
   .innovation-page {
     padding: 40px 5%;
   }
-  
+
   .innovation-page section {
-    padding: 30px 20px;
+    padding: 40px 25px;
+    margin: 60px auto;
   }
 
-  .innovation-table th, 
-  .innovation-table td {
-    padding: 12px;
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .innovation-table, .innovation-table thead, 
-  .innovation-table tbody, .innovation-table tr, 
-  .innovation-table td, .innovation-table th {
-    display: block;
-    width: 100%;
+  .innovation-hero h1 {
+    font-size: 2.2rem;
   }
 
-  .innovation-table tr {
-    margin-bottom: 15px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    padding: 12px;
-  }
-
-  .innovation-table td {
-    padding: 10px;
-    border: none;
-    text-align: left;
-  }
-
-  .innovation-table td:first-child {
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
-
-  .innovation-table thead {
-    display: none;
+  .innovation-hero p {
+    font-size: 1rem;
   }
 }

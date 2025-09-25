@@ -394,3 +394,142 @@
     transform: none;
   }
 }
+
+/* ===========================
+   MUJERES QUE INSPIRAN
+   =========================== */
+.inspiradoras {
+  position: relative;
+  overflow-x: hidden;
+  background: #5c1d9c; /* Fondo púrpura institucional */
+  padding: 100px 5%;
+  text-align: center;
+}
+
+.inspiradoras h2 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #fbc02d;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.inspiradoras h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #fbc02d;
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+.inspiradoras .descripcion {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #fff;
+  max-width: 900px;
+  margin: 0 auto 60px;
+  line-height: 1.6;
+}
+
+/* ===========================
+   TARJETAS
+   =========================== */
+.cards {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  gap: 35px;
+  position: relative;
+  z-index: 2;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 45px 25px 35px;
+  width: 260px; /* 🔹 Mantiene el tamaño compacto */
+  min-height: 400px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  flex: 0 0 auto;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover elegante */
+.card:hover {
+  box-shadow: 0 10px 22px rgba(251, 192, 45, 0.25); /* sombra dorada suave */
+}
+
+/* Imagen más grande dentro de la tarjeta */
+.card img {
+  width: 200px;   /* 🔹 Más grande que antes */
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 6px solid #fbc02d;
+  transition: all 0.3s ease;
+}
+
+/* Glow sutil en hover */
+.card img:hover {
+  box-shadow: 0 0 18px rgba(251, 192, 45, 0.4);
+}
+
+/* ===========================
+   TEXTOS
+   =========================== */
+.card h3 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #5c1d9c;
+}
+
+.card p {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media (max-width: 1400px) {
+  .cards {
+    flex-wrap: wrap; /* ✅ Si no caben, que bajen en filas */
+  }
+}
+
+@media (max-width: 768px) {
+  .inspiradoras h2 {
+    font-size: 2rem;
+  }
+
+  .inspiradoras .descripcion {
+    font-size: 1rem;
+  }
+
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+    max-width: 360px;
+    min-height: 420px;
+  }
+
+  .card img {
+    width: 180px;
+    height: 180px;
+  }
+}
