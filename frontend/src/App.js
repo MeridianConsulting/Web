@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import './styles/styles.css';
+import Login from './pages/Login';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -37,6 +38,7 @@ function App() {
             <Route path="/innovacion" element={<Innovation />} />
             <Route path="/blog" element={<Blog />} /> 
             <Route path="*" element={<NotFound />} /> 
+            <Route path="/login" element={<Login />} />
           </Routes>
         </main>
         <Footer />
