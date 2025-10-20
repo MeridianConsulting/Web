@@ -74,30 +74,35 @@ const About = () => {
         <div className="values-container">
           <h2 className="values-title">Nuestros Valores</h2>
           <div className="values-grid">
-            <div className="value-card">
+            <div className="value-card"> 
               <span className="value-icon">🤝</span>
               <h3>Compromiso</h3>
-              <p>Trabajamos con dedicación para cumplir y superar las expectativas de nuestros clientes.</p>
+              <p>Nos dedicamos con entrega y constancia a alcanzar los objetivos
+                  de la empresa y nuestros clientes.</p>
             </div>
             <div className="value-card">
               <span className="value-icon">⭐</span>
               <h3>Excelencia</h3>
-              <p>Buscamos la mejora continua y la calidad en cada uno de nuestros procesos.</p>
+              <p>Hacemos nuestro trabajo con calidad y buscamos siempre mejorar para
+                  superar las expectativas.</p>
             </div>
             <div className="value-card">
               <span className="value-icon">🔎</span>
               <h3>Transparencia</h3>
-              <p>Actuamos con honestidad, claridad y responsabilidad en nuestras acciones.</p>
+              <p>Actuamos con claridad y honestidad, generando confianza en
+                  todo lo que hacemos.</p>
             </div>
             <div className="value-card">
               <span className="value-icon">💡</span>
               <h3>Innovación</h3>
-              <p>Aplicamos soluciones creativas y eficientes para afrontar los retos del sector.</p>
+              <p>Buscamos nuevas ideas, métodos y tecnologías para mejorar nuestros
+                  servicios y procesos.</p>
             </div>
             <div className="value-card">
               <span className="value-icon">🌍</span>
               <h3>Responsabilidad</h3>
-              <p>Cuidamos el impacto de nuestras acciones en las personas y el medio ambiente.</p>
+              <p>Cumplimos nuestros compromisos con seriedad y cuidamos el
+                  impacto de nuestras decisiones.</p>
             </div>
           </div>
         </div>
@@ -145,11 +150,16 @@ const About = () => {
             >
               <h3>Misión</h3>
               <p>
-                En MERIDIAN CONSULTING LTDA contribuimos al fortalecimiento del sector energético y ambiental, 
-                mediante servicios especializados en geología, ingeniería de petróleos, energías renovables y 
-                control técnico de operaciones. Promovemos excelencia, ética, disciplina técnica y responsabilidad, 
-                generando valor a nuestros clientes y apoyándonos en un equipo humano altamente capacitado.
-              </p>
+            En MERIDIAN CONSULTING LTDA. contribuimos al fortalecimiento del sector
+            energético y ambiental, mediante servicios especializados en geología, ingeniería de
+            petróleos, energías renovables y ejecución y control técnico de operaciones, en todas
+            sus etapas. trabajamos con excelencia, ética, disciplina técnica y responsabilidad,
+            adaptándonos a diversos entornos sociales y operativos, y generando valor a nuestros
+            clientes al cumplir sus objetivos con eficiencia y confidencialidad. nos apoyamos en un
+            equipo humano altamente capacitado, promoviendo su bienestar y desarrollo, en una
+            cultura de innovación, mejora continua, sostenibilidad y seguridad, que nos permite
+            entregar soluciones confiables y de alto impacto.
+               </p>
             </motion.div>
           </Slide>
 
@@ -161,10 +171,14 @@ const About = () => {
             >
               <h3>Visión</h3>
               <p>
-                Para el año 2030, ser un referente nacional en consultoría especializada para el sector minero-energético, 
-                destacándonos por excelencia operativa y financiera, innovación tecnológica, compromiso ético y capacidad de 
-                adaptación a retos técnicos, sociales y ambientales. Generaremos alianzas estratégicas de alto valor y 
-                contribuiremos al crecimiento sostenible de las comunidades.
+                Para el año 2030, MERIDIAN CONSULTING LTDA. se consolidará como un referente
+                nacional en consultoría especializada para el sector minero energético, destacándose
+                por su excelencia operativa y financiera, innovación tecnologica, compromiso ético, y
+                capacidad de adaptación a los retos técnicos, sociales y ambientales del país. seremos
+                reconocidos por cumplir con precisión y oportunidad los objetivos de nuestros clientes,
+                generando alianzas estratégicas de alto valor, promoviendo el desarrollo de nuestro
+                talento humano y contribuyendo al crecimiento sostenible de las comunidades y
+                sectores donde operamos.
               </p>
             </motion.div>
           </Slide>

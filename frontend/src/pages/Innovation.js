@@ -1,118 +1,150 @@
 import React, { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import "./Innovation.css";   // Importa los estilos
+import "./Innovation.css";
 
 const Innovation = () => {
   useEffect(() => {
-    AOS.init({
-      duration: 1000,   // duración de las animaciones
-      once: true,       // se ejecuta solo una vez
-      offset: 120,      // distancia desde el viewport
-    });
+    // === Animación de subrayado cuando los h2 entran en vista ===
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-underline");
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    const headings = document.querySelectorAll(".innovation-page h2");
+    headings.forEach((h) => observer.observe(h));
+
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <div className="innovation-page">
+    <div className="innovation-page" data-aos="fade-up">
       {/* Hero */}
-      <section className="innovation-hero" data-aos="fade-up">
-        <h1 data-aos="fade-right">Innovación para un Futuro Competitivo</h1>
-        <p data-aos="fade-left" data-aos-delay="200">
-          En <strong>MERIDIAN CONSULTING</strong> estamos desarrollando el 
-          <strong> Proyecto de Investigación Geotermia Paipa-Iza</strong>, 
-          que busca evaluar el potencial geotérmico integrando inteligencia artificial,
-          modelamiento computacional y soluciones sostenibles para Colombia.
-        </p>
-        <a href="/contacto" className="cta-btn" data-aos="zoom-in" data-aos-delay="400">
-          🚀 Quiero Innovar
-        </a>
+      <section className="innovation-hero">
+        <div className="hero-content">
+          <h1>Innovación para un Futuro Competitivo</h1>
+          <p>
+            En <strong>MERIDIAN CONSULTING LTDA</strong>, la innovación no es
+            solo una estrategia, es una cultura que impulsa el cambio, fomenta
+            la creatividad y genera ventajas sostenibles para nuestros socios y
+            clientes.
+          </p>
+        </div>
       </section>
 
-      {/* Objetivo General */}
-      <section className="innovation-goal" data-aos="fade-right">
-        <h2>Objetivo General</h2>
-        <p>
-          Evaluar el potencial geotérmico del complejo Paipa-Iza, integrando análisis 
-          geológicos, geoquímicos, geofísicos y modelamiento computacional con técnicas 
-          de inteligencia artificial y aprendizaje automático, para diseñar una solución 
-          energética sostenible y técnicamente viable en Colombia.
-        </p>
+      {/* Objetivo */}
+      <section className="innovation-goal" data-aos="fade-up">
+        <h2>Objetivo de la Innovación</h2>
+        <div className="goal-card">
+          <p>
+            Promover una mentalidad innovadora dentro de la organización,
+            impulsando procesos de mejora continua, transformación digital y
+            aprovechamiento del talento humano.
+          </p>
+          <ul>
+            <li>Adoptar nuevas tecnologías y metodologías ágiles.</li>
+            <li>Fortalecer la capacidad de adaptación al cambio.</li>
+            <li>Generar impacto positivo en los resultados empresariales.</li>
+          </ul>
+        </div>
       </section>
 
-      {/* Componentes Estratégicos (tabla intacta) */}
+      {/* Componentes */}
       <section className="innovation-components" data-aos="fade-up">
-        <h2>Componentes Estratégicos</h2>
-        <table className="innovation-table">
-          <thead>
-            <tr>
-              <th>Eje</th>
-              <th>Descripción</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1. Información base</td>
-              <td>Revisión bibliográfica, adquisición de datos del SGC, caracterización de rocas y aguas termales.</td>
-            </tr>
-            <tr>
-              <td>2. Modelos predictivos IA</td>
-              <td>Aplicación de Machine Learning (Random Forest, SVM, CNN, etc.) sobre datos geoquímicos, geofísicos y sensores remotos.</td>
-            </tr>
-            <tr>
-              <td>3. Simulación geoquímica</td>
-              <td>Uso de plugins en CMG, modelado roca-fluido, calibración con datos reales y proyecciones 3D.</td>
-            </tr>
-            <tr>
-              <td>4. Diseño conceptual</td>
-              <td>Diseño de sistemas de aprovechamiento y modelación termoquímica del ciclo de generación de energía.</td>
-            </tr>
-            <tr>
-              <td>5. Proyección y apropiación</td>
-              <td>Indicadores de impacto, planes de adopción y validación con la comunidad.</td>
-            </tr>
-            <tr>
-              <td>6. Entregables científicos</td>
-              <td>Artículos indexados, libro, manual técnico y aplicación web.</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      {/* Aliados Estratégicos */}
-      <section className="innovation-allies" data-aos="fade-left">
-        <h2>Aliados Estratégicos</h2>
-        <ul>
-          <li><strong>Meridian:</strong> Desarrollo de plugins, modelamiento avanzado.</li>
-          <li><strong>Universidad de América:</strong> Formación e investigación aplicada.</li>
-          <li><strong>Fundación Uniagraria:</strong> Desarrollo académico, formación de talento.</li>
-          <li><strong>Fidecodex:</strong> Gestión de recursos.</li>
-          <li><strong>ANH y MinCiencias:</strong> Cofinanciación y supervisión técnica.</li>
-        </ul>
-      </section>
-
-      {/* Tecnologías Clave */}
-      <section className="innovation-tech" data-aos="fade-up">
-        <h2>Tecnologías Clave Aplicadas</h2>
-        <ul>
-          <li>Azure Machine Learning Studio</li>
-          <li>Python / Scala + Databricks</li>
-          <li>CMG con plugins propios de geoquímica y deposición mineral</li>
-          <li>Sensores térmicos + drones + cámaras multiespectrales</li>
-          <li>SQL Server y MongoDB (estructurado / no estructurado)</li>
-          <li>Streamlit para visualización de resultados IA</li>
-        </ul>
-      </section>
-
-      {/* CTA Final */}
-      <section className="innovation-cta" data-aos="zoom-in-up">
-        <h2>¿Listo para innovar?</h2>
+        <h2>Componentes Clave</h2>
         <p>
-          Conversemos y construyamos juntos las soluciones que tu empresa necesita 
-          para destacar en el futuro.
+          La innovación se materializa a través de cuatro ejes estratégicos que
+          fortalecen nuestra posición en el mercado:
         </p>
-        <a href="/contacto" className="cta-btn" data-aos="flip-up" data-aos-delay="200">
-          Contáctanos
-        </a>
+        <div className="table-wrapper">
+          <table className="innovation-table">
+            <thead>
+              <tr>
+                <th>Eje</th>
+                <th>Descripción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Cultura Organizacional</td>
+                <td>
+                  Fomentar espacios donde la creatividad, el aprendizaje y la
+                  colaboración sean parte del ADN institucional.
+                </td>
+              </tr>
+              <tr>
+                <td>Transformación Digital</td>
+                <td>
+                  Integración de tecnologías modernas que optimizan procesos y
+                  mejoran la toma de decisiones.
+                </td>
+              </tr>
+              <tr>
+                <td>Desarrollo del Talento</td>
+                <td>
+                  Capacitar a nuestros colaboradores para enfrentar los retos de
+                  un entorno en constante evolución.
+                </td>
+              </tr>
+              <tr>
+                <td>Sostenibilidad e Impacto</td>
+                <td>
+                  Implementar soluciones innovadoras que aporten al bienestar
+                  social y ambiental.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* Aliados */}
+      <section className="innovation-allies" data-aos="fade-up">
+        <h2>Aliados Estratégicos</h2>
+        <p>
+          La innovación no ocurre de manera aislada. En MERIDIAN CONSULTING
+          contamos con aliados que potencian nuestras iniciativas:
+        </p>
+        <div className="allies-grid">
+          <div className="ally-card">
+            <strong>Universidades</strong>
+            <p>Colaboramos en programas de investigación y desarrollo.</p>
+          </div>
+          <div className="ally-card">
+            <strong>Entidades Gubernamentales</strong>
+            <p>Participamos en proyectos de transformación y competitividad.</p>
+          </div>
+          <div className="ally-card">
+            <strong>Empresas Privadas</strong>
+            <p>Intercambiamos conocimiento y mejores prácticas.</p>
+          </div>
+          <div className="ally-card">
+            <strong>Redes de Innovación</strong>
+            <p>Nos conectamos con ecosistemas de innovación nacionales e internacionales.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Tecnologías Aplicadas */}
+      <section className="innovation-tech" data-aos="fade-up">
+        <h2>Tecnologías Aplicadas</h2>
+        <p>
+          MERIDIAN CONSULTING integra herramientas y plataformas tecnológicas
+          que mejoran la gestión del conocimiento, la comunicación interna y la
+          eficiencia operativa. Algunas de ellas son:
+        </p>
+        <div className="tech-grid">
+          <div className="tech-card">Power BI</div>
+          <div className="tech-card">Microsoft 365</div>
+          <div className="tech-card">Tawk.io</div>
+          <div className="tech-card">Plataformas CRM</div>
+          <div className="tech-card">Google Workspace</div>
+          <div className="tech-card">Gestión Documental</div>
+        </div>
       </section>
     </div>
   );
