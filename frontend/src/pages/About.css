@@ -553,3 +553,159 @@
   font-family: "Segoe UI", Arial, sans-serif !important;
   position: relative !important;
 }
+
+
+.valores-section {
+  position: relative;
+  padding: 100px 5%;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 50%, #eaf4ff 100%);
+  overflow: hidden;
+}
+
+/* ✅ Color institucional para el título */
+.titulo-valores {
+  text-align: center;
+  font-size: 2.8rem;
+  color: #0a6aa3; /* Azul institucional exacto */
+  font-weight: 700;
+  margin-bottom: 70px;
+  letter-spacing: 1px;
+  text-shadow: 0 3px 6px rgba(10, 106, 163, 0.2);
+}
+
+/* === GRID === */
+.valores-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  justify-items: center;
+}
+
+.valor-card {
+  background: white;
+  padding: 30px 25px;
+  border-radius: 18px;
+  max-width: 340px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+  border-top: 4px solid #0a6aa3;
+}
+
+.valor-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 12px 35px rgba(10, 106, 163, 0.25);
+}
+
+.valor-card h3 {
+  color: #0a6aa3;
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.valor-card p {
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* === AJUSTE DE POSICIÓN DE LAS TARJETAS INFERIORES === */
+.valor-card:nth-child(4),
+.valor-card:nth-child(5) {
+  grid-column: span 1;
+  justify-self: center;
+  transform: translateX(-25px); /* 🔹 Movidas ligeramente a la derecha (antes -60px) */
+}
+
+/* === BURBUJAS ANIMADAS DE FONDO === */
+.burbujas-fondo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.burbujas-fondo::before,
+.burbujas-fondo::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: rgba(10, 106, 163, 0.15);
+  border-radius: 50%;
+  animation: burbujas 8s ease-in-out infinite alternate;
+}
+
+.burbujas-fondo::after {
+  width: 70px;
+  height: 70px;
+  background: rgba(10, 106, 163, 0.1);
+  left: 60%;
+  animation-duration: 10s;
+  animation-delay: 2s;
+}
+
+@keyframes burbujas {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+  }
+  50% {
+    transform: translateY(-30px) translateX(20px) scale(1.1);
+  }
+  100% {
+    transform: translateY(10px) translateX(-20px) scale(0.95);
+  }
+}
+
+/* 🔹 Brillo animado adicional (efecto elegante de fondo) */
+.valores-section::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(10,106,163,0.15) 0%, transparent 70%);
+  animation: moverBrillo 12s infinite alternate ease-in-out;
+}
+
+@keyframes moverBrillo {
+  0% { transform: translate(0, 0); opacity: 0.8; }
+  100% { transform: translate(100px, 80px); opacity: 0.4; }
+}
+
+/* === RESPONSIVO === */
+@media (max-width: 992px) {
+  .valores-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .valor-card:nth-child(4),
+  .valor-card:nth-child(5) {
+    transform: none;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .valores-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.valores-section .titulo-valores {
+  text-align: center;
+  font-size: 2.8rem;
+  color: #0a6aa3  !important; /* 🔥 Negro forzado */
+  font-weight: 700;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+  font-family: "Poppins", sans-serif; /* o la fuente que estés usando */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 5;
+}

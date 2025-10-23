@@ -149,7 +149,7 @@ const About = () => {
 
       {/* VALORES */}
       <section className="values-container">
-        <h2 className="values-title">Nuestros Valores</h2>
+        <h2 className="values-title">Valores Corporativos</h2>
         <div className="values-grid">
           <div className="value-card">
             <span className="value-icon">🤝</span>
@@ -194,9 +194,62 @@ const About = () => {
         </div>
       </section>
 
+
+      <section className="valores-section" data-aos="fade-up">
+  <h2 className="titulo-valores">Principios</h2>
+
+  <div className="burbujas-fondo"></div>
+
+  <div className="valores-grid">
+    <div className="valor-card" data-aos="zoom-in">
+      <h3>1. Integridad</h3>
+      <p>
+        Actuamos de forma ética y coherente, respetando las normas y principios
+        en todo momento y nos esforzamos por cumplir y superar las expectativas
+        de nuestros clientes, ofreciendo servicios consistentes, eficaces y confiables.
+      </p>
+    </div>
+
+    <div className="valor-card" data-aos="zoom-in">
+      <h3>2. Sostenibilidad</h3>
+      <p>
+        Tomamos decisiones que cuidan el medio ambiente, a las personas y el futuro
+        de la organización, promoviendo un equilibrio entre el desarrollo económico,
+        social y ambiental.
+      </p>
+    </div>
+
+    <div className="valor-card" data-aos="zoom-in">
+      <h3>3. Respeto</h3>
+      <p>
+        Tratamos a todas las personas con dignidad y promovemos un ambiente justo
+        y colaborativo.
+      </p>
+    </div>
+
+    <div className="valor-card" data-aos="zoom-in">
+      <h3>4. Aprendizaje Continuo</h3>
+      <p>
+        Siempre estamos aprendiendo para mejorar y adaptarnos a los cambios.
+      </p>
+    </div>
+
+    <div className="valor-card" data-aos="zoom-in">
+      <h3>5. Evaluación Continua del Riesgo</h3>
+      <p>
+        Analizamos constantemente los riesgos para prevenir errores y tomar mejores
+        decisiones, promoviendo ambientes de trabajo seguros, con responsabilidad
+        compartida y prevención activa de incidentes.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
       {/* LÍNEA DE TIEMPO */}
       <section className="timeline-section">
-        <h2>Nuestra Historia</h2>
+        <h2>Asi comenzo Meridian... </h2>
         <div className="timeline">
           <Slide direction="up" cascade damping={0.2} triggerOnce>
             <div className="timeline-item">
