@@ -54,7 +54,7 @@ const Home = () => {
     {
       image: heroImage1,
       title: "Consultoría en Hidrocarburos y Minería",
-      subtitle: "Más de 22 años de experiencia a tu servicio",
+      subtitle: "Más de 23 años de experiencia a tu servicio",
       cta: "Conoce Más",
       link: "/servicios"
     },
@@ -175,7 +175,7 @@ const Home = () => {
           
           <div className="hero-slider__stats">
             <div className="hero-stat">
-              <span className="hero-stat__number">22+</span>
+              <span className="hero-stat__number">23+</span>
               <span className="hero-stat__text">Años de experiencia</span>
             </div>
             <div className="hero-stat">

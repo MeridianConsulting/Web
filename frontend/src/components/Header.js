@@ -6,14 +6,8 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
+    document.body.style.overflow = menuOpen ? 'hidden' : 'auto';
+    return () => (document.body.style.overflow = 'auto');
   }, [menuOpen]);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -34,12 +28,44 @@ const Header = () => {
             <li><Link to="/servicios" onClick={closeMenu}>Servicios</Link></li>
             <li><Link to="/nosotros" onClick={closeMenu}>Nosotros</Link></li>
             <li><Link to="/innovacion" onClick={closeMenu}>Innovación</Link></li>
-            <li><Link to="/contacto" onClick={closeMenu}>Contacto</Link></li>
             <li><Link to="/blog" onClick={closeMenu}>Blog</Link></li>
 
+            {/* Nuevo menú desplegable de CONTACTO */}
             <li className="nav-dropdown">
               <button 
-                className="dropdown-toggle" 
+                className="dropdown-toggle"
+                onClick={e => e.preventDefault()}
+              >
+                Atención Al Usuario ▾
+              </button>
+              <ul className="dropdown-content">
+                <li>
+                  <a
+    href="/pdf/Linea_Etica.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Línea De Ética
+  </a>
+</li>
+
+                <li>
+                  <a href="https://forms.cloud.microsoft/r/EyTp2eXh32" target="_blank" rel="noopener noreferrer">
+                    Radica Tus PQR
+                  </a>
+                </li>
+                <li>
+                  <Link to="/contacto" onClick={closeMenu}>
+                    ¡Contáctanos!
+                  </Link>
+                </li>
+              </ul>
+            </li>
+
+            {/* Menú desplegable de OTROS SERVICIOS */}
+            <li className="nav-dropdown">
+              <button 
+                className="dropdown-toggle"
                 onClick={e => e.preventDefault()}
               >
                 Otros Servicios ▾
@@ -52,17 +78,20 @@ const Header = () => {
             </li>
           </ul>
 
+          {/* Botón hamburguesa */}
           <div className="menu-toggle" onClick={toggleMenu}>
             <div className={`hamburger ${menuOpen ? 'active' : ''}`}></div>
           </div>
+
+          {/* Fondo del overlay al abrir menú */}
           <div 
             className={`menu-overlay ${menuOpen ? 'active' : ''}`} 
-            onClick={closeMenu}>
-          </div>
+            onClick={closeMenu}
+          ></div>
         </nav>
       </div>
     </header>
   );
-}; // 👈 ESTA LLAVE FALTABA AQUÍ
+};
 
 export default Header;

@@ -180,6 +180,39 @@ a {
   position: relative;
 }
 
+.dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #f5f7fa; /* Fondo suave */
+  color: #004d80; /* Azul corporativo */
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: none; /* 🔹 Quitamos el borde */
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+.dropdown-toggle:hover {
+  background-color: #004d80; /* Azul institucional */
+  color: #ffffff; /* Texto blanco */
+  box-shadow: 0 4px 8px rgba(0, 77, 128, 0.3);
+  transform: translateY(-2px);
+}
+
+.dropdown-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 77, 128, 0.25);
+}
+
+.dropdown-toggle:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 .nav-links a {
   text-decoration: none;
   font-weight: 600;

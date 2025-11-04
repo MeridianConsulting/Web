@@ -1,200 +1,228 @@
-import React, { useState, useEffect } from "react";
-import "./Services.css";
-import {
-  FaSearch,
-  FaProjectDiagram,
-  FaLeaf,
-  FaGlobe,
-  FaStar,
-  FaFilter,
-  FaDownload,
-  FaPhone,
-  FaInfoCircle,
-  FaCertificate,
-  FaNewspaper,
-  FaWhatsapp,
-  FaCalendarAlt,
-  FaLightbulb
-} from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import "../pages/Services.css";
+import { FaSearch, FaLeaf, FaProjectDiagram, FaGlobe, FaTimes } from "react-icons/fa";
+import bg from "../assets/img/bg-meridian.jpg.png"; // tu imagen generada
+
+const PROJECTS = [
+  {
+    id: "company",
+    title: "Company Man",
+    short:
+      "Proyecto insignia de control operativo en perforación y re-acondicionamiento de pozos.",
+    long:
+      "Company Man es nuestro servicio integral de control operativo de pozos: supervisión, optimización de procesos de perforación y re-acondicionamiento. Incluye planificación, control de calidad y protocolos de seguridad para operaciones eficientes.",
+    stats: [
+      { label: "Pozos intervenidos", value: "+20" },
+      { label: "Reducción de costos", value: "≈15%" },
+      { label: "Horas de soporte", value: "+3.400" },
+    ],
+  },
+  {
+    id: "frontera",
+    title: "Frontera",
+    short:
+      "Iniciativa que impulsa innovación y sostenibilidad mediante desarrollo tecnológico.",
+    long:
+      "Frontera promueve la adopción de tecnologías limpias y prácticas sostenibles en operaciones energéticas, integrando análisis de impacto, gestión comunitaria y soluciones de monitoreo ambiental.",
+    stats: [
+      { label: "Proyectos piloto", value: "+8" },
+      { label: "Eficiencia energética", value: "≈12%" },
+      { label: "Comunidades beneficiadas", value: "+6" },
+    ],
+  },
+  {
+    id: "petro",
+    title: "Petroservicios",
+    short:
+      "Servicio técnico/logístico para operaciones de hidrocarburos con enfoque en seguridad.",
+    long:
+      "Petroservicios ofrece soporte integral: mantenimiento, logística, control operacional y asesoría técnica para mantener estándares de producción y seguridad industrial en operaciones de hidrocarburos.",
+    stats: [
+      { label: "Operaciones asistidas", value: "+40" },
+      { label: "Mejora uptime", value: "≈9%" },
+      { label: "Protocolos implementados", value: "+25" },
+    ],
+  },
+];
 
 const Services = () => {
-  // ===== Noticias reales =====
-  const news = [
-    {
-      title: "🌍 Nueva regulación ambiental en Colombia 2025",
-      link: "https://www.minambiente.gov.co/"
-    },
-    {
-      title: "💡 Innovación en exploración petrolera",
-      link: "https://www.energiahoy.com/"
-    },
-    {
-      title: "⚡ Proyectos sostenibles de energía en LATAM",
-      link: "https://www.bnamericas.com/es/"
-    }
-  ];
-
-  // ===== Tips dinámicos =====
-  const tips = [
-    "💡 Aprovecha la asesoría gratuita en línea con nuestros expertos.",
-    "📌 Descarga guías técnicas desde el apartado de recursos.",
-    "⚡ Participa en los webinars mensuales sobre energía.",
-    "🌍 Revisa nuestras certificaciones internacionales."
-  ];
-  const [currentTip, setCurrentTip] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [modalProject, setModalProject] = useState(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTip((prev) => (prev + 1) % tips.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [tips.length]);
+    AOS.init({ duration: 1000, once: true });
 
-  // ===== Servicios =====
-  const services = [
-    {
-      number: "01",
-      title: "Consultoría en Exploración",
-      description:
-        "Servicios especializados en exploración de yacimientos petrolíferos y análisis geológico.",
-      icon: <FaSearch />,
-      badge: "Premium",
-      url: "https://www.energiahoy.com/"
-    },
-    {
-      number: "02",
-      title: "Evaluación de Proyectos",
-      description:
-        "Análisis de viabilidad técnica y económica de proyectos de hidrocarburos.",
-      icon: <FaProjectDiagram />,
-      badge: "Nuevo",
-      url: "https://www.bnamericas.com/es/"
-    },
-    {
-      number: "03",
-      title: "Gestión de Producción",
-      description:
-        "Estrategias para optimizar la producción y extracción de petróleo y gas natural.",
-      icon: <FaGlobe />,
-      badge: "Recomendado",
-      url: "https://www.revistapetroleoenergia.com/"
-    },
-    {
-      number: "04",
-      title: "Gestión Ambiental",
-      description:
-        "Soluciones para la gestión ambiental y cumplimiento normativo en proyectos energéticos.",
-      icon: <FaLeaf />,
-      badge: "Básico",
-      url: "https://www.minambiente.gov.co/"
-    }
-  ];
+    const onScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // bloquea click derecho y selección solo en proyectos (seguridad visual)
+  useEffect(() => {
+    const proyectosArea = document.querySelector(".proyectos-grid");
+    if (!proyectosArea) return;
+
+    const preventContext = (e) => e.preventDefault();
+    proyectosArea.addEventListener("contextmenu", preventContext);
+    // bloquear selección con CSS también aplicado en stylesheet
+    return () => proyectosArea.removeEventListener("contextmenu", preventContext);
+  }, []);
+
+  const openModal = (proj) => setModalProject(proj);
+  const closeModal = () => setModalProject(null);
 
   return (
-    <div className="services-layout">
-      {/* Sidebar izquierda */}
-      <aside className="sidebar left" data-aos="fade-right">
-        <h3><FaStar /> Menú rápido</h3>
-        <ul>
-          {services.map((s, i) => (
-            <li key={i}>
-              <a href={s.url} target="_blank" rel="noreferrer">
-                {s.number}. {s.title}
-              </a>
-            </li>
-          ))}
-        </ul>
+    <div className="servicios-page">
+      {/* Barra de lectura + porcentaje */}
+      <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
+      <div className="scroll-percent" aria-hidden>
+        {Math.round(scrollProgress)}%
+      </div>
 
-        {/* Tips dinámicos */}
-        <div className="sidebar-tip">
-          <FaLightbulb /> {tips[currentTip]}
+      {/* HERO */}
+      <section
+        className="services-hero"
+        style={{ backgroundImage: `url(${bg})` }}
+        data-aos="fade-up"
+      >
+        <div className="overlay">
+          <h1>Servicios y Proyectos MERIDIAN</h1>
+          <p>Más de 23 años de experiencia impulsando la excelencia</p>
         </div>
+      </section>
 
-        {/* Calendario */}
-        <div className="sidebar-section">
-          <h4><FaCalendarAlt /> Próximos eventos</h4>
-          <ul>
-            <li>📅 Webinar: Energía Sostenible - 15 Sept</li>
-            <li>📅 Conferencia: Exploración Avanzada - 30 Sept</li>
-            <li>📅 Taller: Gestión Ambiental - 12 Oct</li>
-          </ul>
-        </div>
-      </aside>
+      {/* PROYECTOS */}
+      <section className="proyectos-section" data-aos="fade-up">
+        <h2 className="section-title">Proyectos Destacados</h2>
 
-      {/* Contenido central */}
-      <main className="services-container">
-        <h1 data-aos="fade-down">Nuestros Servicios</h1>
-        <p className="services-intro" data-aos="fade-up" data-aos-delay="100">
-          En <strong>Meridian Consulting LTDA</strong> ofrecemos soluciones
-          integrales para la industria petrolera y de hidrocarburos en Colombia.
-        </p>
-
-        <div className="services-grid">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="service-card"
+        <div className="proyectos-grid" aria-label="Explorador de Proyectos - MERIDIAN">
+          {PROJECTS.map((p, i) => (
+            <article
+              className="proyecto-card"
+              key={p.id}
               data-aos="zoom-in"
-              data-aos-delay={index * 200}
+              data-aos-delay={i * 120}
+              role="article"
+              aria-labelledby={`proj-${p.id}`}
             >
-              <div className="service-number">{service.number}</div>
-              <div className="service-icon">{service.icon}</div>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-              <span className="service-badge">{service.badge}</span>
-              <a
-                href={service.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="service-btn"
-              >
-                Descubrir
-              </a>
-            </div>
+              <div className="proyecto-media" aria-hidden>
+                <img src={bg} alt={p.title} />
+              </div>
+
+              <div className="proyecto-body">
+                <h3 id={`proj-${p.id}`} className="proj-title">{p.title}</h3>
+                <p className="short">{p.short}</p>
+
+                <div className="proyecto-actions">
+                  <button
+                    className="btn-leer"
+                    onClick={() => openModal(p)}
+                    aria-haspopup="dialog"
+                  >
+                    Leer más
+                    <span className="arrow">▸</span>
+                    <span className="scan" aria-hidden />
+                  </button>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
-      </main>
+      </section>
 
-      {/* Sidebar derecha */}
-      <aside className="sidebar right" data-aos="fade-left">
-        <h3><FaDownload /> Recursos</h3>
-        <ul>
-          <li>
-            <a href="/pdf/Brochure_actualizado.pdf" target="_blank" rel="noreferrer">
-              📄 Descargar Brochure
-            </a>
-          </li>
-          <li><a href="/contacto"><FaPhone /> Contáctanos</a></li>
-          <li><a href="/nosotros"><FaInfoCircle /> Sobre Nosotros</a></li>
-          <li><a href="/certificaciones"><FaCertificate /> Certificaciones</a></li>
-        </ul>
+      {/* SERVICIOS (Nos especializamos en:) */}
+      <section className="servicios-section" data-aos="fade-up">
+        <h2 className="section-title">Nos especializamos en:</h2>
 
-        {/* Noticias */}
-        <div className="sidebar-news">
-          <h4><FaNewspaper /> Noticias</h4>
-          <ul>
-            {news.map((n, i) => (
-              <li key={i}>
-                <a href={n.link} target="_blank" rel="noreferrer">{n.title}</a>
-              </li>
-            ))}
-          </ul>
+        <div className="especialidades-grid">
+          <div className="especialidad" data-aos="fade-up" data-aos-delay="80">
+            <div className="icon-box"><FaSearch /></div>
+            <h4>Consultoría Geocientífica, Minera y del Petróleo</h4>
+            <p>
+              Brindamos soluciones integrales en la exploración y evaluación de recursos mineros y de hidrocarburos. Ejecutamos desde la adquisición e interpretación de datos y modelamiento de subsuelo , hasta la administración de proyectos y auditorías técnico-administrativas.
+            </p>
+          </div>
+
+          <div className="especialidad" data-aos="fade-up" data-aos-delay="160">
+            <div className="icon-box"><FaLeaf /></div>
+            <h4>Consultoría Ambiental</h4>
+            <p>
+              Desarrollamos estudios socio-ambientales, incluyendo Estudios de Impacto Ambiental (EIA), Planes de Manejo Ambiental (PMA) y modificación de licencias. Realizamos interventorías , gestión social , tratamiento de residuos y apoyamos proyectos de responsabilidad social.
+            </p>
+          </div>
+
+          <div className="especialidad" data-aos="fade-up" data-aos-delay="240">
+            <div className="icon-box"><FaProjectDiagram /></div>
+            <h4>Consultoría en Ingeniería de Petróleos</h4>
+            <p>
+              Ofrecemos control operativo para la perforación, finalización y re-acondicionamiento de pozos (Company Man). Además, realizamos evaluación de proyectos , ingeniería de yacimientos y auditorías e interventorías especializadas en el sector.
+            </p>
+          </div>
+
+          <div className="especialidad" data-aos="fade-up" data-aos-delay="320">
+            <div className="icon-box"><FaGlobe /></div>
+            <h4>Data Management</h4>
+            <p>
+              Proveemos servicios de gestión documental y archivística, incluyendo outsourcing, almacenamiento y administración de archivos. Aseguramos la preservación de su información mediante digitalización, vectorización e implementación de bases de datos corporativas en línea.
+            </p>
+          </div>
         </div>
+      </section>
 
-        {/* CTA WhatsApp */}
-        <div className="sidebar-cta">
-          <h4>🚀 Habla con un experto</h4>
-          <p>Agenda una llamada y obtén asesoría gratuita.</p>
-          <a
-            href="https://wa.me/573138174050"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cta-btn"
+      {/* Modal (overlay) - EXPLORE SAFE */}
+      {modalProject && (
+        <div
+          className="modal-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${modalProject.title} - detalles`}
+          onClick={closeModal}
+        >
+          <div
+            className="modal-card"
+            onClick={(e) => e.stopPropagation()}
+            data-aos="zoom-in"
           >
-            <FaWhatsapp /> WhatsApp
-          </a>
+            <button className="modal-close" onClick={closeModal} aria-label="Cerrar">
+              <FaTimes />
+            </button>
+
+            <div className="modal-hero" style={{ backgroundImage: `url(${bg})` }} />
+            <div className="modal-body">
+              <h3>{modalProject.title}</h3>
+              <p className="modal-desc">{modalProject.long}</p>
+
+              <div className="modal-stats">
+                {modalProject.stats.map((s) => (
+                  <div key={s.label} className="modal-stat">
+                    <div className="stat-value">{s.value}</div>
+                    <div className="stat-label">{s.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="modal-actions">
+                <button className="btn-primary" onClick={closeModal}>
+                  Cerrar
+                </button>
+                <a className="btn-outline" href="#contacto">
+                  Contactar equipo
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-      </aside>
+      )}
     </div>
   );
 };
