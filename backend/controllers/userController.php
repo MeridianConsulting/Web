@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../config/db.php";
 
-class userController {
+class UserController {
     public function login() {
         global $conexion;
 
