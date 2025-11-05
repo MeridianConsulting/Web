@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FaGlobe, FaCogs, FaHardHat, FaChartBar, FaLeaf, FaRecycle } from 'react-icons/fa';
 // Importar imágenes y logos
 import heroImage1 from '../assets/img/fondo.jpeg';
 import heroImage2 from '../assets/img/fondo2.png';
@@ -326,7 +327,9 @@ const Home = () => {
 
     <div className="services-grid">
       <div className="service-card">
-        <div className="service-icon">🗺️</div>
+        <div className="service-icon">
+          <FaGlobe />
+        </div>
         <h3 className="service-title">Consultoría Geo-científica</h3>
         <p className="service-description">
           Estudios geológicos especializados y modelado de reservorios para optimizar la exploración.
@@ -334,7 +337,9 @@ const Home = () => {
       </div>
 
       <div className="service-card">
-        <div className="service-icon">⚙️</div>
+        <div className="service-icon">
+          <FaCogs />
+        </div>
         <h3 className="service-title">Ingeniería de Petróleos</h3>
         <p className="service-description">
           Optimización de procesos de perforación y producción para maximizar el rendimiento.
@@ -342,7 +347,9 @@ const Home = () => {
       </div>
 
       <div className="service-card">
-        <div className="service-icon">⛏️</div>
+        <div className="service-icon">
+          <FaHardHat />
+        </div>
         <h3 className="service-title">Consultoría para Minería</h3>
         <p className="service-description">
           Planificación y supervisión de operaciones mineras con enfoque en sostenibilidad.
@@ -350,7 +357,9 @@ const Home = () => {
       </div>
 
       <div className="service-card">
-        <div className="service-icon">📊</div>
+        <div className="service-icon">
+          <FaChartBar />
+        </div>
         <h3 className="service-title">Gestión de Información Técnica</h3>
         <p className="service-description">
           Manejo y análisis de datos geofísicos y de producción para toma de decisiones.
@@ -358,7 +367,9 @@ const Home = () => {
       </div>
 
       <div className="service-card">
-        <div className="service-icon">🌱</div>
+        <div className="service-icon">
+          <FaLeaf />
+        </div>
         <h3 className="service-title">Bioenergía y Renovables</h3>
         <p className="service-description">
           Desarrollo de proyectos de biocombustibles y energías limpias para un futuro sostenible.
@@ -366,7 +377,9 @@ const Home = () => {
       </div>
 
       <div className="service-card">
-        <div className="service-icon">🌍</div>
+        <div className="service-icon">
+          <FaRecycle />
+        </div>
         <h3 className="service-title">Gestión Ambiental</h3>
         <p className="service-description">
           Análisis de impacto ambiental y desarrollo de estrategias de mitigación efectivas.

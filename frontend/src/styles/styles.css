@@ -3440,6 +3440,22 @@ select:focus {
 .service-icon {
   font-size: 2.5rem;
   margin-bottom: 15px;
+  color: #004aad;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px auto;
+  background: linear-gradient(135deg, rgba(0, 74, 173, 0.1) 0%, rgba(0, 74, 173, 0.05) 100%);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  color: #0066cc;
+  transform: scale(1.1);
+  background: linear-gradient(135deg, rgba(0, 74, 173, 0.15) 0%, rgba(0, 74, 173, 0.08) 100%);
 }
 
 /* Títulos de tarjetas */
