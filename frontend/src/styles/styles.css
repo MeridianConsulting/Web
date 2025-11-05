@@ -1831,8 +1831,9 @@ a {
   width: 100%;
   overflow: hidden;
   padding: var(--spacing-xl) 0;
-  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  /* Neblina más ancha y alejada del centro (8% y 92% para más espacio visible) */
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
 
 .clients-marquee {
@@ -1845,30 +1846,41 @@ a {
   align-items: center;
   animation: marquee 45s linear infinite;
   width: max-content;
+  gap: 30px;
 }
 
 .client-logo {
-  height: 110px;
+  height: 130px;
+  min-width: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 var(--spacing-xl);
-  transition: transform var(--transition-normal);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
   background-color: white;
   margin: 0 var(--spacing-md);
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
 }
 
 .client-logo:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transform: scale(1.08);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 .client-logo img {
-  max-height: 75%;
-  max-width: 200px;
+  max-height: 85%;
+  max-width: 220px;
+  width: auto;
+  height: auto;
   object-fit: contain;
+  filter: grayscale(0.3);
+  transition: filter var(--transition-normal);
+}
+
+.client-logo:hover img {
+  filter: grayscale(0);
 }
 
 @keyframes marquee {
@@ -1882,27 +1894,47 @@ a {
 
 /* Versión responsive */
 @media (max-width: 992px) {
+  .clients-marquee-container {
+    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  }
+
   .client-logo {
-    height: 100px;
+    height: 120px;
+    min-width: 180px;
     padding: 0 var(--spacing-lg);
   }
   
   .client-logo img {
     max-width: 180px;
+    max-height: 80%;
+  }
+
+  .clients-marquee__content {
+    gap: 20px;
   }
 }
 
 @media (max-width: 768px) {
+  .clients-marquee-container {
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  }
+
   .client-logo {
-    height: 85px;
+    height: 100px;
+    min-width: 150px;
     padding: 0 var(--spacing-md);
+    margin: 0 var(--spacing-sm);
   }
   
   .client-logo img {
-    max-width: 160px;
+    max-width: 150px;
+    max-height: 75%;
   }
-  
+
   .clients-marquee__content {
+    gap: 15px;
     animation-duration: 40s;
   }
 }

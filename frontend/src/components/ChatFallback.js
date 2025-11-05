@@ -38,9 +38,6 @@ const ChatFallback = () => {
   if (tawkBlocked && showFallback) {
     return (
       <div className="chat-fallback">
-        <div className="chat-fallback-message">
-          <p>💬 ¿Necesitas ayuda? Contáctanos por WhatsApp</p>
-        </div>
         <WhatsAppButton />
       </div>
     );

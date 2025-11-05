@@ -260,7 +260,7 @@ const Home = () => {
                   <img src={logoNumero7} alt="Logo Numero 7" />
                 </div>
                 
-                {/* Duplicados para el efecto de desplazamiento continuo */}
+                {/* Duplicados para el efecto de desplazamiento continuo (solo una copia) */}
                 <div className="client-logo">
                   <img src={logoEcopetrol} alt="Logo Ecopetrol" />
                 </div>
@@ -303,7 +303,7 @@ const Home = () => {
                 <div className="client-logo">
                   <img src={logoPetrobras} alt="Logo Petrobras" />
                 </div>
-                 <div className="client-logo">
+                <div className="client-logo">
                   <img src={logoNumero1} alt="Logo Numero 1" />
                 </div>
                 <div className="client-logo">
