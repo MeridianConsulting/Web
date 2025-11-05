@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
-const Login = ({ onLoginSuccess }) => {
+const Login = () => {
   const [usuario, setUsuario] = useState("");
   const [clave, setClave] = useState("");
   const [error, setError] = useState("");
-
-  // Tawk.to se carga desde index.html, no es necesario cargarlo aquí
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
 
     try {
       const response = await fetch("http://localhost/Web/backend/index.php?route=login", {
@@ -19,16 +21,36 @@ const Login = ({ onLoginSuccess }) => {
         body: JSON.stringify({ usuario, clave }),
       });
 
-      const data = await response.json();
+      if (!response.ok) {
+        throw new Error("Error en la respuesta del servidor");
+      }
+
+      let data;
+      try {
+        const text = await response.text();
+        if (!text) {
+          throw new Error("Respuesta vacía del servidor");
+        }
+        data = JSON.parse(text);
+      } catch (parseError) {
+        console.error("Error al parsear JSON:", parseError);
+        throw new Error("Error en la respuesta del servidor. Formato inválido.");
+      }
 
       if (data.status === "success") {
         localStorage.setItem("isLogged", "true");
-        onLoginSuccess(true);
+        localStorage.setItem("usuario", usuario);
+        // Redirigir al home después del login exitoso
+        navigate("/");
+        window.location.reload(); // Recargar para actualizar el estado
       } else {
-        setError(data.message);
+        setError(data.message || "Usuario o contraseña incorrectos");
       }
     } catch (err) {
-      setError("Error al conectar con el servidor 😕");
+      console.error("Error en login:", err);
+      setError("Error al conectar con el servidor. Por favor, verifica tu conexión.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -51,7 +73,9 @@ const Login = ({ onLoginSuccess }) => {
             onChange={(e) => setClave(e.target.value)}
             required
           />
-          <button type="submit">Ingresar</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Ingresando..." : "Ingresar"}
+          </button>
         </form>
         {error && <p className="error-text">{error}</p>}
       </div>
