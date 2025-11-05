@@ -2586,6 +2586,13 @@ select:focus {
   flex: 1;
   min-height: 300px;
   display: flex;
+  align-items: stretch;
+}
+
+.map-container > div {
+  width: 100%;
+  height: 100%;
+  display: flex;
 }
 
 .contact-form form {
