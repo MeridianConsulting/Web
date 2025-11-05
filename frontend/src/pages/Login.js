@@ -34,25 +34,27 @@ const Login = ({ onLoginSuccess }) => {
 
   return (
     <div className="login-container">
-      <h2>🔐 Ingreso administrador</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Usuario"
-          value={usuario}
-          onChange={(e) => setUsuario(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={clave}
-          onChange={(e) => setClave(e.target.value)}
-          required
-        />
-        <button type="submit">Ingresar</button>
-      </form>
-      {error && <p className="error-text">{error}</p>}
+      <div>
+        <h2>Ingreso Administrador</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Usuario"
+            value={usuario}
+            onChange={(e) => setUsuario(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Contraseña"
+            value={clave}
+            onChange={(e) => setClave(e.target.value)}
+            required
+          />
+          <button type="submit">Ingresar</button>
+        </form>
+        {error && <p className="error-text">{error}</p>}
+      </div>
     </div>
   );
 };
