@@ -332,7 +332,9 @@ const Home = () => {
         </div>
         <h3 className="service-title">Consultoría Geo-científica</h3>
         <p className="service-description">
-          Estudios geológicos especializados y modelado de reservorios para optimizar la exploración.
+          Estudios geológicos especializados y modelado de reservorios para optimizar la exploración. 
+          Incluimos análisis estructural, caracterización de yacimientos, evaluación de recursos y 
+          modelamiento geológico 3D para maximizar la eficiencia en la extracción de recursos.
         </p>
       </div>
 
@@ -342,7 +344,9 @@ const Home = () => {
         </div>
         <h3 className="service-title">Ingeniería de Petróleos</h3>
         <p className="service-description">
-          Optimización de procesos de perforación y producción para maximizar el rendimiento.
+          Optimización de procesos de perforación y producción para maximizar el rendimiento. 
+          Ofrecemos control operativo de pozos, diseño de completaciones, ingeniería de yacimientos 
+          y evaluación técnica de proyectos para garantizar operaciones eficientes y seguras.
         </p>
       </div>
 
@@ -352,7 +356,9 @@ const Home = () => {
         </div>
         <h3 className="service-title">Consultoría para Minería</h3>
         <p className="service-description">
-          Planificación y supervisión de operaciones mineras con enfoque en sostenibilidad.
+          Planificación y supervisión de operaciones mineras con enfoque en sostenibilidad. 
+          Desarrollamos estudios de viabilidad, diseño de minas, gestión de recursos minerales 
+          y auditorías técnicas para asegurar prácticas mineras responsables y rentables.
         </p>
       </div>
 
@@ -362,7 +368,9 @@ const Home = () => {
         </div>
         <h3 className="service-title">Gestión de Información Técnica</h3>
         <p className="service-description">
-          Manejo y análisis de datos geofísicos y de producción para toma de decisiones.
+          Manejo y análisis de datos geofísicos y de producción para toma de decisiones. 
+          Implementamos sistemas de gestión de información, análisis estadístico avanzado, 
+          visualización de datos y dashboards ejecutivos para optimizar la gestión operativa.
         </p>
       </div>
 
@@ -372,7 +380,9 @@ const Home = () => {
         </div>
         <h3 className="service-title">Bioenergía y Renovables</h3>
         <p className="service-description">
-          Desarrollo de proyectos de biocombustibles y energías limpias para un futuro sostenible.
+          Desarrollo de proyectos de biocombustibles y energías limpias para un futuro sostenible. 
+          Evaluamos proyectos de energía renovable, análisis de viabilidad técnica y económica, 
+          y asesoría en la transición hacia fuentes de energía más sostenibles y eficientes.
         </p>
       </div>
 
@@ -382,7 +392,9 @@ const Home = () => {
         </div>
         <h3 className="service-title">Gestión Ambiental</h3>
         <p className="service-description">
-          Análisis de impacto ambiental y desarrollo de estrategias de mitigación efectivas.
+          Análisis de impacto ambiental y desarrollo de estrategias de mitigación efectivas. 
+          Realizamos estudios de impacto ambiental, planes de manejo, monitoreo de ecosistemas 
+          y gestión de residuos para cumplir con normativas y promover prácticas sostenibles.
         </p>
       </div>
     </div>
