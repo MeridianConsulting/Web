@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_URL, getImageUrl } from "../config/api";
 import "./AdminBlog.css";
 
 const AdminBlog = () => {
@@ -134,7 +135,7 @@ const AdminBlog = () => {
   // Función para cargar posts desde el backend
   const loadPosts = async () => {
     try {
-      const response = await fetch("http://localhost/Web/backend/index.php?route=blog&action=getAll");
+      const response = await fetch(`${API_URL}/index.php?route=blog&action=getAll`);
       
       // Verificar que la respuesta sea JSON
       const contentType = response.headers.get("content-type");
@@ -279,7 +280,7 @@ const AdminBlog = () => {
         }
         
         // Actualizar post
-        const response = await fetch("http://localhost/Web/backend/index.php?route=blog&action=update", {
+        const response = await fetch(`${API_URL}/index.php?route=blog&action=update`, {
           method: "POST",
           body: formDataToSend,
         });
@@ -300,7 +301,7 @@ const AdminBlog = () => {
           formDataToSend.append('imagen', formData.imagen);
         }
         
-        const response = await fetch("http://localhost/Web/backend/index.php?route=blog&action=create", {
+        const response = await fetch(`${API_URL}/index.php?route=blog&action=create`, {
           method: "POST",
           body: formDataToSend,
         });
@@ -406,7 +407,7 @@ const AdminBlog = () => {
       const formDataToSend = new FormData();
       formDataToSend.append('id', id);
       
-      const response = await fetch("http://localhost/Web/backend/index.php?route=blog&action=delete", {
+      const response = await fetch(`${API_URL}/index.php?route=blog&action=delete`, {
         method: "POST",
         body: formDataToSend,
       });
@@ -681,7 +682,7 @@ const AdminBlog = () => {
                     <div className="post-card-image">
                       <span>📎 {post.imagen_path.split('/').pop()}</span>
                       <img 
-                        src={`http://localhost/Web/backend/${post.imagen_path}`} 
+                        src={getImageUrl(post.imagen_path)} 
                         alt={post.titulo}
                         style={{
                           maxWidth: '100%',

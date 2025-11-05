@@ -4,10 +4,14 @@ error_reporting(E_ALL);
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 
-$server = "localhost";
-$username = "root";
-$password = "";
-$db = "meridian";
+// Cargar configuración
+require_once __DIR__ . "/config.php";
+
+// Configuración para hosting cPanel
+$server = DB_HOST;
+$username = DB_USER;
+$password = DB_PASS;
+$db = DB_NAME;
 
 $conexion = @new mysqli($server, $username, $password, $db);
 

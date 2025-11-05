@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_URL, getImageUrl } from "../config/api";
 import "./Blog.css";
 
 const Blog = () => {
@@ -15,7 +16,7 @@ const Blog = () => {
   const loadPosts = async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost/Web/backend/index.php?route=blog&action=getAll");
+      const response = await fetch(`${API_URL}/index.php?route=blog&action=getAll`);
       
       if (!response.ok) {
         throw new Error(`Error HTTP: ${response.status}`);
@@ -126,7 +127,7 @@ const Blog = () => {
     // Guardar en backend
     try {
       const response = await fetch(
-        `http://localhost/Web/backend/index.php?route=blog&action=like&id=${id}`,
+        `${API_URL}/index.php?route=blog&action=like&id=${id}`,
         { method: "POST" }
       );
       
@@ -189,7 +190,7 @@ const Blog = () => {
               {post.imagen_path && (
                 <div className="blog-post-image-container">
                   <img
-                    src={`http://localhost/Web/backend/${post.imagen_path}`}
+                    src={getImageUrl(post.imagen_path)}
                     alt={post.titulo}
                     className="blog-post-image"
                     onError={(e) => {

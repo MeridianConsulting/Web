@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { API_URL, getImageUrl } from "../config/api";
 import "./BlogDetail.css";
 
 const BlogDetail = () => {
@@ -17,7 +18,7 @@ const BlogDetail = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `http://localhost/Web/backend/index.php?route=blog&action=getById&id=${id}`
+        `${API_URL}/index.php?route=blog&action=getById&id=${id}`
       );
 
       if (!response.ok) {
@@ -95,7 +96,7 @@ const BlogDetail = () => {
         {post.imagen_path && (
           <div className="blog-detail-image">
             <img
-              src={`http://localhost/Web/backend/${post.imagen_path}`}
+              src={getImageUrl(post.imagen_path)}
               alt={post.titulo}
               onError={(e) => {
                 e.target.style.display = "none";
