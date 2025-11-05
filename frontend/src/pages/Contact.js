@@ -26,14 +26,59 @@ const Contact = () => {
     return e;
   };
 
+  const generateEmailTemplate = (form) => {
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const subject = form.subject.value;
+    const company = form.company.value.trim();
+    const message = form.message.value.trim();
+
+    // Obtener el texto del asunto seleccionado
+    const subjectText = form.subject.options[form.subject.selectedIndex].text;
+
+    // Crear el asunto del correo
+    const emailSubject = `Contacto desde formulario web - ${subjectText}`;
+
+    // Crear el cuerpo del correo con plantilla profesional
+    const emailBody = `Estimado equipo de Meridian Consulting Ltda.,
+
+Les escribo a través del formulario de contacto de su sitio web.
+
+--- INFORMACIÓN DE CONTACTO ---
+Nombre completo: ${name}
+Correo electrónico: ${email}
+${company ? `Empresa: ${company}` : ''}
+
+--- ASUNTO ---
+${subjectText}
+
+--- MENSAJE ---
+${message}
+
+---
+Este mensaje fue enviado desde el formulario de contacto de meridian.com.co
+Fecha: ${new Date().toLocaleString('es-CO', { dateStyle: 'long', timeStyle: 'short' })}
+`;
+
+    // Codificar para URL
+    const encodedSubject = encodeURIComponent(emailSubject);
+    const encodedBody = encodeURIComponent(emailBody);
+    const encodedTo = encodeURIComponent('info@meridian.com.co');
+
+    // Crear el enlace de Gmail Compose
+    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodedTo}&su=${encodedSubject}&body=${encodedBody}`;
+
+    return gmailLink;
+  };
+
   const handleSubmit = (ev) => {
+    ev.preventDefault();
     const form = ev.target;
     const e = validate(form);
     setErrors(e);
 
     const hasErrors = Object.keys(e).length > 0;
     if (hasErrors) {
-      ev.preventDefault();
       // Enfocar y desplazar al primer error
       const firstKey = Object.keys(e)[0];
       const firstField = form[firstKey];
@@ -41,7 +86,12 @@ const Contact = () => {
         firstField.focus();
         firstField.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
+      return;
     }
+
+    // Si no hay errores, generar el enlace de Gmail y abrir Gmail Compose
+    const gmailLink = generateEmailTemplate(form);
+    window.open(gmailLink, '_blank');
   };
 
   // Auto-eliminar errores después de 2 segundos
@@ -109,15 +159,9 @@ const Contact = () => {
 
           <form
             ref={formRef}
-            action="https://formsubmit.co/info@meridian.com.co"
-            method="POST"
             noValidate
             onSubmit={handleSubmit}
           >
-            {/* Configuración oculta */}
-            <input type="hidden" name="_next" value="http://localhost:3000/gracias" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_subject" value="Nuevo mensaje desde el formulario de MERIDIAN" />
 
             {/* Nombre */}
             <div className={`form-group ${errors.name ? 'has-error' : ''}`}>
