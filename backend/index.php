@@ -29,12 +29,40 @@ require_once __DIR__ . "/config/db.php";
 // Función para cargar controladores
 function cargarControlador($nombre) {
     $archivo = __DIR__ . "/controllers/" . $nombre . ".php";
+    
+    // Log de depuración
+    error_log("Intentando cargar: " . $archivo);
+    error_log("Archivo existe: " . (file_exists($archivo) ? 'SI' : 'NO'));
+    error_log("__DIR__: " . __DIR__);
+    error_log("Archivos en controllers: " . print_r(scandir(__DIR__ . "/controllers"), true));
+    
     if (file_exists($archivo)) {
         require_once $archivo;
-        return new $nombre();
+        if (class_exists($nombre)) {
+            return new $nombre();
+        } else {
+            http_response_code(500);
+            echo json_encode([
+                "status" => "error", 
+                "message" => "Clase '$nombre' no encontrada en el archivo",
+                "debug" => [
+                    "archivo" => $archivo,
+                    "archivo_existe" => file_exists($archivo)
+                ]
+            ]);
+            exit;
+        }
     } else {
         http_response_code(404);
-        echo json_encode(["status" => "error", "message" => "Controlador '$nombre' no encontrado"]);
+        echo json_encode([
+            "status" => "error", 
+            "message" => "Controlador '$nombre' no encontrado",
+            "debug" => [
+                "archivo_buscado" => $archivo,
+                "directorio_base" => __DIR__,
+                "archivos_en_controllers" => file_exists(__DIR__ . "/controllers") ? scandir(__DIR__ . "/controllers") : "Directorio no existe"
+            ]
+        ]);
         exit;
     }
 }
