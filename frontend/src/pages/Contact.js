@@ -1,10 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import whatsappIcon from '../assets/img/whatsapp-icon.png';
 import StaticMap from '../components/StaticMap';
 
 const Contact = () => {
   const [errors, setErrors] = useState({});
   const formRef = useRef(null);
+  const errorTimeouts = useRef({});
 
   const emailOk = (v) => /^\S+@\S+\.\S+$/.test(v);
 
@@ -43,12 +44,47 @@ const Contact = () => {
     }
   };
 
+  // Auto-eliminar errores después de 2 segundos
+  useEffect(() => {
+    // Limpiar timeouts anteriores
+    Object.values(errorTimeouts.current).forEach(timeout => {
+      if (timeout) clearTimeout(timeout);
+    });
+    errorTimeouts.current = {};
+
+    // Crear nuevos timeouts para cada error
+    Object.keys(errors).forEach(key => {
+      errorTimeouts.current[key] = setTimeout(() => {
+        setErrors(prev => {
+          const newErrors = { ...prev };
+          delete newErrors[key];
+          return newErrors;
+        });
+        delete errorTimeouts.current[key];
+      }, 2000);
+    });
+
+    // Limpiar timeouts al desmontar
+    return () => {
+      Object.values(errorTimeouts.current).forEach(timeout => {
+        if (timeout) clearTimeout(timeout);
+      });
+    };
+  }, [errors]);
+
   // Validación por campo (onInput/onBlur) para ir limpiando errores
-  const clearError = (key) => setErrors((s) => {
-    const n = { ...s };
-    delete n[key];
-    return n;
-  });
+  const clearError = (key) => {
+    // Limpiar el timeout si existe
+    if (errorTimeouts.current[key]) {
+      clearTimeout(errorTimeouts.current[key]);
+      delete errorTimeouts.current[key];
+    }
+    setErrors((s) => {
+      const n = { ...s };
+      delete n[key];
+      return n;
+    });
+  };
 
   return (
     <div className="contact-container">
@@ -62,7 +98,7 @@ const Contact = () => {
           <p><i className="fas fa-envelope"></i> <strong>Email:</strong> info@meridian.com.co</p>
           <p><i className="fas fa-clock"></i> <strong>Horario:</strong> Lunes a Viernes, 7:30 AM - 5:00 PM</p>
 
-          <div className="map-container" style={{ marginTop: '20px' }}>
+          <div className="map-container">
             <StaticMap />
           </div>
         </div>
