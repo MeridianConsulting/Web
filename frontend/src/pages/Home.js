@@ -242,12 +242,6 @@ const Home = () => {
                   <img src={logoNumero1} alt="Logo Numero 1" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoNumero2} alt="Logo Numero 2" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoNumero3} alt="Logo Numero 3" />
-                </div>
-                <div className="client-logo">
                   <img src={logoNumero4} alt="Logo Numero 4" />
                 </div>
                 <div className="client-logo">
@@ -305,12 +299,6 @@ const Home = () => {
                 </div>
                 <div className="client-logo">
                   <img src={logoNumero1} alt="Logo Numero 1" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoNumero2} alt="Logo Numero 2" />
-                </div>
-                <div className="client-logo">
-                  <img src={logoNumero3} alt="Logo Numero 3" />
                 </div>
                 <div className="client-logo">
                   <img src={logoNumero4} alt="Logo Numero 4" />
