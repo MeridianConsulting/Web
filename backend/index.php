@@ -80,12 +80,16 @@ switch ($route) {
                     $controller->delete();
                     break;
                     
+                case 'like':
+                    $controller->like();
+                    break;
+                    
                 default:
                     http_response_code(400);
                     echo json_encode([
                         "status" => "error",
                         "message" => "Acción no válida",
-                        "acciones_disponibles" => ["getAll", "getById", "create", "update", "delete"]
+                        "acciones_disponibles" => ["getAll", "getById", "create", "update", "delete", "like"]
                     ]);
                     exit;
             }

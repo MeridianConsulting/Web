@@ -10,6 +10,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Blog from './components/Blog'; 
+import BlogDetail from './pages/BlogDetail';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import About from './pages/About';
@@ -41,7 +42,8 @@ function App() {
             <Route path="/nosotros" element={<About />} />
             <Route path="/contacto" element={<Contact />} />
             <Route path="/innovacion" element={<Innovation />} />
-            <Route path="/blog" element={<Blog />} /> 
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogDetail />} /> 
             <Route path="/terminos" element={<Terms />} />
             <Route path="/privacidad" element={<Privacy />} />
             <Route path="/login" element={<Login />} />

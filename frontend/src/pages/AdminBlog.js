@@ -165,15 +165,16 @@ const AdminBlog = () => {
   };
 
   // Función para sanitizar entrada de texto (prevenir XSS básico)
+  // NO usar trim() aquí para permitir espacios en el input
   const sanitizeInput = (input) => {
     if (typeof input !== "string") return input;
-    // Remover scripts y tags peligrosos
+    // Remover scripts y tags peligrosos, pero preservar espacios
     return input
       .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
       .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, "")
       .replace(/javascript:/gi, "")
-      .replace(/on\w+\s*=/gi, "")
-      .trim();
+      .replace(/on\w+\s*=/gi, "");
+    // NO usar .trim() aquí para permitir espacios mientras se escribe
   };
 
   // Validar tamaño de archivo (máximo 5MB)
@@ -205,23 +206,15 @@ const AdminBlog = () => {
         setFormData({ ...formData, imagen: null });
       }
     } else {
-      // Sanitizar entrada de texto
-      const sanitizedValue = sanitizeInput(value);
-      // Limitar longitud de campos según la estructura de la BD
-      const maxLengths = {
-        titulo: 50,
-        autor: 35,
-        cargo: 30,
-        area: 30,
-        contenido: 120,
-      };
-      
-      if (maxLengths[name] && sanitizedValue.length > maxLengths[name]) {
-        alert(`El campo ${name} excede el límite de ${maxLengths[name]} caracteres.`);
-        return;
+      // No hay límites de caracteres - todos los campos son TEXT
+      // Para contenido (textarea), no sanitizar en tiempo real para permitir espacios y caracteres especiales
+      if (name === "contenido") {
+        setFormData({ ...formData, [name]: value });
+      } else {
+        // Para otros campos, sanitizar entrada de texto (sin límites de longitud)
+        const sanitizedValue = sanitizeInput(value);
+        setFormData({ ...formData, [name]: sanitizedValue });
       }
-      
-      setFormData({ ...formData, [name]: sanitizedValue });
     }
   };
 
@@ -229,12 +222,19 @@ const AdminBlog = () => {
     e.preventDefault();
     setLoading(true);
     
-    // Validación adicional antes de enviar
-    if (!formData.titulo.trim() || !formData.autor.trim() || !formData.contenido.trim()) {
+    // Validación adicional antes de enviar (solo trim en validación, no en input)
+    const tituloTrimmed = formData.titulo.trim();
+    const autorTrimmed = formData.autor.trim();
+    const contenidoTrimmed = formData.contenido.trim();
+    
+    if (!tituloTrimmed || !autorTrimmed || !contenidoTrimmed) {
       alert("Por favor, completa todos los campos obligatorios.");
       setLoading(false);
       return;
     }
+    
+    // Sanitizar contenido solo al enviar (no mientras se escribe)
+    const sanitizedContenido = sanitizeInput(contenidoTrimmed);
     
     // Verificar que la sesión siga activa antes de cualquier acción
     const isLogged = localStorage.getItem("isLogged");
@@ -262,11 +262,11 @@ const AdminBlog = () => {
     try {
       // Crear FormData para enviar archivos
       const formDataToSend = new FormData();
-      formDataToSend.append('titulo', formData.titulo);
-      formDataToSend.append('autor', formData.autor);
-      formDataToSend.append('cargo', formData.cargo);
-      formDataToSend.append('area', formData.area);
-      formDataToSend.append('contenido', formData.contenido);
+      formDataToSend.append('titulo', tituloTrimmed);
+      formDataToSend.append('autor', autorTrimmed);
+      formDataToSend.append('cargo', formData.cargo.trim());
+      formDataToSend.append('area', formData.area.trim());
+      formDataToSend.append('contenido', sanitizedContenido);
       
       if (isEditing) {
         formDataToSend.append('id', editingId);

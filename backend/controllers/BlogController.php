@@ -26,7 +26,7 @@ class BlogController {
                 exit;
             }
             
-            $sql = "SELECT * FROM blog ORDER BY id DESC";
+            $sql = "SELECT id, titulo, autor, cargo, area, contenido, imagen_path, likes, fecha_creacion, fecha_actualizada FROM blog ORDER BY id DESC";
             $resultado = $conexion->query($sql);
             
             // Verificar si hay error en la consulta
@@ -50,6 +50,9 @@ class BlogController {
                     'area' => $row['area'] ?? '',
                     'contenido' => $row['contenido'] ?? '',
                     'imagen_path' => $row['imagen_path'] ?? '',
+                    'likes' => isset($row['likes']) ? (int)$row['likes'] : 0,
+                    'fecha_creacion' => $row['fecha_creacion'] ?? null,
+                    'fecha_actualizada' => $row['fecha_actualizada'] ?? null,
                 ];
             }
             
@@ -88,7 +91,7 @@ class BlogController {
                 exit;
             }
             
-            $sql = "SELECT * FROM blog WHERE id = ?";
+            $sql = "SELECT id, titulo, autor, cargo, area, contenido, imagen_path, likes, fecha_creacion, fecha_actualizada FROM blog WHERE id = ?";
             $stmt = $conexion->prepare($sql);
             
             if (!$stmt) {
@@ -116,6 +119,9 @@ class BlogController {
                     'area' => $row['area'],
                     'contenido' => $row['contenido'],
                     'imagen_path' => $row['imagen_path'],
+                    'likes' => isset($row['likes']) ? (int)$row['likes'] : 0,
+                    'fecha_creacion' => $row['fecha_creacion'] ?? null,
+                    'fecha_actualizada' => $row['fecha_actualizada'] ?? null,
                 ];
                 $stmt->close();
                 echo json_encode([
@@ -191,36 +197,7 @@ class BlogController {
                 exit;
             }
             
-            // Validar longitud de campos según la estructura de la BD
-            if (strlen($titulo) > 50) {
-                http_response_code(400);
-                echo json_encode(["status" => "error", "message" => "El título no puede exceder 50 caracteres"]);
-                exit;
-            }
-            
-            if (strlen($nombre) > 35) {
-                http_response_code(400);
-                echo json_encode(["status" => "error", "message" => "El nombre no puede exceder 35 caracteres"]);
-                exit;
-            }
-            
-            if (strlen($cargo) > 30) {
-                http_response_code(400);
-                echo json_encode(["status" => "error", "message" => "El cargo no puede exceder 30 caracteres"]);
-                exit;
-            }
-            
-            if (strlen($area) > 30) {
-                http_response_code(400);
-                echo json_encode(["status" => "error", "message" => "El área no puede exceder 30 caracteres"]);
-                exit;
-            }
-            
-            if (strlen($noticia) > 120) {
-                http_response_code(400);
-                echo json_encode(["status" => "error", "message" => "La noticia no puede exceder 120 caracteres"]);
-                exit;
-            }
+            // No hay límites de caracteres - todos los campos son TEXT
             
             // Procesar imagen si existe
             $imagen_path = null;
@@ -281,8 +258,8 @@ class BlogController {
             $fecha_actual = date('Y-m-d H:i:s');
         
             // Insertar en la base de datos (ajustado a la estructura real de la BD blog.sql)
-            $sql = "INSERT INTO blog (titulo, autor, cargo, area, contenido, imagen_path, fecha_creacion, fecha_actualizada) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO blog (titulo, autor, cargo, area, contenido, imagen_path, fecha_creacion, fecha_actualizada, likes) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0)";
             
             // Verificar que la tabla existe
             $tableCheck = $conexion->query("SHOW TABLES LIKE 'blog'");
@@ -403,37 +380,7 @@ class BlogController {
                 exit;
             }
             
-            // Validar longitud de campos según la estructura de la BD (blog.sql)
-            if (strlen($titulo) > 200) {
-                http_response_code(400);
-                echo json_encode(["status" => "error", "message" => "El título no puede exceder 200 caracteres"]);
-                exit;
-            }
-            
-            if (strlen($autor) > 100) {
-                http_response_code(400);
-                echo json_encode(["status" => "error", "message" => "El autor no puede exceder 100 caracteres"]);
-                exit;
-            }
-            
-            if (strlen($cargo) > 100) {
-                http_response_code(400);
-                echo json_encode(["status" => "error", "message" => "El cargo no puede exceder 100 caracteres"]);
-                exit;
-            }
-            
-            if (strlen($area) > 100) {
-                http_response_code(400);
-                echo json_encode(["status" => "error", "message" => "El área no puede exceder 100 caracteres"]);
-                exit;
-            }
-            
-            // contenido es TEXT, no tiene límite de caracteres en varchar, pero validamos un límite razonable
-            if (strlen($contenido) > 65535) {
-                http_response_code(400);
-                echo json_encode(["status" => "error", "message" => "El contenido es demasiado largo"]);
-                exit;
-            }
+            // No hay límites de caracteres - todos los campos son TEXT
             
             // Procesar nueva imagen si existe
             $imagen_path = $imagen_existente;
@@ -642,6 +589,88 @@ class BlogController {
                 $stmt->close();
                 http_response_code(404);
                 echo json_encode(["status" => "error", "message" => "Post no encontrado"]);
+                exit;
+            }
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Error inesperado: " . $e->getMessage(),
+                "file" => $e->getFile(),
+                "line" => $e->getLine()
+            ]);
+            exit;
+        }
+    }
+
+    // Incrementar likes de un post
+    public function like() {
+        global $conexion;
+        
+        try {
+            // Verificar conexión a la base de datos
+            if (!$conexion || $conexion->connect_errno) {
+                http_response_code(500);
+                echo json_encode([
+                    "status" => "error", 
+                    "message" => "Error de conexión a la base de datos"
+                ]);
+                exit;
+            }
+            
+            // Obtener ID desde GET o POST
+            $id = $_GET['id'] ?? $_POST['id'] ?? null;
+            
+            if (!$id) {
+                http_response_code(400);
+                echo json_encode(["status" => "error", "message" => "ID no proporcionado"]);
+                exit;
+            }
+            
+            // Incrementar likes
+            $sql = "UPDATE blog SET likes = likes + 1 WHERE id = ?";
+            $stmt = $conexion->prepare($sql);
+            
+            if (!$stmt) {
+                http_response_code(500);
+                echo json_encode([
+                    "status" => "error", 
+                    "message" => "Error al preparar la consulta SQL",
+                    "sql_error" => $conexion->error
+                ]);
+                exit;
+            }
+            
+            $stmt->bind_param("i", $id);
+            
+            if ($stmt->execute()) {
+                // Obtener el nuevo valor de likes
+                $selectSql = "SELECT likes FROM blog WHERE id = ?";
+                $selectStmt = $conexion->prepare($selectSql);
+                $selectStmt->bind_param("i", $id);
+                $selectStmt->execute();
+                $result = $selectStmt->get_result();
+                $row = $result->fetch_assoc();
+                $newLikes = $row['likes'] ?? 0;
+                
+                $stmt->close();
+                $selectStmt->close();
+                
+                echo json_encode([
+                    "status" => "success",
+                    "message" => "Like agregado exitosamente",
+                    "likes" => (int)$newLikes
+                ]);
+                exit;
+            } else {
+                $error = $stmt->error;
+                $stmt->close();
+                http_response_code(500);
+                echo json_encode([
+                    "status" => "error", 
+                    "message" => "Error al actualizar likes",
+                    "sql_error" => $error
+                ]);
                 exit;
             }
         } catch (Exception $e) {
