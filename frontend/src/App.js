@@ -15,6 +15,8 @@ import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 import Thanks from './pages/Thanks';
 import Innovation from './pages/Innovation';
+import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
 
 // ✅ Importamos el botón de WhatsApp y el fallback de chat
 import WhatsAppButton from './components/WhatsAppButton';
@@ -38,8 +40,10 @@ function App() {
             <Route path="/contacto" element={<Contact />} />
             <Route path="/innovacion" element={<Innovation />} />
             <Route path="/blog" element={<Blog />} /> 
-            <Route path="*" element={<NotFound />} /> 
+            <Route path="/terminos" element={<Terms />} />
+            <Route path="/privacidad" element={<Privacy />} />
             <Route path="/login" element={<Login />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />
