@@ -5,6 +5,7 @@ import "aos/dist/aos.css";
 import './styles/styles.css';
 import Login from './pages/Login';
 import AdminBlog from './pages/AdminBlog';
+import ProtectedRoute from './components/ProtectedRoute';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -44,7 +45,14 @@ function App() {
             <Route path="/terminos" element={<Terms />} />
             <Route path="/privacidad" element={<Privacy />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/admin/blog" element={<AdminBlog />} />
+            <Route 
+              path="/admin/blog" 
+              element={
+                <ProtectedRoute>
+                  <AdminBlog />
+                </ProtectedRoute>
+              } 
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

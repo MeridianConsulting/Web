@@ -1,4 +1,9 @@
 <?php
+// Desactivar errores que puedan interferir con JSON
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+
 // ==========================================
 // 🔧 CONFIGURACIÓN CORS - DEBE IR AL PRINCIPIO
 // ==========================================
@@ -36,6 +41,7 @@ function cargarControlador($nombre) {
 
 // Router
 $route = $_GET['route'] ?? '';
+$method = $_SERVER['REQUEST_METHOD'];
 
 switch ($route) {
     case 'login':
@@ -43,11 +49,61 @@ switch ($route) {
         $controller->login();
         break;
 
+    case 'blog':
+        try {
+            $controller = cargarControlador("BlogController");
+            $action = $_GET['action'] ?? '';
+            
+            switch ($action) {
+                case 'getAll':
+                case 'list':
+                    $controller->getAll();
+                    break;
+                    
+                case 'get':
+                case 'getById':
+                    $controller->getById();
+                    break;
+                    
+                case 'create':
+                case 'add':
+                    $controller->create();
+                    break;
+                    
+                case 'update':
+                case 'edit':
+                    $controller->update();
+                    break;
+                    
+                case 'delete':
+                case 'remove':
+                    $controller->delete();
+                    break;
+                    
+                default:
+                    http_response_code(400);
+                    echo json_encode([
+                        "status" => "error",
+                        "message" => "Acción no válida",
+                        "acciones_disponibles" => ["getAll", "getById", "create", "update", "delete"]
+                    ]);
+                    exit;
+            }
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Error en el controlador: " . $e->getMessage()
+            ]);
+            exit;
+        }
+        break;
+
     default:
         echo json_encode([
             "status" => "error",
             "message" => "Ruta no válida o vacía",
-            "rutas_disponibles" => ["login"]
+            "rutas_disponibles" => ["login", "blog"]
         ]);
         break;
 }

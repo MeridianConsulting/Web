@@ -38,11 +38,13 @@ const Login = () => {
       }
 
       if (data.status === "success") {
+        // Guardar datos de autenticación con timestamp
+        const loginTime = new Date().getTime().toString();
         localStorage.setItem("isLogged", "true");
         localStorage.setItem("usuario", usuario);
-        // Redirigir al home después del login exitoso
-        navigate("/");
-        window.location.reload(); // Recargar para actualizar el estado
+        localStorage.setItem("loginTime", loginTime);
+        // Redirigir al panel de administración del blog después del login exitoso
+        navigate("/admin/blog");
       } else {
         setError(data.message || "Usuario o contraseña incorrectos");
       }
