@@ -37,8 +37,27 @@ const PROJECTS = [
     title: "Petroservicios",
     short:
       "Servicio técnico/logístico para operaciones de hidrocarburos con enfoque en seguridad.",
-    long:
-      "Petroservicios ofrece soporte integral: mantenimiento, logística, control operacional y asesoría técnica para mantener estándares de producción y seguridad industrial en operaciones de hidrocarburos.",
+    long: `
+      <p>Desde hace 7 años venimos apoyando a la Vicepresidencia de Desarrollo de Ecopetrol con el soporte en las siguientes actividades:</p>
+
+      <ul>
+        <li>1️⃣ Servicio para la caracterización y gestión del yacimiento</li>
+        <li>2️⃣ Construcción de escenarios de subsuelo</li>
+        <li>3️⃣ Planeación integrada del desarrollo</li>
+        <li>4️⃣ Integración y análisis de oportunidades de desarrollo, y el análisis de resultados y acciones de mejora al plan integrado de desarrollo</li>
+      </ul>
+
+      <p><strong>Disciplinas involucradas:</strong></p>
+      <ul>
+        <li>• Geología</li>
+        <li>• Petrofísica</li>
+        <li>• Ingeniería de Yacimientos</li>
+        <li>• Fluidos</li>
+        <li>• Ingeniería de Pozos y Producción</li>
+        <li>• Facilidades</li>
+        <li>• Data Analytics</li>
+      </ul>
+    `,
     stats: [
       { label: "Operaciones asistidas", value: "+40" },
       { label: "Mejora uptime", value: "≈9%" },
@@ -74,7 +93,6 @@ const Services = () => {
 
     const preventContext = (e) => e.preventDefault();
     proyectosArea.addEventListener("contextmenu", preventContext);
-    // bloquear selección con CSS también aplicado en stylesheet
     return () => proyectosArea.removeEventListener("contextmenu", preventContext);
   }, []);
 
@@ -140,7 +158,7 @@ const Services = () => {
         </div>
       </section>
 
-      {/* SERVICIOS (Nos especializamos en:) */}
+      {/* SERVICIOS */}
       <section className="servicios-section" data-aos="fade-up">
         <h2 className="section-title">Nos especializamos en:</h2>
 
@@ -179,7 +197,7 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Modal (overlay) - EXPLORE SAFE */}
+      {/* MODAL */}
       {modalProject && (
         <div
           className="modal-overlay"
@@ -198,9 +216,15 @@ const Services = () => {
             </button>
 
             <div className="modal-hero" style={{ backgroundImage: `url(${bg})` }} />
+
             <div className="modal-body">
               <h3>{modalProject.title}</h3>
-              <p className="modal-desc">{modalProject.long}</p>
+
+              {/* 🔥 Aquí el cambio importante */}
+              <div
+                className="modal-desc"
+                dangerouslySetInnerHTML={{ __html: modalProject.long }}
+              />
 
               <div className="modal-stats">
                 {modalProject.stats.map((s) => (
