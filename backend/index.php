@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 // ==========================================
 
 // Conexión a la base de datos
-require_once __DIR__ . "/conexion.php";
+require_once __DIR__ . "/config/db.php";
 
 // Función para cargar controladores
 function cargarControlador($nombre) {
@@ -39,7 +39,7 @@ $route = $_GET['route'] ?? '';
 
 switch ($route) {
     case 'login':
-        $controller = cargarControlador("LoginController");
+        $controller = cargarControlador("UserController");
         $controller->login();
         break;
 

@@ -16,8 +16,9 @@ import NotFound from './pages/NotFound';
 import Thanks from './pages/Thanks';
 import Innovation from './pages/Innovation';
 
-// ✅ Importamos el botón de WhatsApp
+// ✅ Importamos el botón de WhatsApp y el fallback de chat
 import WhatsAppButton from './components/WhatsAppButton';
+import ChatFallback from './components/ChatFallback';
 
 function App() {
   useEffect(() => {
@@ -45,6 +46,9 @@ function App() {
 
         {/* ✅ Botón flotante de WhatsApp, siempre visible */}
         <WhatsAppButton />
+        
+        {/* ✅ Fallback de chat cuando Tawk.to está bloqueado */}
+        <ChatFallback />
       </div>
     </Router>
   );

@@ -6,24 +6,14 @@ const Login = ({ onLoginSuccess }) => {
   const [clave, setClave] = useState("");
   const [error, setError] = useState("");
 
-  // ✅ Cargar Tawk.to solo en producción
-  useEffect(() => {
-    if (process.env.NODE_ENV === "production") {
-      const s1 = document.createElement("script");
-      s1.src = "https://embed.tawk.to/68b89398d642b5192517b96b/1j48g12lv";
-      s1.async = true;
-      s1.charset = "UTF-8";
-      s1.setAttribute("crossorigin", "anonymous");
-      document.body.appendChild(s1);
-    }
-  }, []); // ← este useEffect está fuera de cualquier función, correcto
+  // Tawk.to se carga desde index.html, no es necesario cargarlo aquí
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
     try {
-      const response = await fetch("http://localhost/backend/index.php?route=login", {
+      const response = await fetch("http://localhost/Web/backend/index.php?route=login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ usuario, clave }),
