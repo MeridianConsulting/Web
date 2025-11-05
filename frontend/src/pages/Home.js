@@ -405,11 +405,11 @@ const Home = () => {
       {/* Sección Acerca de Nosotros */}
       <section className="about" aria-label="Acerca de nosotros">
         <div className="container">
+          <h1 className="about__main-title">Meridian Consulting Ltda.</h1>
           <div className="about__content">
             <div className="about__text" data-aos="fade-right">
-              <h2 className="section-title">Meridian Consulting LTDA</h2>
               <p className="about__description">
-                Con más de 18 años de experiencia en el mercado y más de 230 contratos verificados, 
+                Con 23+ años de experiencia en el mercado y 230+ contratos verificados, 
                 somos líderes en consultoría para la industria de hidrocarburos y minería en Colombia 
                 y el mercado internacional.
               </p>
@@ -417,46 +417,42 @@ const Home = () => {
                 Nuestro equipo de profesionales cuenta con un promedio de 25 años de trayectoria en el sector, 
                 garantizando soluciones de la más alta calidad para su empresa.
               </p>
-    <section className="certificados" aria-label="Certificados de calidad">
-        <div className="container">
-          <h2 className="section-title">Certificaciones</h2>
-           <div className="certificados__grid">
-             <a href="/pdf/ISO_9001.pdf" target="_blank" rel="noopener noreferrer" className="btn btn--pdf">
-                ISO 9001
-            </a>
-            <a href="/pdf/ISO_14001.pdf" target="_blank" rel="noopener noreferrer" className="btn btn--pdf">
-                ISO 14001
-              </a>
-            <a href="/pdf/ISO_45001.pdf" target="_blank" rel="noopener noreferrer" className="btn btn--pdf">
-                ISO 45001
-            </a>
-            <a href="/pdf/CertificadoRUC.pdf" target="_blank" rel="noopener noreferrer" className="btn btn--pdf">
-                Certificado RUC
-            </a>
-          </div>
-        </div>
-      </section>
-
-
-            </div>
-            <div className="about__stats" data-aos="fade-left" data-aos-delay="200">
-              <div className="stat-item">
-                <span className="stat-item__number">22+</span>
-                <span className="stat-item__text">Años de experiencia</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-item__number">230+</span>
-                <span className="stat-item__text">Contratos completados</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-item__number">2+</span>
-                <span className="stat-item__text">Contamos con mas de 2 sedes</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-item__number">15+</span>
-                <span className="stat-item__text">Países con operaciones</span>
+              <div className="certificados" aria-label="Certificados de calidad">
+                <h2 className="certificados__title">Certificaciones</h2>
+                <div className="certificados__grid">
+                  <a href="/pdf/ISO_9001.pdf" target="_blank" rel="noopener noreferrer" className="btn btn--pdf">
+                    ISO 9001
+                  </a>
+                  <a href="/pdf/ISO_14001.pdf" target="_blank" rel="noopener noreferrer" className="btn btn--pdf">
+                    ISO 14001
+                  </a>
+                  <a href="/pdf/ISO_45001.pdf" target="_blank" rel="noopener noreferrer" className="btn btn--pdf">
+                    ISO 45001
+                  </a>
+                  <a href="/pdf/CertificadoRUC.pdf" target="_blank" rel="noopener noreferrer" className="btn btn--pdf">
+                    Certificado RUC
+                  </a>
+                </div>
               </div>
             </div>
+            <dl className="about__stats" data-aos="fade-left" data-aos-delay="200">
+              <div className="stat-item">
+                <dt className="stat-item__text">Años de experiencia</dt>
+                <dd className="stat-item__number" aria-label="veintitrés o más">23+</dd>
+              </div>
+              <div className="stat-item">
+                <dt className="stat-item__text">Contratos verificados</dt>
+                <dd className="stat-item__number" aria-label="doscientos treinta o más">230+</dd>
+              </div>
+              <div className="stat-item">
+                <dt className="stat-item__text">Sedes</dt>
+                <dd className="stat-item__number" aria-label="dos o más">2+</dd>
+              </div>
+              <div className="stat-item">
+                <dt className="stat-item__text">Países con operaciones</dt>
+                <dd className="stat-item__number" aria-label="quince o más">15+</dd>
+              </div>
+            </dl>
           </div>
         </div>
       </section>
