@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../config/db.php";
+require_once __DIR__ . "/../config/security.php";
 
 class BlogController {
     private $uploadDir;
@@ -85,9 +86,12 @@ class BlogController {
             
             $id = $_GET['id'] ?? null;
             
-            if (!$id) {
+            // Validar y sanitizar ID
+            $id = Security::sanitizeInt($id);
+            
+            if (!$id || $id <= 0) {
                 http_response_code(400);
-                echo json_encode(["status" => "error", "message" => "ID no proporcionado"]);
+                echo json_encode(["status" => "error", "message" => "ID inválido"]);
                 exit;
             }
             
@@ -185,49 +189,62 @@ class BlogController {
                 http_response_code(400);
                 echo json_encode([
                     "status" => "error", 
-                    "message" => "Todos los campos son obligatorios",
-                    "debug" => [
-                        "titulo" => $titulo,
-                        "autor" => $autor,
-                        "cargo" => $cargo,
-                        "area" => $area,
-                        "contenido" => $contenido
-                    ]
+                    "message" => "Todos los campos son obligatorios"
                 ]);
                 exit;
             }
             
-            // No hay límites de caracteres - todos los campos son TEXT
+            // Sanitizar entradas - Prevenir XSS e inyección
+            $titulo = Security::sanitizeString($titulo);
+            $autor = Security::sanitizeString($autor);
+            $cargo = Security::sanitizeString($cargo);
+            $area = Security::sanitizeString($area);
+            $contenido = Security::sanitizeText($contenido); // Permite saltos de línea
+            
+            // Validar longitudes razonables
+            if (!Security::validateLength($titulo, 1, 500)) {
+                http_response_code(400);
+                echo json_encode(["status" => "error", "message" => "El título debe tener entre 1 y 500 caracteres"]);
+                exit;
+            }
+            
+            if (!Security::validateLength($autor, 1, 200)) {
+                http_response_code(400);
+                echo json_encode(["status" => "error", "message" => "El autor debe tener entre 1 y 200 caracteres"]);
+                exit;
+            }
+            
+            if (!Security::validateLength($contenido, 10, 100000)) {
+                http_response_code(400);
+                echo json_encode(["status" => "error", "message" => "El contenido debe tener entre 10 y 100,000 caracteres"]);
+                exit;
+            }
             
             // Procesar imagen si existe
             $imagen_path = null;
             if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
                 $imagen = $_FILES['imagen'];
                 
-                // Validar tipo de archivo
-                $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
-                if (!in_array($imagen['type'], $allowedTypes)) {
+                // Validar archivo con función de seguridad
+                $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+                $validation = Security::validateFile($imagen, $allowedTypes, 5242880); // 5MB
+                
+                if (!$validation['valid']) {
                     http_response_code(400);
-                    echo json_encode(["status" => "error", "message" => "Tipo de archivo no permitido"]);
+                    echo json_encode(["status" => "error", "message" => $validation['error']]);
                     exit;
                 }
                 
-                // Validar tamaño (5MB máximo)
-                $maxSize = 5 * 1024 * 1024;
-                if ($imagen['size'] > $maxSize) {
-                    http_response_code(400);
-                    echo json_encode(["status" => "error", "message" => "El archivo es demasiado grande (máximo 5MB)"]);
-                    exit;
-                }
-                
-                // Generar nombre único para el archivo
-                $extension = pathinfo($imagen['name'], PATHINFO_EXTENSION);
+                // Generar nombre único y seguro para el archivo
+                $extension = strtolower(pathinfo($imagen['name'], PATHINFO_EXTENSION));
+                // Sanitizar extensión para prevenir path traversal
+                $extension = preg_replace('/[^a-z0-9]/', '', $extension);
                 $fileName = uniqid('blog_', true) . '.' . $extension;
-                $filePath = $this->uploadDir . $fileName;
+                $filePath = $this->uploadDir . basename($fileName); // basename previene path traversal
                 
                 // Mover archivo
                 if (move_uploaded_file($imagen['tmp_name'], $filePath)) {
-                    $imagen_path = 'uploads/' . $fileName;
+                    $imagen_path = 'uploads/' . basename($fileName);
                 } else {
                     http_response_code(500);
                     echo json_encode([
@@ -359,9 +376,12 @@ class BlogController {
         
             $id = $_POST['id'] ?? null;
             
-            if (!$id) {
+            // Validar y sanitizar ID
+            $id = Security::sanitizeInt($id);
+            
+            if (!$id || $id <= 0) {
                 http_response_code(400);
-                echo json_encode(["status" => "error", "message" => "ID no proporcionado"]);
+                echo json_encode(["status" => "error", "message" => "ID inválido"]);
                 exit;
             }
             
@@ -380,7 +400,21 @@ class BlogController {
                 exit;
             }
             
-            // No hay límites de caracteres - todos los campos son TEXT
+            // Sanitizar entradas
+            $titulo = Security::sanitizeString($titulo);
+            $autor = Security::sanitizeString($autor);
+            $cargo = Security::sanitizeString($cargo);
+            $area = Security::sanitizeString($area);
+            $contenido = Security::sanitizeText($contenido);
+            
+            // Validar longitudes
+            if (!Security::validateLength($titulo, 1, 500) || 
+                !Security::validateLength($autor, 1, 200) ||
+                !Security::validateLength($contenido, 10, 100000)) {
+                http_response_code(400);
+                echo json_encode(["status" => "error", "message" => "Los datos exceden los límites permitidos"]);
+                exit;
+            }
             
             // Procesar nueva imagen si existe
             $imagen_path = $imagen_existente;
@@ -388,19 +422,13 @@ class BlogController {
             if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
                 $imagen = $_FILES['imagen'];
                 
-                // Validar tipo de archivo
-                $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
-                if (!in_array($imagen['type'], $allowedTypes)) {
-                    http_response_code(400);
-                    echo json_encode(["status" => "error", "message" => "Tipo de archivo no permitido"]);
-                    exit;
-                }
+                // Validar archivo con función de seguridad
+                $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+                $validation = Security::validateFile($imagen, $allowedTypes, 5242880); // 5MB
                 
-                // Validar tamaño (5MB máximo)
-                $maxSize = 5 * 1024 * 1024;
-                if ($imagen['size'] > $maxSize) {
+                if (!$validation['valid']) {
                     http_response_code(400);
-                    echo json_encode(["status" => "error", "message" => "El archivo es demasiado grande (máximo 5MB)"]);
+                    echo json_encode(["status" => "error", "message" => $validation['error']]);
                     exit;
                 }
                 
@@ -412,14 +440,16 @@ class BlogController {
                     }
                 }
                 
-                // Generar nombre único para el archivo
-                $extension = pathinfo($imagen['name'], PATHINFO_EXTENSION);
+                // Generar nombre único y seguro para el archivo
+                $extension = strtolower(pathinfo($imagen['name'], PATHINFO_EXTENSION));
+                // Sanitizar extensión para prevenir path traversal
+                $extension = preg_replace('/[^a-z0-9]/', '', $extension);
                 $fileName = uniqid('blog_', true) . '.' . $extension;
-                $filePath = $this->uploadDir . $fileName;
+                $filePath = $this->uploadDir . basename($fileName); // basename previene path traversal
                 
                 // Mover archivo
                 if (move_uploaded_file($imagen['tmp_name'], $filePath)) {
-                    $imagen_path = 'uploads/' . $fileName;
+                    $imagen_path = 'uploads/' . basename($fileName);
                 } else {
                     http_response_code(500);
                     echo json_encode(["status" => "error", "message" => "Error al subir la imagen"]);
@@ -514,9 +544,12 @@ class BlogController {
             // Obtener ID desde POST o GET según el método
             $id = $_POST['id'] ?? $_GET['id'] ?? null;
             
-            if (!$id) {
+            // Validar y sanitizar ID
+            $id = Security::sanitizeInt($id);
+            
+            if (!$id || $id <= 0) {
                 http_response_code(400);
-                echo json_encode(["status" => "error", "message" => "ID no proporcionado"]);
+                echo json_encode(["status" => "error", "message" => "ID inválido"]);
                 exit;
             }
             
@@ -621,9 +654,12 @@ class BlogController {
             // Obtener ID desde GET o POST
             $id = $_GET['id'] ?? $_POST['id'] ?? null;
             
-            if (!$id) {
+            // Validar y sanitizar ID
+            $id = Security::sanitizeInt($id);
+            
+            if (!$id || $id <= 0) {
                 http_response_code(400);
-                echo json_encode(["status" => "error", "message" => "ID no proporcionado"]);
+                echo json_encode(["status" => "error", "message" => "ID inválido"]);
                 exit;
             }
             

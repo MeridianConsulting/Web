@@ -24,8 +24,6 @@ const Blog = () => {
 
       const contentType = response.headers.get("content-type");
       if (!contentType || !contentType.includes("application/json")) {
-        const text = await response.text();
-        console.error("Respuesta no es JSON:", text.substring(0, 200));
         throw new Error("El servidor devolvió un formato no válido");
       }
 
@@ -38,7 +36,6 @@ const Blog = () => {
         setPosts([]);
       }
     } catch (error) {
-      console.error("Error cargando posts:", error);
       setError("Error al cargar las noticias. Por favor, intenta nuevamente.");
       setPosts([]);
     } finally {
@@ -84,7 +81,6 @@ const Blog = () => {
       const liked = localStorage.getItem('blog_liked_posts');
       return liked ? JSON.parse(liked) : [];
     } catch (error) {
-      console.error("Error al leer likes de localStorage:", error);
       return [];
     }
   };
@@ -98,7 +94,7 @@ const Blog = () => {
         localStorage.setItem('blog_liked_posts', JSON.stringify(liked));
       }
     } catch (error) {
-      console.error("Error al guardar like en localStorage:", error);
+      // Silenciar error
     }
   };
 
@@ -146,7 +142,6 @@ const Blog = () => {
         );
       }
     } catch (error) {
-      console.error("Error al guardar like:", error);
       // Revertir el cambio si falla (tanto en UI como en localStorage)
       setPosts((prevPosts) =>
         prevPosts.map((p) =>
@@ -159,7 +154,7 @@ const Blog = () => {
         const updated = liked.filter(postId => postId !== id);
         localStorage.setItem('blog_liked_posts', JSON.stringify(updated));
       } catch (e) {
-        console.error("Error al revertir like en localStorage:", e);
+        // Silenciar error
       }
     }
   };

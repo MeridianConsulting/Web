@@ -25,7 +25,6 @@ const Login = () => {
       // Si la respuesta no es OK, intentar leer el error
       if (!response.ok) {
         const errorText = await response.text();
-        console.error("Error HTTP:", response.status, errorText);
         throw new Error(`Error en el servidor (${response.status}): ${errorText.substring(0, 100)}`);
       }
 
@@ -37,8 +36,6 @@ const Login = () => {
         }
         data = JSON.parse(text);
       } catch (parseError) {
-        console.error("Error al parsear JSON:", parseError);
-        console.error("Respuesta del servidor:", await response.clone().text());
         throw new Error("Error en la respuesta del servidor. Formato inválido.");
       }
 
@@ -54,8 +51,6 @@ const Login = () => {
         setError(data.message || "Usuario o contraseña incorrectos");
       }
     } catch (err) {
-      console.error("Error en login:", err);
-      console.error("URL intentada:", `${API_URL}/index.php?route=login`);
       setError(err.message || "Error al conectar con el servidor. Por favor, verifica tu conexión.");
     } finally {
       setLoading(false);

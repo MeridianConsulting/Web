@@ -13,6 +13,22 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-W
 header("Access-Control-Allow-Credentials: true");
 header("Content-Type: application/json; charset=UTF-8");
 
+// ==========================================
+// 🛡️ HEADERS DE SEGURIDAD
+// ==========================================
+// Prevenir clickjacking
+header("X-Frame-Options: DENY");
+// Prevenir MIME type sniffing
+header("X-Content-Type-Options: nosniff");
+// Habilitar protección XSS del navegador
+header("X-XSS-Protection: 1; mode=block");
+// Content Security Policy
+header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;");
+// Política de referrer
+header("Referrer-Policy: strict-origin-when-cross-origin");
+// Prevenir que el navegador adivine el tipo MIME
+header("X-Permitted-Cross-Domain-Policies: none");
+
 // Si la solicitud es OPTIONS (preflight), responder 200 sin ejecutar más código
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
@@ -25,6 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 // Conexión a la base de datos
 require_once __DIR__ . "/config/db.php";
+
+// Cargar funciones de seguridad
+require_once __DIR__ . "/config/security.php";
 
 // Función para cargar controladores
 function cargarControlador($nombre) {

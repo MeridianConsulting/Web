@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2025 a las 22:23:08
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Servidor: localhost:3306
+-- Tiempo de generación: 06-11-2025 a las 09:22:49
+-- Versión del servidor: 10.6.23-MariaDB-cll-lve
+-- Versión de PHP: 8.3.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,11 +30,14 @@ SET time_zone = "+00:00";
 CREATE TABLE `blog` (
   `id` int(30) NOT NULL,
   `titulo` varchar(50) NOT NULL,
-  `nombre` varchar(35) NOT NULL,
+  `autor` text NOT NULL,
   `cargo` varchar(30) NOT NULL,
   `area` varchar(30) NOT NULL,
-  `noticia` varchar(120) NOT NULL,
-  `imagen` varchar(500) NOT NULL
+  `contenido` text NOT NULL,
+  `imagen_path` varchar(255) DEFAULT NULL,
+  `likes` int(11) NOT NULL DEFAULT 0,
+  `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
+  `fecha_actualizada` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

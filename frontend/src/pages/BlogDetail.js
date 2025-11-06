@@ -27,8 +27,6 @@ const BlogDetail = () => {
 
       const contentType = response.headers.get("content-type");
       if (!contentType || !contentType.includes("application/json")) {
-        const text = await response.text();
-        console.error("Respuesta no es JSON:", text.substring(0, 200));
         throw new Error("El servidor devolvió un formato no válido");
       }
 
@@ -40,7 +38,6 @@ const BlogDetail = () => {
         setError(data.message || "Noticia no encontrada");
       }
     } catch (error) {
-      console.error("Error cargando post:", error);
       setError("Error al cargar la noticia. Por favor, intenta nuevamente.");
     } finally {
       setLoading(false);

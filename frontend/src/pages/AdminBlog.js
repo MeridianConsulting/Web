@@ -68,7 +68,6 @@ const AdminBlog = () => {
         setIsChecking(false);
         return true;
       } catch (error) {
-        console.error("Error verificando autenticación:", error);
         localStorage.clear();
         navigate("/login", { replace: true });
         return false;
@@ -140,8 +139,6 @@ const AdminBlog = () => {
       // Verificar que la respuesta sea JSON
       const contentType = response.headers.get("content-type");
       if (!contentType || !contentType.includes("application/json")) {
-        const text = await response.text();
-        console.error("Respuesta no es JSON:", text.substring(0, 200));
         throw new Error("El servidor devolvió un formato no válido");
       }
       
@@ -154,13 +151,9 @@ const AdminBlog = () => {
       if (data.status === "success") {
         setPosts(data.data || []);
       } else {
-        console.error("Error:", data.message);
-        // Aún así, establecer posts vacío para evitar errores
         setPosts([]);
       }
     } catch (error) {
-      console.error("Error cargando posts:", error);
-      // Establecer posts vacío para evitar errores en el render
       setPosts([]);
     }
   };
@@ -314,16 +307,11 @@ const AdminBlog = () => {
           try {
             data = await response.json();
           } catch (jsonError) {
-            const text = await response.text();
-            console.error("Error al parsear JSON:", jsonError);
-            console.error("Respuesta del servidor:", text);
-            alert("Error: El servidor devolvió una respuesta inválida. Ver consola para más detalles.");
+            alert("Error: El servidor devolvió una respuesta inválida.");
             return;
           }
         } else {
-          const text = await response.text();
-          console.error("Respuesta no es JSON:", text);
-          alert("Error: El servidor devolvió un formato no válido. Ver consola para más detalles.");
+          alert("Error: El servidor devolvió un formato no válido.");
           return;
         }
         
@@ -355,7 +343,6 @@ const AdminBlog = () => {
         fileInput.value = '';
       }
     } catch (error) {
-      console.error("Error:", error);
       alert("Error al procesar la solicitud. Por favor, intenta nuevamente.");
     } finally {
       setLoading(false);
@@ -421,7 +408,6 @@ const AdminBlog = () => {
         alert("Error: " + (data.message || "Error al eliminar la publicación"));
       }
     } catch (error) {
-      console.error("Error:", error);
       alert("Error al eliminar la publicación. Por favor, intenta nuevamente.");
     }
   };
