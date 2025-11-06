@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 06-11-2025 a las 09:22:49
+-- Tiempo de generación: 06-11-2025 a las 10:03:56
 -- Versión del servidor: 10.6.23-MariaDB-cll-lve
 -- Versión de PHP: 8.3.25
 
@@ -64,7 +64,7 @@ CREATE TABLE `contacto` (
 CREATE TABLE `usuarios` (
   `id` int(30) NOT NULL,
   `usuario` varchar(40) NOT NULL,
-  `contraseña` varchar(10) NOT NULL
+  `contraseña` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -72,8 +72,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `usuario`, `contraseña`) VALUES
-(1, 'william', 'meridian20'),
-(100, 'william', 'meridian20');
+(103, 'Meridian_Noticias', 'Meridian2024!Blog');
 
 --
 -- Índices para tablas volcadas
@@ -117,7 +116,7 @@ ALTER TABLE `contacto`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
