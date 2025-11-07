@@ -194,6 +194,7 @@ const Home = () => {
       <section className="clients" aria-label="Nuestros clientes">
         <div className="container">
           <h2 className="section-title" data-aos="fade-up">Confían en nosotros</h2>
+        </div>
           <div className="clients-marquee-container" data-aos="fade-up" data-aos-delay="100">
             <div className="clients-marquee">
               <div className="clients-marquee__content">
@@ -317,7 +318,6 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
       </section>
 {/* ==================== NUESTROS SERVICIOS ==================== */}
 <section className="services" aria-label="Nuestros servicios">

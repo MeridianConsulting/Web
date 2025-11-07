@@ -2298,9 +2298,9 @@ a {
   width: 100%;
   overflow: hidden;
   padding: var(--spacing-xl) 0;
-  /* Neblina más ancha y alejada del centro (8% y 92% para más espacio visible) */
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  /* Difuminado muy sutil en los extremos (2% y 98% para máximo espacio visible) */
+  mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
   z-index: 1;
 }
 
@@ -2369,7 +2369,7 @@ a {
   width: auto;
   height: auto;
   object-fit: contain;
-  filter: grayscale(0.4) brightness(0.95);
+  filter: grayscale(0) brightness(1);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   z-index: 1;
@@ -2379,7 +2379,7 @@ a {
 }
 
 .client-logo:hover img {
-  filter: grayscale(0) brightness(1.05);
+  filter: grayscale(0) brightness(1.1);
   transform: scale(1.05);
 }
 
