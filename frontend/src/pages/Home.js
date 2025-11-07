@@ -69,7 +69,7 @@ const Home = () => {
     {
       image: heroImage3,
       title: "Experiencia y Profesionalismo",
-      subtitle: "Más de 230 proyectos exitosos en 15 países",
+      subtitle: "Más de 230 proyectos exitosos en 15 municipios de Colombia",
       cta: "Contáctanos",
       link: "/contacto"
     }
@@ -447,10 +447,6 @@ const Home = () => {
               <div className="stat-item">
                 <dt className="stat-item__text">Sedes</dt>
                 <dd className="stat-item__number" aria-label="dos o más">2+</dd>
-              </div>
-              <div className="stat-item">
-                <dt className="stat-item__text">Países con operaciones</dt>
-                <dd className="stat-item__number" aria-label="quince o más">15+</dd>
               </div>
             </dl>
           </div>

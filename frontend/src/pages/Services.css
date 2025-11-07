@@ -85,10 +85,12 @@
 /* proteger selección en área proyectos */
 .proyectos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 28px;
   align-items: stretch;
   padding: 0 2%;
+  max-width: 1400px;
+  margin: 0 auto;
   user-select: none; /* evita selección de texto en proyectos */
 }
 
@@ -309,11 +311,13 @@
   align-items: center;
   justify-content: center;
   z-index: 20000;
-  padding: 24px;
+  padding: 20px;
+  overflow-y: auto;
 }
 
 .modal-card {
-  width: min(980px, 96%);
+  width: min(980px, 94%);
+  max-height: 90vh;
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
@@ -322,6 +326,7 @@
   grid-template-columns: 1fr 1fr;
   animation: modalIn 0.36s ease;
   position: relative;
+  margin: auto;
 }
 
 @keyframes modalIn {
@@ -350,6 +355,27 @@
 
 .modal-body {
   padding: 28px;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+/* Scrollbar personalizado para el modal */
+.modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0a6aa3, #00aaff);
+  border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #085a8f, #0099dd);
 }
 
 .modal-body h3 {
@@ -361,6 +387,52 @@
   color: #333;
   line-height: 1.6;
   margin-bottom: 18px;
+}
+
+.modal-desc p {
+  margin-bottom: 14px;
+}
+
+.modal-desc h4 {
+  color: #0a6aa3;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 24px 0 12px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid rgba(10, 106, 163, 0.2);
+  position: relative;
+}
+
+.modal-desc h4:first-child {
+  margin-top: 0;
+}
+
+.modal-desc h4::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, #0a6aa3, #00aaff);
+}
+
+.modal-desc ul {
+  margin: 12px 0;
+  padding-left: 20px;
+  list-style: none;
+}
+
+.modal-desc ul li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+  position: relative;
+  padding-left: 5px;
+}
+
+.modal-desc strong {
+  color: #0a6aa3;
+  font-weight: 600;
 }
 
 /* stats inside modal */
@@ -421,21 +493,201 @@
 }
 
 /* ====== RESPONSIVE ====== */
-@media (max-width: 980px) {
-  .modal-card {
-    grid-template-columns: 1fr;
-  }
 
-  .modal-hero {
-    height: 220px;
+/* Pantallas grandes de escritorio */
+@media (max-width: 1440px) {
+  .modal-card {
+    width: min(900px, 92%);
+  }
+  
+  .proyectos-section {
+    padding: 50px 4% 40px;
+  }
+  
+  .servicios-section {
+    padding: 50px 4% 80px;
   }
 }
 
+/* Laptops estándar (1366x768, 1280x800) */
+@media (max-width: 1366px) {
+  .modal-card {
+    width: min(850px, 90%);
+    max-height: 85vh;
+  }
+  
+  .modal-body {
+    padding: 24px;
+    max-height: 85vh;
+  }
+  
+  .services-hero {
+    height: 50vh;
+  }
+  
+  .services-hero h1 {
+    font-size: 2.3rem;
+  }
+}
+
+/* Tablets landscape y laptops pequeños */
+@media (max-width: 1024px) {
+  .modal-card {
+    width: 88%;
+    grid-template-columns: 1fr;
+    max-height: 80vh;
+  }
+
+  .modal-hero {
+    height: 200px;
+    min-height: auto;
+  }
+  
+  .modal-body {
+    padding: 22px;
+    max-height: calc(80vh - 200px);
+  }
+  
+  .proyectos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  
+  .services-hero h1 {
+    font-size: 2.1rem;
+  }
+}
+
+/* Tablets portrait */
 @media (max-width: 768px) {
-  .services-hero { height: 44vh; }
-  .services-hero .overlay { padding: 28px; }
-  .section-title { font-size: 1.9rem; }
-  .proyectos-grid { grid-template-columns: 1fr; }
-  .especialidades-grid { grid-template-columns: 1fr; }
-  .scroll-percent { right: 12px; top: 8px; padding: 3px 7px; font-size: 0.9rem; }
+  .services-hero { 
+    height: 44vh; 
+  }
+  
+  .services-hero .overlay { 
+    padding: 28px 20px; 
+  }
+  
+  .services-hero h1 {
+    font-size: 1.9rem;
+  }
+  
+  .section-title { 
+    font-size: 1.9rem; 
+  }
+  
+  .proyectos-grid { 
+    grid-template-columns: 1fr;
+    padding: 0;
+  }
+  
+  .especialidades-grid { 
+    grid-template-columns: 1fr;
+    padding: 0;
+  }
+  
+  .scroll-percent { 
+    right: 12px; 
+    top: 8px; 
+    padding: 3px 7px; 
+    font-size: 0.9rem; 
+  }
+  
+  .modal-card {
+    width: 95%;
+    max-height: 85vh;
+  }
+  
+  .modal-hero {
+    height: 180px;
+  }
+  
+  .modal-body {
+    padding: 20px;
+    max-height: calc(85vh - 180px);
+  }
+  
+  .modal-body h3 {
+    font-size: 1.4rem;
+  }
+  
+  .modal-desc h4 {
+    font-size: 1.1rem;
+    margin: 20px 0 10px 0;
+  }
+  
+  .modal-stats {
+    gap: 10px;
+  }
+  
+  .modal-stat {
+    min-width: 100px;
+    padding: 10px 12px;
+  }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+  .services-hero {
+    height: 40vh;
+  }
+  
+  .services-hero h1 {
+    font-size: 1.6rem;
+  }
+  
+  .services-hero p {
+    font-size: 0.95rem;
+  }
+  
+  .modal-overlay {
+    padding: 10px;
+  }
+  
+  .modal-card {
+    width: 98%;
+    max-height: 90vh;
+    border-radius: 8px;
+  }
+  
+  .modal-hero {
+    height: 150px;
+  }
+  
+  .modal-body {
+    padding: 16px;
+    max-height: calc(90vh - 150px);
+  }
+  
+  .modal-body h3 {
+    font-size: 1.3rem;
+  }
+  
+  .modal-desc h4 {
+    font-size: 1rem;
+    margin: 18px 0 10px 0;
+  }
+  
+  .modal-actions {
+    flex-direction: column;
+  }
+  
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .section-title {
+    font-size: 1.6rem;
+  }
+  
+  .proyecto-card {
+    min-height: 350px;
+  }
+  
+  .scroll-percent {
+    font-size: 0.85rem;
+    padding: 2px 6px;
+  }
 }
