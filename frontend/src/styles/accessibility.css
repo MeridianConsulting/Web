@@ -156,6 +156,7 @@ button:disabled {
 }
 
 /* Dark mode support para accesibilidad */
+/* Comentado temporalmente para no afectar diseño existente
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #1a1a1a;
@@ -172,6 +173,7 @@ button:disabled {
     color: var(--link-color);
   }
 }
+*/
 
 /* Indicadores de estado para formularios */
 input:invalid,
