@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import "./About.css";
 import { FaHandshake, FaAward, FaEye, FaLightbulb, FaGlobeAmericas, FaShieldAlt } from "react-icons/fa";
 import LazyImage from "../components/LazyImage";
+import SEO from "../components/SEO";
 
 import CEO1 from "../assets/img/CEO1.png";
 import CEO2 from "../assets/img/CEO2.png";
@@ -58,8 +59,31 @@ const About = () => {
     counters.forEach((counter) => observer.observe(counter));
   }, []);
 
+  // Schema.org AboutPage
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "Sobre Nosotros - MERIDIAN CONSULTING",
+    "description": "Conoce la historia, misión, visión y valores de MERIDIAN CONSULTING LTDA. Más de 23 años de experiencia en consultoría especializada.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "MERIDIAN CONSULTING LTDA",
+      "foundingDate": "2003",
+      "numberOfEmployees": "30+",
+      "slogan": "Excelencia en consultoría minero-energética"
+    }
+  };
+
   return (
     <div className="about-page">
+      <SEO 
+        title="Nosotros"
+        description="MERIDIAN CONSULTING LTDA - Más de 23 años de experiencia en consultoría especializada. Conoce nuestra misión, visión, valores y el equipo que impulsa la excelencia."
+        keywords="sobre meridian, empresa consultoría, historia empresa, valores corporativos, equipo profesional, Colombia"
+        url="/nosotros"
+        schemaData={aboutSchema}
+      />
+      
       {/* HERO */}
       <section className="about-section">
         <div className="about-container">

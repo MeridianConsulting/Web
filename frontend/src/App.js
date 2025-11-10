@@ -1,8 +1,10 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import './styles/styles.css';
+import './styles/accessibility.css';
 
 // Componentes que se cargan inmediatamente (críticos)
 import Header from './components/Header';
@@ -33,44 +35,46 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <div className="App">
-        <Header />
-        <main className="main-content">
-          <Suspense fallback={<LoadingSpinner />}>
-            <Routes>
-              <Route path="/gracias" element={<Thanks />} />
-              <Route path="/" element={<Home />} />
-              <Route path="/servicios" element={<Services />} />
-              <Route path="/nosotros" element={<About />} />
-              <Route path="/contacto" element={<Contact />} />
-              <Route path="/innovacion" element={<Innovation />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:id" element={<BlogDetail />} /> 
-              <Route path="/terminos" element={<Terms />} />
-              <Route path="/privacidad" element={<Privacy />} />
-              <Route path="/login" element={<Login />} />
-              <Route 
-                path="/admin/blog" 
-                element={
-                  <ProtectedRoute>
-                    <AdminBlog />
-                  </ProtectedRoute>
-                } 
-              />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </main>
-        <Footer />
+    <HelmetProvider>
+      <Router>
+        <div className="App">
+          <Header />
+          <main className="main-content">
+            <Suspense fallback={<LoadingSpinner />}>
+              <Routes>
+                <Route path="/gracias" element={<Thanks />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/servicios" element={<Services />} />
+                <Route path="/nosotros" element={<About />} />
+                <Route path="/contacto" element={<Contact />} />
+                <Route path="/innovacion" element={<Innovation />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:id" element={<BlogDetail />} /> 
+                <Route path="/terminos" element={<Terms />} />
+                <Route path="/privacidad" element={<Privacy />} />
+                <Route path="/login" element={<Login />} />
+                <Route 
+                  path="/admin/blog" 
+                  element={
+                    <ProtectedRoute>
+                      <AdminBlog />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </main>
+          <Footer />
 
-        {/* ✅ Botón flotante de WhatsApp, siempre visible */}
-        <WhatsAppButton />
-        
-        {/* ✅ Fallback de chat cuando Tawk.to está bloqueado */}
-        <ChatFallback />
-      </div>
-    </Router>
+          {/* ✅ Botón flotante de WhatsApp, siempre visible */}
+          <WhatsAppButton />
+          
+          {/* ✅ Fallback de chat cuando Tawk.to está bloqueado */}
+          <ChatFallback />
+        </div>
+      </Router>
+    </HelmetProvider>
   );
 }
 

@@ -1,0 +1,242 @@
+/* ============================================
+   ESTILOS DE ACCESIBILIDAD
+   Mejoras para navegación por teclado y screen readers
+   ============================================ */
+
+/* Skip to main content link (oculto visualmente, visible al focus) */
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 1em;
+  background-color: #003d82;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.skip-to-main:focus {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+}
+
+/* Focus visible para todos los elementos interactivos */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #FFD700;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.3);
+}
+
+/* Remover outline por defecto en mouse */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  * {
+    border-color: currentColor !important;
+  }
+  
+  a {
+    text-decoration: underline !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Screen reader only class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Mejoras para botones y enlaces */
+button,
+a {
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Áreas de click más grandes en móvil */
+@media (max-width: 768px) {
+  button,
+  a,
+  input[type="submit"],
+  input[type="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Mejora de contraste para texto */
+.low-contrast-warning {
+  background-color: #fff3cd;
+  border-left: 4px solid #ffc107;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+/* Focus trap para modales */
+.modal-open {
+  overflow: hidden;
+}
+
+.modal-open .modal {
+  overflow-y: auto;
+}
+
+/* Mejora de visibilidad para tooltips */
+/* Comentado para no interferir con estilos del header 
+[title]:hover::after,
+[aria-label]:hover::after {
+  content: attr(title);
+  position: absolute;
+  background: #333;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  z-index: 1000;
+}
+*/
+
+/* Live regions para anuncios dinámicos */
+[aria-live] {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Indicador visual de loading para screen readers */
+.loading[aria-busy="true"]::after {
+  content: "Cargando...";
+  position: absolute;
+  left: -10000px;
+}
+
+/* Dark mode support para accesibilidad */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --link-color: #6eb4ff;
+  }
+  
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+  
+  a {
+    color: var(--link-color);
+  }
+}
+
+/* Indicadores de estado para formularios */
+input:invalid,
+textarea:invalid,
+select:invalid {
+  border-color: #dc3545;
+}
+
+input:valid,
+textarea:valid,
+select:valid {
+  border-color: #28a745;
+}
+
+[aria-invalid="true"] {
+  border: 2px solid #dc3545;
+}
+
+[aria-invalid="true"]:focus {
+  outline-color: #dc3545;
+}
+
+/* Mensajes de error visibles */
+.error-message {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.error-message::before {
+  content: "⚠";
+  font-size: 1.2rem;
+}
+
+/* Mejora para tablas responsivas y accesibles */
+@media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  thead {
+    display: none;
+  }
+  
+  tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+  }
+  
+  td {
+    display: block;
+    text-align: right;
+    padding: 0.5rem;
+  }
+  
+  td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+  }
+}
+

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGlobe, FaCogs, FaHardHat, FaChartBar, FaLeaf, FaRecycle } from 'react-icons/fa';
 import LazyImage from '../components/LazyImage';
+import SEO from '../components/SEO';
 // Importar imágenes y logos
 import heroImage1 from '../assets/img/fondo.jpeg';
 import heroImage2 from '../assets/img/fondo2.png';
@@ -121,8 +122,44 @@ const Home = () => {
     };
   }, []);
 
+  // Schema.org Organization
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "MERIDIAN CONSULTING LTDA",
+    "url": "https://meridianltda.com",
+    "logo": "https://meridianltda.com/logo512.png",
+    "description": "Consultoría especializada en hidrocarburos, minería y energías renovables con más de 23 años de experiencia.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Bogotá",
+      "addressLocality": "Bogotá",
+      "addressRegion": "Cundinamarca",
+      "addressCountry": "CO"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+57-313-817-4050",
+      "contactType": "customer service",
+      "areaServed": "CO",
+      "availableLanguage": "Spanish"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/meridian-consulting",
+      "https://www.facebook.com/meridianconsulting"
+    ]
+  };
+
   return (
     <div className="home-container">
+      <SEO 
+        title="Inicio"
+        description="MERIDIAN CONSULTING LTDA - Consultoría especializada en hidrocarburos, minería y energías renovables. Más de 23 años de experiencia, 230+ proyectos exitosos en Colombia."
+        keywords="consultoría hidrocarburos, ingeniería petrolera, minería sostenible, energías renovables, geología, Colombia"
+        url="/"
+        schemaData={organizationSchema}
+      />
+      
       {/* Hero Slider Section */}
       <section className="hero-slider" aria-label="Presentación principal">
         <div className="hero-slider__container">

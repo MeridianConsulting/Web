@@ -14,31 +14,34 @@ const Header = () => {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <header className="main-header">
+    <header className="main-header" role="banner">
       <div className="header-container">
         <div className="logo">
-          <Link to="/" onClick={closeMenu}>
-            <img className="navbar-logo" src={logo} alt="Meridian Consulting" />
+          <Link to="/" onClick={closeMenu} aria-label="Ir a página de inicio">
+            <img className="navbar-logo" src={logo} alt="Logo de Meridian Consulting" />
           </Link>
         </div>
 
-        <nav>
-          <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
-            <li><Link to="/" onClick={closeMenu}>Inicio</Link></li>
-            <li><Link to="/servicios" onClick={closeMenu}>Servicios</Link></li>
-            <li><Link to="/nosotros" onClick={closeMenu}>Nosotros</Link></li>
-            <li><Link to="/innovacion" onClick={closeMenu}>Innovación</Link></li>
-            <li><Link to="/blog" onClick={closeMenu}>Blog</Link></li>
+        <nav role="navigation" aria-label="Navegación principal">
+          <ul className={`nav-links ${menuOpen ? 'active' : ''}`} role="menubar">
+            <li role="none"><Link to="/" onClick={closeMenu} role="menuitem">Inicio</Link></li>
+            <li role="none"><Link to="/servicios" onClick={closeMenu} role="menuitem">Servicios</Link></li>
+            <li role="none"><Link to="/nosotros" onClick={closeMenu} role="menuitem">Nosotros</Link></li>
+            <li role="none"><Link to="/innovacion" onClick={closeMenu} role="menuitem">Innovación</Link></li>
+            <li role="none"><Link to="/blog" onClick={closeMenu} role="menuitem">Blog</Link></li>
 
             {/* Nuevo menú desplegable de CONTACTO */}
-            <li className="nav-dropdown">
+            <li className="nav-dropdown" role="none">
               <button 
                 className="dropdown-toggle"
                 onClick={e => e.preventDefault()}
+                role="menuitem"
+                aria-haspopup="true"
+                aria-expanded={menuOpen}
               >
                 Atención Al Usuario ▾
               </button>
-              <ul className="dropdown-content">
+              <ul className="dropdown-content" role="menu" aria-label="Menú de atención al usuario">
                 <li>
                   <a
     href="/pdf/Linea_Etica.pdf"
@@ -63,30 +66,40 @@ const Header = () => {
             </li>
 
             {/* Menú desplegable de OTROS SERVICIOS */}
-            <li className="nav-dropdown">
+            <li className="nav-dropdown" role="none">
               <button 
                 className="dropdown-toggle"
                 onClick={e => e.preventDefault()}
+                role="menuitem"
+                aria-haspopup="true"
+                aria-expanded={menuOpen}
               >
                 Otros Servicios ▾
               </button>
-              <ul className="dropdown-content">
-                <li><a href="https://servicedesk.meridianltda.com/front/ticket.php" target="_blank" rel="noopener noreferrer">GLPI</a></li>
-                <li><a href="https://hseq.meridianltda.com" target="_blank" rel="noopener noreferrer">Reportes HSEQ</a></li>
-                <li><a href="https://evaluacion.meridianltda.com" target="_blank" rel="noopener noreferrer">Evaluación De Desempeño</a></li>
+              <ul className="dropdown-content" role="menu" aria-label="Menú de otros servicios">
+                <li role="none"><a href="https://servicedesk.meridianltda.com/front/ticket.php" target="_blank" rel="noopener noreferrer" role="menuitem">GLPI</a></li>
+                <li role="none"><a href="https://hseq.meridianltda.com" target="_blank" rel="noopener noreferrer" role="menuitem">Reportes HSEQ</a></li>
+                <li role="none"><a href="https://evaluacion.meridianltda.com" target="_blank" rel="noopener noreferrer" role="menuitem">Evaluación De Desempeño</a></li>
               </ul>
             </li>
           </ul>
 
           {/* Botón hamburguesa */}
-          <div className="menu-toggle" onClick={toggleMenu}>
+          <button 
+            className="menu-toggle" 
+            onClick={toggleMenu}
+            aria-label={menuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
+            aria-expanded={menuOpen}
+            aria-controls="nav-links"
+          >
             <div className={`hamburger ${menuOpen ? 'active' : ''}`}></div>
-          </div>
+          </button>
 
           {/* Fondo del overlay al abrir menú */}
           <div 
             className={`menu-overlay ${menuOpen ? 'active' : ''}`} 
             onClick={closeMenu}
+            aria-hidden="true"
           ></div>
         </nav>
       </div>

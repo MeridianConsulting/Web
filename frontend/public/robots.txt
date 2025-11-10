@@ -1,3 +1,49 @@
-# https://www.robotstxt.org/robotstxt.html
+# robots.txt para MERIDIAN CONSULTING LTDA
+# https://meridianltda.com/robots.txt
+
 User-agent: *
-Disallow:
+Allow: /
+
+# Páginas principales
+Allow: /servicios
+Allow: /nosotros
+Allow: /contacto
+Allow: /innovacion
+Allow: /blog
+
+# Bloquear áreas administrativas
+Disallow: /admin/
+Disallow: /login
+
+# Bloquear archivos del sistema
+Disallow: /api/
+Disallow: /*.json$
+
+# Sitemap
+Sitemap: https://meridianltda.com/sitemap.xml
+
+# Crawl-delay (opcional, para evitar sobrecarga del servidor)
+Crawl-delay: 1
+
+# User-agents específicos para motores de búsqueda
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Bloquear bots maliciosos comunes
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /

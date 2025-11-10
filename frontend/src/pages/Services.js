@@ -4,6 +4,7 @@ import "aos/dist/aos.css";
 import "../pages/Services.css";
 import { FaSearch, FaLeaf, FaProjectDiagram, FaGlobe, FaTimes } from "react-icons/fa";
 import LazyImage from "../components/LazyImage";
+import SEO from "../components/SEO";
 import bg from "../assets/img/bg-meridian.jpg.png"; // tu imagen generada
 import fondo5 from "../assets/img/fondo5.png"; // imagen banner hero
 import minc2 from "../assets/img/minc_2.jpeg"; // imagen minciencias tarjeta
@@ -170,8 +171,57 @@ const Services = () => {
   const openModal = (proj) => setModalProject(proj);
   const closeModal = () => setModalProject(null);
 
+  // Schema.org Service
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Consultoría Especializada",
+    "provider": {
+      "@type": "Organization",
+      "name": "MERIDIAN CONSULTING LTDA"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Colombia"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Servicios de Consultoría",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Consultoría Geocientífica"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Ingeniería de Petróleos"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Consultoría Ambiental"
+          }
+        }
+      ]
+    }
+  };
+
   return (
     <div className="servicios-page">
+      <SEO 
+        title="Servicios y Proyectos"
+        description="Servicios especializados en consultoría geocientífica, ingeniería de petróleos, minería y gestión ambiental. Proyectos destacados con Ecopetrol, Frontera Energy y Minciencias."
+        keywords="company man, supervisión de pozos, consultoría petrolera, ingeniería de petróleos, proyectos minería, Colombia"
+        url="/servicios"
+        schemaData={serviceSchema}
+      />
       {/* Barra de lectura + porcentaje */}
       <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
       <div className="scroll-percent" aria-hidden>

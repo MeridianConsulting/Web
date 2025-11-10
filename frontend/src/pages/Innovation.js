@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import "./Innovation.css";
+import SEO from "../components/SEO";
 
 const Innovation = () => {
   useEffect(() => {
@@ -23,6 +24,13 @@ const Innovation = () => {
 
   return (
     <div className="innovation-page" data-aos="fade-up">
+      <SEO 
+        title="Innovación"
+        description="Innovación para un futuro competitivo. Descubre cómo MERIDIAN CONSULTING integra transformación digital, sostenibilidad y tecnologías aplicadas en sus proyectos."
+        keywords="innovación, transformación digital, sostenibilidad, tecnologías, Power BI, Microsoft 365, Colombia"
+        url="/innovacion"
+      />
+      
       {/* Hero */}
       <section className="innovation-hero">
         <div className="hero-content">
