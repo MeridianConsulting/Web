@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import "./About.css";
 import { FaHandshake, FaAward, FaEye, FaLightbulb, FaGlobeAmericas, FaShieldAlt } from "react-icons/fa";
+import LazyImage from "../components/LazyImage";
 
 import CEO1 from "../assets/img/CEO1.png";
 import CEO2 from "../assets/img/CEO2.png";
@@ -465,7 +466,7 @@ const About = () => {
           <div className="cards">
             {[CEO1, CEO2, CEO3, CEO4, CEO5, CEO6].map((img, index) => (
               <div key={index} className="card">
-                <img src={img} alt={`CEO ${index + 1}`} />
+                <LazyImage src={img} alt={`CEO ${index + 1}`} />
                 <h3>{["Nora Moreno","Ana Gamez","Eliana Alarcón","Paola Gil","Lin Zambrano","Zandra Mayorga"][index]}</h3>
                 <p>
                   {[

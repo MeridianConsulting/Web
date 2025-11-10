@@ -1,5 +1,9 @@
 /* eslint-disable no-restricted-globals */
 
+// Este placeholder es requerido por Workbox
+// eslint-disable-next-line no-undef
+const manifest = self.__WB_MANIFEST || [];
+
 // Nombre del caché
 const CACHE_NAME = 'meridian-consulting-v1';
 const urlsToCache = [
@@ -7,7 +11,8 @@ const urlsToCache = [
   '/static/css/main.css',
   '/static/js/main.js',
   '/manifest.json',
-  '/favicon.ico'
+  '/favicon.ico',
+  ...manifest.map(entry => entry.url)
 ];
 
 // Instalar Service Worker

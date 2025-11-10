@@ -3,6 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import "../pages/Services.css";
 import { FaSearch, FaLeaf, FaProjectDiagram, FaGlobe, FaTimes } from "react-icons/fa";
+import LazyImage from "../components/LazyImage";
 import bg from "../assets/img/bg-meridian.jpg.png"; // tu imagen generada
 import fondo5 from "../assets/img/fondo5.png"; // imagen banner hero
 import minc2 from "../assets/img/minc_2.jpeg"; // imagen minciencias tarjeta
@@ -203,7 +204,7 @@ const Services = () => {
               aria-labelledby={`proj-${p.id}`}
             >
               <div className="proyecto-media" aria-hidden>
-                <img 
+                <LazyImage 
                   src={
                     p.id === "minciencias" ? minc2 : 
                     p.id === "company" ? cw3 : 

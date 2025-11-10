@@ -200,120 +200,120 @@ const Home = () => {
             <div className="clients-marquee">
               <div className="clients-marquee__content">
                 <div className="client-logo">
-                  <img src={logoEcopetrol} alt="Logo Ecopetrol" />
+                  <LazyImage src={logoEcopetrol} alt="Logo Ecopetrol" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoRepsol} alt="Logo Repsol" />
+                  <LazyImage src={logoRepsol} alt="Logo Repsol" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoFrontera} alt="Logo Frontera" />
+                  <LazyImage src={logoFrontera} alt="Logo Frontera" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoHalliburton} alt="Logo Halliburton" />
+                  <LazyImage src={logoHalliburton} alt="Logo Halliburton" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoVale} alt="Logo Vale" />
+                  <LazyImage src={logoVale} alt="Logo Vale" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoArgos} alt="Logo Argos" />
+                  <LazyImage src={logoArgos} alt="Logo Argos" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoPacific} alt="Logo Pacific" />
+                  <LazyImage src={logoPacific} alt="Logo Pacific" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoPacificRubiales} alt="Logo Pacific Rubiales" />
+                  <LazyImage src={logoPacificRubiales} alt="Logo Pacific Rubiales" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoHocol} alt="Logo Hocol" />
+                  <LazyImage src={logoHocol} alt="Logo Hocol" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoEnergyCompany} alt="Logo Energy Company" />
+                  <LazyImage src={logoEnergyCompany} alt="Logo Energy Company" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoPetrominerales} alt="Logo Petrominerales" />
+                  <LazyImage src={logoPetrominerales} alt="Logo Petrominerales" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoEnergold} alt="Logo Energold Drilling" />
+                  <LazyImage src={logoEnergold} alt="Logo Energold Drilling" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoColumbus} alt="Logo Columbus" />
+                  <LazyImage src={logoColumbus} alt="Logo Columbus" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoPetrobras} alt="Logo Petrobras" />
+                  <LazyImage src={logoPetrobras} alt="Logo Petrobras" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoNumero1} alt="Logo Numero 1" />
+                  <LazyImage src={logoNumero1} alt="Logo Numero 1" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoNumero4} alt="Logo Numero 4" />
+                  <LazyImage src={logoNumero4} alt="Logo Numero 4" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoNumero5} alt="Logo Numero 5" />
+                  <LazyImage src={logoNumero5} alt="Logo Numero 5" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoNumero6} alt="Logo Numero 6" />
+                  <LazyImage src={logoNumero6} alt="Logo Numero 6" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoNumero7} alt="Logo Numero 7" />
+                  <LazyImage src={logoNumero7} alt="Logo Numero 7" />
                 </div>
                 
                 {/* Duplicados para el efecto de desplazamiento continuo (solo una copia) */}
                 <div className="client-logo">
-                  <img src={logoEcopetrol} alt="Logo Ecopetrol" />
+                  <LazyImage src={logoEcopetrol} alt="Logo Ecopetrol" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoRepsol} alt="Logo Repsol" />
+                  <LazyImage src={logoRepsol} alt="Logo Repsol" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoFrontera} alt="Logo Frontera" />
+                  <LazyImage src={logoFrontera} alt="Logo Frontera" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoHalliburton} alt="Logo Halliburton" />
+                  <LazyImage src={logoHalliburton} alt="Logo Halliburton" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoVale} alt="Logo Vale" />
+                  <LazyImage src={logoVale} alt="Logo Vale" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoArgos} alt="Logo Argos" />
+                  <LazyImage src={logoArgos} alt="Logo Argos" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoPacific} alt="Logo Pacific" />
+                  <LazyImage src={logoPacific} alt="Logo Pacific" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoPacificRubiales} alt="Logo Pacific Rubiales" />
+                  <LazyImage src={logoPacificRubiales} alt="Logo Pacific Rubiales" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoHocol} alt="Logo Hocol" />
+                  <LazyImage src={logoHocol} alt="Logo Hocol" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoEnergyCompany} alt="Logo Energy Company" />
+                  <LazyImage src={logoEnergyCompany} alt="Logo Energy Company" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoPetrominerales} alt="Logo Petrominerales" />
+                  <LazyImage src={logoPetrominerales} alt="Logo Petrominerales" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoEnergold} alt="Logo Energold Drilling" />
+                  <LazyImage src={logoEnergold} alt="Logo Energold Drilling" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoColumbus} alt="Logo Columbus" />
+                  <LazyImage src={logoColumbus} alt="Logo Columbus" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoPetrobras} alt="Logo Petrobras" />
+                  <LazyImage src={logoPetrobras} alt="Logo Petrobras" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoNumero1} alt="Logo Numero 1" />
+                  <LazyImage src={logoNumero1} alt="Logo Numero 1" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoNumero4} alt="Logo Numero 4" />
+                  <LazyImage src={logoNumero4} alt="Logo Numero 4" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoNumero5} alt="Logo Numero 5" />
+                  <LazyImage src={logoNumero5} alt="Logo Numero 5" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoNumero6} alt="Logo Numero 6" />
+                  <LazyImage src={logoNumero6} alt="Logo Numero 6" />
                 </div>
                 <div className="client-logo">
-                  <img src={logoNumero7} alt="Logo Numero 7" />
+                  <LazyImage src={logoNumero7} alt="Logo Numero 7" />
                 </div>
                 
               </div>
