@@ -4,6 +4,11 @@ import "aos/dist/aos.css";
 import "../pages/Services.css";
 import { FaSearch, FaLeaf, FaProjectDiagram, FaGlobe, FaTimes } from "react-icons/fa";
 import bg from "../assets/img/bg-meridian.jpg.png"; // tu imagen generada
+import fondo5 from "../assets/img/fondo5.png"; // imagen banner hero
+import minc2 from "../assets/img/minc_2.jpeg"; // imagen minciencias tarjeta
+import minc3 from "../assets/img/minc_3.png"; // imagen minciencias modal
+import cw3 from "../assets/img/cw_3.jpeg"; // imagen company man tarjeta
+import cw4 from "../assets/img/cw_4.jpeg"; // imagen company man modal
 
 const PROJECTS = [
   {
@@ -174,8 +179,7 @@ const Services = () => {
 
       {/* HERO */}
       <section
-        className="services-hero"
-        style={{ backgroundImage: `url(${bg})` }}
+        className="services-hero services-hero-solid"
         data-aos="fade-up"
       >
         <div className="overlay">
@@ -199,7 +203,14 @@ const Services = () => {
               aria-labelledby={`proj-${p.id}`}
             >
               <div className="proyecto-media" aria-hidden>
-                <img src={bg} alt={p.title} />
+                <img 
+                  src={
+                    p.id === "minciencias" ? minc2 : 
+                    p.id === "company" ? cw3 : 
+                    bg
+                  } 
+                  alt={p.title} 
+                />
               </div>
 
               <div className="proyecto-body">
@@ -280,7 +291,13 @@ const Services = () => {
               <FaTimes />
             </button>
 
-            <div className="modal-hero" style={{ backgroundImage: `url(${bg})` }} />
+            <div className="modal-hero" style={{ 
+              backgroundImage: `url(${
+                modalProject.id === "minciencias" ? minc3 : 
+                modalProject.id === "company" ? cw4 : 
+                bg
+              })` 
+            }} />
 
             <div className="modal-body">
               <h3>{modalProject.title}</h3>
