@@ -1,0 +1,12 @@
+# Ignorar archivos sensibles
+.env
+logs/*.txt
+logs/*.json
+
+# Ignorar vendor de composer
+vendor/
+
+# Ignorar uploads
+uploads/*
+!uploads/.gitkeep
+
