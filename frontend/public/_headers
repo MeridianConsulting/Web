@@ -1,11 +1,14 @@
 /* Security Headers for Netlify/Vercel deployment */
 
 /*
-  # Strict Content Security Policy
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://maps.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com https://embed.tawk.to https://va.tawk.to; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://maps.googleapis.com https://www.google-analytics.com https://va.tawk.to wss://va.tawk.to https://meridianltda.com; frame-src 'self' https://www.google.com https://embed.tawk.to; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;
+  # ============================================
+  # CSP DESACTIVADO PARA TAWK.TO (CHAT OBLIGATORIO)
+  # ============================================
+  # El Content-Security-Policy está desactivado para permitir que Tawk.to funcione
+  # Si necesitas reactivarlo, descomenta y ajusta la línea siguiente:
+  # Content-Security-Policy: default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; script-src * 'unsafe-inline' 'unsafe-eval' data: blob:; style-src * 'unsafe-inline' data:; font-src * data:; img-src * data: blob:; connect-src * wss: ws:; frame-src *; worker-src * blob:; child-src * blob:; object-src 'none'; base-uri *; form-action *; frame-ancestors *;
   
-  # Prevent clickjacking attacks
-  X-Frame-Options: DENY
+  # X-Frame-Options removido - permite Tawk.to sin restricciones
   
   # Prevent MIME type sniffing
   X-Content-Type-Options: nosniff
