@@ -1,10 +1,14 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import './styles/styles.css';
 import './styles/accessibility.css';
+import './styles/toast.css';
+import './styles/ux-enhancements.css';
 
 // Componentes que se cargan inmediatamente (críticos)
 import Header from './components/Header';
@@ -70,11 +74,25 @@ function App() {
           {/* ✅ Botón flotante de WhatsApp, siempre visible */}
           <WhatsAppButton />
           
-          {/* ✅ Fallback de chat cuando Tawk.to está bloqueado */}
-          <ChatFallback />
-        </div>
-      </Router>
-    </HelmetProvider>
+        {/* ✅ Fallback de chat cuando Tawk.to está bloqueado */}
+        <ChatFallback />
+
+        {/* ✅ Toast Notifications Container */}
+        <ToastContainer
+          position="top-right"
+          autoClose={4000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
+      </div>
+    </Router>
+  </HelmetProvider>
   );
 }
 
