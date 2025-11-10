@@ -41,9 +41,9 @@
   --color-accent-dark: #c7a41a; /* Variante más oscura del amarillo */
   --color-hero-accent-dark: #d2b230; /* Variante más oscura del amarillo */
   
-  /* Tipografía */
-  --font-family-primary: 'Roboto', sans-serif;
-  --font-family-secondary: 'Open Sans', sans-serif;
+  /* Tipografía con fallbacks robustos */
+  --font-family-primary: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-family-secondary: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   
   /* Espaciado */
   --spacing-xs: 0.25rem;
@@ -73,10 +73,13 @@
 /* Estilos generales */
 body {
   font-family: var(--font-family-primary);
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; /* Fallback explícito */
   color: var(--color-dark);
   background-color: var(--color-background);
   line-height: 1.6;
   transition: font-size var(--transition-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -101,6 +104,8 @@ a {
   -webkit-backdrop-filter: blur(10px);
   color: var(--color-primary-dark);
   padding: var(--spacing-sm) 0;
+  padding: 0.5rem 0; /* Valor explícito para producción */
+  min-height: 80px; /* Altura mínima fija */
   position: sticky;
   top: 0;
   z-index: 100;
@@ -110,6 +115,8 @@ a {
   align-items: center;
   transition: all var(--transition-normal);
   border-bottom: 1px solid rgba(51, 97, 157, 0.08);
+  width: 100%; /* Asegura ancho completo */
+  box-sizing: border-box; /* Incluye padding en el ancho */
 }
 
 .Informacion{
@@ -131,9 +138,12 @@ a {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-xl);
+  padding: 0 2rem; /* Valor explícito para producción */
+  min-height: 80px; /* Altura mínima para evitar compresión */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1.5rem; /* Espacio mínimo entre logo y navegación */
 }
 
 /* Logo */
@@ -141,8 +151,12 @@ a {
   display: flex;
   align-items: center;
   padding-left: var(--spacing-md);
+  padding-left: 1rem; /* Valor explícito para producción */
+  padding-right: 1rem; /* Espacio a la derecha del logo */
+  min-width: fit-content; /* Evita que se comprima */
   position: relative;
   overflow: hidden;
+  flex-shrink: 0; /* Evita que el logo se reduzca */
 }
 
 .logo a {
@@ -174,9 +188,13 @@ a {
 
 .navbar-logo {
   height: 70px;
+  min-height: 70px; /* Altura mínima fija */
   width: auto;
+  max-width: 200px; /* Ancho máximo para evitar que se estire */
+  object-fit: contain; /* Mantiene proporciones */
   transition: height 0.4s cubic-bezier(0.19, 1, 0.22, 1);
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  flex-shrink: 0; /* Evita que se comprima */
 }
 
 /* Navegación */
@@ -184,9 +202,12 @@ a {
   list-style: none;
   display: flex;
   gap: 20px;
+  gap: clamp(15px, 20px, 25px); /* Gap responsivo con mínimo de 15px */
   align-items: center;
   padding: 0;
   margin: 0;
+  flex-wrap: nowrap; /* Evita que los elementos se apilen */
+  flex-shrink: 1; /* Permite que se ajuste pero mantiene tamaño */
 }
 
 .nav-links li {
@@ -433,6 +454,9 @@ a {
   .header-container {
     max-width: 100%;
     padding: 0 var(--spacing-lg);
+    padding: 0 1.5rem; /* Valor explícito */
+    min-height: 75px; /* Mantiene altura mínima */
+    gap: 1.25rem; /* Mantiene espacio entre elementos */
   }
 
   .nav-links {
@@ -457,10 +481,14 @@ a {
 @media (max-width: 992px) {
   .header-container {
     padding: 0 var(--spacing-md);
+    padding: 0 1rem; /* Valor explícito */
+    min-height: 70px; /* Mantiene altura mínima */
+    gap: 1rem; /* Mantiene espacio mínimo */
   }
 
   .nav-links {
     gap: 12px;
+    gap: 0.75rem; /* Valor explícito */
   }
 
   .nav-links a {
@@ -479,6 +507,9 @@ a {
 
   .logo {
     padding-left: var(--spacing-sm);
+    padding-left: 0.5rem; /* Valor explícito */
+    padding-right: 0.75rem; /* Mantiene espacio */
+    flex-shrink: 0; /* Evita compresión */
   }
 
   .dropdown-content {
@@ -579,16 +610,23 @@ a {
 @media (max-width: 768px) {
   .main-header {
     padding: var(--spacing-xs) 0;
+    padding: 0.25rem 0; /* Valor explícito */
+    min-height: 70px; /* Mantiene altura mínima */
     position: relative;
   }
   
   .header-container {
     padding: 0 var(--spacing-md);
+    padding: 0 1rem; /* Valor explícito */
     justify-content: space-between;
+    min-height: 70px; /* Mantiene altura mínima */
+    gap: 0.75rem; /* Mantiene espacio mínimo */
   }
   
   .logo {
     padding-left: 0;
+    padding-right: 0.5rem; /* Mantiene espacio mínimo */
+    flex-shrink: 0; /* Evita compresión */
   }
   
   .logo a {
@@ -779,19 +817,30 @@ a {
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: var(--spacing-md);
+  padding-top: 1rem; /* Valor explícito */
   text-align: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--spacing-md) var(--spacing-md) 0;
+  padding: 1rem 1rem 0; /* Valores explícitos */
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Espacio entre elementos */
+  align-items: center;
 }
 
 .footer-bottom p {
   margin-bottom: var(--spacing-sm);
+  margin-bottom: 0.5rem; /* Valor explícito */
   font-size: 0.9rem;
+  font-size: clamp(0.85rem, 0.9rem, 1rem); /* Tamaño responsivo con mínimo */
   color: var(--color-secondary-dark);
   transition: color 0.3s ease;
+  line-height: 1.5;
+  white-space: normal; /* Permite que el texto se ajuste */
+  word-wrap: break-word; /* Evita desbordamiento */
+  max-width: 100%; /* Evita que se desborde */
 }
 
 .footer-credits {
@@ -801,11 +850,23 @@ a {
   margin-top: var(--spacing-xs);
 }
 
+.footer-bottom nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem; /* Espacio entre enlaces */
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
 .footer-bottom a {
   color: var(--color-tertiary-light);
   transition: color 0.3s ease, transform 0.3s ease;
   display: inline-block;
   position: relative;
+  white-space: nowrap; /* Evita que los enlaces se partan */
+  font-size: 0.9rem;
+  font-size: clamp(0.85rem, 0.9rem, 1rem); /* Tamaño responsivo */
 }
 
 .footer-bottom a:hover {
@@ -842,6 +903,8 @@ a {
   
   .footer-bottom {
     padding: var(--spacing-md) var(--spacing-sm) 0;
+    padding: 1rem 0.5rem 0; /* Valores explícitos */
+    gap: 0.4rem; /* Mantiene espacio entre elementos */
   }
 }
 
