@@ -230,19 +230,63 @@ const Services = () => {
         {Math.round(scrollProgress)}%
       </div>
 
-      {/* HERO */}
-      <section
-        className="services-hero services-hero-solid"
-        data-aos="fade-up"
-      >
-        <div className="overlay">
-          <h1>Servicios y Proyectos MERIDIAN</h1>
-          <p>Más de 23 años de experiencia impulsando la excelencia</p>
+      {/* HERO MEJORADO */}
+      <section className="services-hero-modern">
+        <div className="hero-background-effects">
+          <div className="hero-circle hero-circle-1"></div>
+          <div className="hero-circle hero-circle-2"></div>
+          <div className="hero-circle hero-circle-3"></div>
         </div>
+        
+        <div className="hero-content-wrapper">
+          <div className="hero-badge" data-aos="fade-down">
+            <span className="badge-icon">⚡</span>
+            <span className="badge-text">Excelencia en Consultoría</span>
+          </div>
+          
+          <h1 className="hero-title" data-aos="fade-up" data-aos-delay="100">
+            Servicios y Proyectos
+            <span className="hero-title-highlight"> MERIDIAN</span>
+          </h1>
+          
+          <p className="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+            Soluciones especializadas en geología, ingeniería de petróleos, 
+            minería y gestión ambiental con más de 23 años de experiencia
+          </p>
+          
+          <div className="hero-stats" data-aos="fade-up" data-aos-delay="300">
+            <div className="hero-stat-item">
+              <div className="stat-number">23+</div>
+              <div className="stat-label">Años de Experiencia</div>
+            </div>
+            <div className="hero-stat-divider"></div>
+            <div className="hero-stat-item">
+              <div className="stat-number">230+</div>
+              <div className="stat-label">Proyectos Exitosos</div>
+            </div>
+            <div className="hero-stat-divider"></div>
+            <div className="hero-stat-item">
+              <div className="stat-number">15+</div>
+              <div className="stat-label">Municipios de Colombia</div>
+            </div>
+          </div>
+          
+          <div className="hero-cta" data-aos="fade-up" data-aos-delay="400">
+            <a href="#proyectos" className="btn-hero-primary">
+              Ver Proyectos
+              <span className="btn-arrow">→</span>
+            </a>
+            <a href="https://wa.me/573138174050" className="btn-hero-secondary" target="_blank" rel="noopener noreferrer">
+              Contactar Equipo
+            </a>
+          </div>
+        </div>
+        
+        <div className="hero-bottom-bar"></div>
       </section>
 
       {/* PROYECTOS */}
-      <section className="proyectos-section" data-aos="fade-up">
+      <section id="proyectos" className="proyectos-section" data-aos="fade-up">
         <h2 className="section-title">Proyectos Destacados</h2>
 
         <div className="proyectos-grid" aria-label="Explorador de Proyectos - MERIDIAN">
