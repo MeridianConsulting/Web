@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaGlobe, FaCogs, FaHardHat, FaChartBar, FaLeaf, FaRecycle } from 'react-icons/fa';
 import LazyImage from '../components/LazyImage';
 import SEO from '../components/SEO';
+import { getMoreThanYearsText, getYearsOfExperienceText, getYearsOfExperienceFullText } from '../utils/companyInfo';
 // Importar imágenes y logos
 import heroImage1 from '../assets/img/fondo.jpeg';
 import heroImage2 from '../assets/img/fondo2.png';
@@ -57,7 +58,7 @@ const Home = () => {
     {
       image: heroImage1,
       title: "Consultoría en Hidrocarburos y Minería",
-      subtitle: "Más de 23 años de experiencia a tu servicio",
+      subtitle: `${getMoreThanYearsText()} a tu servicio`,
       cta: "Conoce Más",
       link: "/servicios"
     },
@@ -129,7 +130,7 @@ const Home = () => {
     "name": "MERIDIAN CONSULTING LTDA",
     "url": "https://meridianltda.com",
     "logo": "https://meridianltda.com/logo512.png",
-    "description": "Consultoría especializada en hidrocarburos, minería y energías renovables con más de 23 años de experiencia.",
+    "description": `Consultoría especializada en hidrocarburos, minería y energías renovables con ${getMoreThanYearsText()}.`,
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Bogotá",
@@ -154,7 +155,7 @@ const Home = () => {
     <div className="home-container">
       <SEO 
         title="Inicio"
-        description="MERIDIAN CONSULTING LTDA - Consultoría especializada en hidrocarburos, minería y energías renovables. Más de 23 años de experiencia, 230+ proyectos exitosos en Colombia."
+        description={`MERIDIAN CONSULTING LTDA - Consultoría especializada en hidrocarburos, minería y energías renovables. ${getMoreThanYearsText()}, 230+ proyectos exitosos en Colombia.`}
         keywords="consultoría hidrocarburos, ingeniería petrolera, minería sostenible, energías renovables, geología, Colombia"
         url="/"
         schemaData={organizationSchema}
@@ -214,7 +215,7 @@ const Home = () => {
           
           <div className="hero-slider__stats">
             <div className="hero-stat">
-              <span className="hero-stat__number">23+</span>
+              <span className="hero-stat__number">{getYearsOfExperienceText()}</span>
               <span className="hero-stat__text">Años de experiencia</span>
             </div>
             <div className="hero-stat">
@@ -447,7 +448,7 @@ const Home = () => {
           <div className="about__content">
             <div className="about__text" data-aos="fade-right">
               <p className="about__description">
-                Con 23+ años de experiencia en el mercado y 230+ contratos verificados, 
+                Con {getYearsOfExperienceText()} años de experiencia en el mercado y 230+ contratos verificados, 
                 somos líderes en consultoría para la industria de hidrocarburos y minería en Colombia 
                 y el mercado internacional.
               </p>
@@ -476,7 +477,7 @@ const Home = () => {
             <dl className="about__stats" data-aos="fade-left" data-aos-delay="200">
               <div className="stat-item">
                 <dt className="stat-item__text">Años de experiencia</dt>
-                <dd className="stat-item__number" aria-label="veintitrés o más">23+</dd>
+                <dd className="stat-item__number" aria-label="años de experiencia">{getYearsOfExperienceText()}</dd>
               </div>
               <div className="stat-item">
                 <dt className="stat-item__text">Contratos verificados</dt>
@@ -534,7 +535,7 @@ const Home = () => {
     <div className="faq-item">
       <h3 className="faq-question">¿Qué experiencia tiene Meridian Consulting LTDA en el sector energético?</h3>
       <p className="faq-answer">
-      Contamos con más de 22 años de experiencia en consultoría geo-científica, ingeniería de petróleos y minería sostenible, trabajando con empresas líderes del sector.
+      Contamos con {getMoreThanYearsText()} en consultoría geo-científica, ingeniería de petróleos y minería sostenible, trabajando con empresas líderes del sector.
       </p>
     </div>
 

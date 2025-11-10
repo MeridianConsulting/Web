@@ -71,13 +71,35 @@ const Contact = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_URL}/controllers/EmailController.php`, {
+      // Intentar primero con la ruta directa, luego con el router
+      let emailEndpoint = `${API_URL}/controllers/EmailController.php`;
+      let response = await fetch(emailEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData)
       });
+
+      // Si falla con 404, intentar con el router
+      if (response.status === 404) {
+        emailEndpoint = `${API_URL}/index.php?route=email`;
+        response = await fetch(emailEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        });
+      }
+
+      // Verificar si la respuesta es JSON válida
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        const text = await response.text();
+        console.error('Respuesta no es JSON:', text.substring(0, 500));
+        throw new Error('El servidor respondió con un formato inesperado. Por favor intenta de nuevo.');
+      }
 
       const data = await response.json();
 
@@ -93,8 +115,18 @@ const Contact = () => {
         throw new Error(data.message || 'Error al enviar el mensaje');
       }
     } catch (error) {
-      console.error('Error:', error);
-      toast.error(error.message || 'Error al enviar el mensaje. Por favor intenta de nuevo.');
+      console.error('Error al enviar formulario:', error);
+      
+      // Mensaje de error más específico
+      let errorMessage = 'Error al enviar el mensaje. Por favor intenta de nuevo.';
+      
+      if (error.message) {
+        errorMessage = error.message;
+      } else if (error.name === 'TypeError' && error.message.includes('fetch')) {
+        errorMessage = 'No se pudo conectar con el servidor. Verifica tu conexión a internet.';
+      }
+      
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }

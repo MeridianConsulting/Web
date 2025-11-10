@@ -9,6 +9,7 @@ import "./About.css";
 import { FaHandshake, FaAward, FaEye, FaLightbulb, FaGlobeAmericas, FaShieldAlt } from "react-icons/fa";
 import LazyImage from "../components/LazyImage";
 import SEO from "../components/SEO";
+import { FOUNDATION_YEAR, getMoreThanYearsText, getYearsOfExperienceText, getYearsOfExperience } from "../utils/companyInfo";
 
 import CEO1 from "../assets/img/CEO1.png";
 import CEO2 from "../assets/img/CEO2.png";
@@ -64,11 +65,11 @@ const About = () => {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     "name": "Sobre Nosotros - MERIDIAN CONSULTING",
-    "description": "Conoce la historia, misión, visión y valores de MERIDIAN CONSULTING LTDA. Más de 23 años de experiencia en consultoría especializada.",
+    "description": `Conoce la historia, misión, visión y valores de MERIDIAN CONSULTING LTDA. ${getMoreThanYearsText()} en consultoría especializada.`,
     "mainEntity": {
       "@type": "Organization",
       "name": "MERIDIAN CONSULTING LTDA",
-      "foundingDate": "2003",
+      "foundingDate": `${FOUNDATION_YEAR}`,
       "numberOfEmployees": "30+",
       "slogan": "Excelencia en consultoría minero-energética"
     }
@@ -78,7 +79,7 @@ const About = () => {
     <div className="about-page">
       <SEO 
         title="Nosotros"
-        description="MERIDIAN CONSULTING LTDA - Más de 23 años de experiencia en consultoría especializada. Conoce nuestra misión, visión, valores y el equipo que impulsa la excelencia."
+        description={`MERIDIAN CONSULTING LTDA - ${getMoreThanYearsText()} en consultoría especializada. Conoce nuestra misión, visión, valores y el equipo que impulsa la excelencia.`}
         keywords="sobre meridian, empresa consultoría, historia empresa, valores corporativos, equipo profesional, Colombia"
         url="/nosotros"
         schemaData={aboutSchema}
@@ -146,7 +147,7 @@ const About = () => {
         <Zoom triggerOnce>
           <h2>Nosotros</h2>
           <p>
-            MERIDIAN CONSULTING LTDA fue fundada en 2003 por geólogos con amplia
+            MERIDIAN CONSULTING LTDA fue fundada en {FOUNDATION_YEAR} por geólogos con amplia
             experiencia en la industria minero-energética. Desde entonces hemos
             desarrollado más de 200 contratos exitosos, respaldados por un sistema
             integrado de gestión de calidad que garantiza excelencia y mejora
@@ -163,7 +164,7 @@ const About = () => {
             <p>Contratos exitosos</p>
           </div>
           <div className="stat-card">
-            <h2 className="counter" data-target="23">0</h2>
+            <h2 className="counter" data-target={getYearsOfExperience().toString()}>{getYearsOfExperience()}</h2>
             <p>Años de experiencia</p>
           </div>
           <div className="stat-card">
@@ -310,8 +311,8 @@ const About = () => {
           <Slide direction="up" triggerOnce>
             <div className="timeline-item">
               <div className="timeline-content">
-                <h4>2003</h4>
-                <p>Se funda la empresa el 20 de febrero de 2003. Nuestro primer cliente es PETROTESTING COLOMBIA LTDA., a quien generamos su banco de Información Técnica, desarrollando tareas de escaneo, digitalización, desarrollo de bases de datos en Oracle y carga de información en aplicativos de consulta de datos geocientíficos. Inicio de la línea de negocio: Manejo estratégico de información petrolera y petrofísica.</p>
+                <h4>{FOUNDATION_YEAR}</h4>
+                <p>Se funda la empresa en {FOUNDATION_YEAR}. Nuestro primer cliente es PETROTESTING COLOMBIA LTDA., a quien generamos su banco de Información Técnica, desarrollando tareas de escaneo, digitalización, desarrollo de bases de datos en Oracle y carga de información en aplicativos de consulta de datos geocientíficos. Inicio de la línea de negocio: Manejo estratégico de información petrolera y petrofísica.</p>
               </div>
             </div>
             <div className="timeline-item">

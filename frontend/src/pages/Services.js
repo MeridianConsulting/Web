@@ -5,6 +5,7 @@ import "../pages/Services.css";
 import { FaSearch, FaLeaf, FaProjectDiagram, FaGlobe, FaTimes } from "react-icons/fa";
 import LazyImage from "../components/LazyImage";
 import SEO from "../components/SEO";
+import { getMoreThanYearsText, getYearsOfExperienceText } from "../utils/companyInfo";
 import bg from "../assets/img/bg-meridian.jpg.png"; // tu imagen generada
 import fondo5 from "../assets/img/fondo5.png"; // imagen banner hero
 import minc2 from "../assets/img/minc_2.jpeg"; // imagen minciencias tarjeta
@@ -252,12 +253,12 @@ const Services = () => {
           
           <p className="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
             Soluciones especializadas en geología, ingeniería de petróleos, 
-            minería y gestión ambiental con más de 23 años de experiencia
+            minería y gestión ambiental con {getMoreThanYearsText()}
           </p>
           
           <div className="hero-stats" data-aos="fade-up" data-aos-delay="300">
             <div className="hero-stat-item">
-              <div className="stat-number">23+</div>
+              <div className="stat-number">{getYearsOfExperienceText()}</div>
               <div className="stat-label">Años de Experiencia</div>
             </div>
             <div className="hero-stat-divider"></div>

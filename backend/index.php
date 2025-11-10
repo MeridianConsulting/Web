@@ -96,6 +96,12 @@ switch ($route) {
         $controller->login();
         break;
 
+    case 'email':
+    case 'contact':
+        // Ruta para el formulario de contacto
+        require_once __DIR__ . "/controllers/EmailController.php";
+        break;
+
     case 'blog':
         try {
             $controller = cargarControlador("BlogController");
