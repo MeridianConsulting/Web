@@ -29,6 +29,7 @@ const Footer = () => {
       </div>
       <div className="footer-bottom">
         <p>&copy; {new Date().getFullYear()} Meridian Consulting LTDA. Todos los derechos reservados.</p>
+        <p className="footer-credits">Página creada por: Mateo Lopez y Diego Barreto</p>
         <nav aria-label="Enlaces legales">
           <Link to="/privacidad" aria-label="Ver política de privacidad">Política de Privacidad</Link>
           {' | '}

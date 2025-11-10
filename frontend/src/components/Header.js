@@ -44,13 +44,13 @@ const Header = () => {
               <ul className="dropdown-content" role="menu" aria-label="Menú de atención al usuario">
                 <li>
                   <a
-    href="/pdf/Linea_Etica.pdf"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Línea De Ética
-  </a>
-</li>
+                    href="/pdf/Linea_Etica.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Línea De Ética
+                  </a>
+                </li>
 
                 <li>
                   <a href="https://forms.cloud.microsoft/r/EyTp2eXh32" target="_blank" rel="noopener noreferrer">

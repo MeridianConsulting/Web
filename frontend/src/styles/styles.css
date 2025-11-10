@@ -794,6 +794,13 @@ a {
   transition: color 0.3s ease;
 }
 
+.footer-credits {
+  font-size: 0.85rem !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-style: italic;
+  margin-top: var(--spacing-xs);
+}
+
 .footer-bottom a {
   color: var(--color-tertiary-light);
   transition: color 0.3s ease, transform 0.3s ease;
