@@ -80,6 +80,7 @@ const Header = () => {
                 <li role="none"><a href="https://servicedesk.meridianltda.com/front/ticket.php" target="_blank" rel="noopener noreferrer" role="menuitem">GLPI</a></li>
                 <li role="none"><a href="https://hseq.meridianltda.com" target="_blank" rel="noopener noreferrer" role="menuitem">Reportes HSEQ</a></li>
                 <li role="none"><a href="https://evaluacion.meridianltda.com" target="_blank" rel="noopener noreferrer" role="menuitem">Evaluación De Desempeño</a></li>
+                <li role="none"><a href="http://carnet.meridian.com/" target="_blank" rel="noopener noreferrer" role="menuitem">Carnets Virtuales</a></li>
               </ul>
             </li>
           </ul>
