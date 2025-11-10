@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGlobe, FaCogs, FaHardHat, FaChartBar, FaLeaf, FaRecycle } from 'react-icons/fa';
+import LazyImage from '../components/LazyImage';
 // Importar imágenes y logos
 import heroImage1 from '../assets/img/fondo.jpeg';
 import heroImage2 from '../assets/img/fondo2.png';
