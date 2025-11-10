@@ -321,7 +321,12 @@ const Services = () => {
                 <button className="btn-primary" onClick={closeModal}>
                   Cerrar
                 </button>
-                <a className="btn-outline" href="#contacto">
+                <a 
+                  className="btn-outline" 
+                  href="https://wa.me/573138174050?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20los%20servicios%20de%20MERIDIAN%20CONSULTING"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Contactar equipo
                 </a>
               </div>

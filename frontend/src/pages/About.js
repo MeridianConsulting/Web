@@ -6,7 +6,7 @@ import { Zoom, Slide } from "react-awesome-reveal";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import "./About.css";
-import { FaHandshake, FaAward, FaEye, FaLightbulb, FaGlobeAmericas } from "react-icons/fa";
+import { FaHandshake, FaAward, FaEye, FaLightbulb, FaGlobeAmericas, FaShieldAlt } from "react-icons/fa";
 
 import CEO1 from "../assets/img/CEO1.png";
 import CEO2 from "../assets/img/CEO2.png";
@@ -202,6 +202,17 @@ const About = () => {
               decisiones.
             </p>
           </div>
+          <div className="value-card">
+            <span className="value-icon">
+              <FaShieldAlt />
+            </span>
+            <h3>Integridad</h3>
+            <p>
+              Actuamos de forma ética y coherente, respetando las normas y
+              principios en todo momento, ofreciendo servicios consistentes,
+              eficaces y confiables.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -253,6 +264,15 @@ const About = () => {
         compartida y prevención activa de incidentes.
       </p>
     </div>
+
+    <div className="valor-card" data-aos="zoom-in">
+      <h3>6. Colaboración y Trabajo en Equipo</h3>
+      <p>
+        Fomentamos un ambiente de cooperación donde el conocimiento y las experiencias
+        se comparten libremente, fortaleciendo las capacidades del equipo y generando
+        soluciones innovadoras que benefician a nuestros clientes y la organización.
+      </p>
+    </div>
   </div>
 </section>
 
@@ -262,7 +282,7 @@ const About = () => {
       <section className="timeline-section">
         <h2>Asi comenzo Meridian... </h2>
         <div className="timeline">
-          <Slide direction="up" cascade damping={0.2} triggerOnce>
+          <Slide direction="up" triggerOnce>
             <div className="timeline-item">
               <div className="timeline-content">
                 <h4>2003</h4>
