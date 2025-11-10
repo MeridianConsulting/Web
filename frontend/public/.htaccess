@@ -1,0 +1,104 @@
+# Apache Security Headers Configuration
+# Para servidores Apache (XAMPP, hosting tradicional)
+
+<IfModule mod_headers.c>
+    # Strict Content Security Policy
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://maps.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com https://embed.tawk.to https://va.tawk.to; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://maps.googleapis.com https://www.google-analytics.com https://va.tawk.to wss://va.tawk.to https://meridianltda.com; frame-src 'self' https://www.google.com https://embed.tawk.to; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;"
+    
+    # Prevent clickjacking
+    Header always set X-Frame-Options "DENY"
+    
+    # Prevent MIME type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # Enable XSS protection
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Referrer Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Permissions Policy
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(self), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+    
+    # HTTP Strict Transport Security (HSTS)
+    Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+    
+    # Expect-CT
+    Header always set Expect-CT "max-age=86400, enforce"
+    
+    # Remove server signature
+    Header unset Server
+    Header unset X-Powered-By
+</IfModule>
+
+# Force HTTPS redirect
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Redirect HTTP to HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Redirect www to non-www (or vice versa)
+    RewriteCond %{HTTP_HOST} ^www\.meridianltda\.com [NC]
+    RewriteRule ^(.*)$ https://meridianltda.com/$1 [L,R=301]
+</IfModule>
+
+# Disable directory browsing
+Options -Indexes
+
+# Disable server signature
+ServerSignature Off
+
+# Protect sensitive files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protect configuration files
+<FilesMatch "(package\.json|package-lock\.json|\.env|\.gitignore|\.npmrc)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Enable compression for better performance
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Browser caching for static resources
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    
+    # Fonts
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    
+    # HTML
+    ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# Protect against hotlinking
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteCond %{HTTP_REFERER} !^https://(www\.)?meridianltda\.com/.*$ [NC]
+    RewriteRule \.(jpg|jpeg|png|gif|webp|svg)$ - [F,L]
+</IfModule>
+
