@@ -49,9 +49,39 @@ self.addEventListener('activate', (event) => {
 
 // Estrategia de caché: Network First, fallback a Cache
 self.addEventListener('fetch', (event) => {
-  // Solo cachear GET requests
+  const url = new URL(event.request.url);
+  
+  // ============================================
+  // NO INTERCEPTAR RECURSOS EXTERNOS CRÍTICOS
+  // ============================================
+  // Permitir que estos recursos se carguen directamente sin interceptar
+  const externalDomains = [
+    'www.googletagmanager.com',
+    'googletagmanager.com',
+    'www.google-analytics.com',
+    'google-analytics.com',
+    'embed.tawk.to',
+    'va.tawk.to',
+    'tawk.to',
+    'fonts.googleapis.com',
+    'fonts.gstatic.com',
+    'cdnjs.cloudflare.com',
+    'unpkg.com'
+  ];
+  
+  // Si es un dominio externo crítico, NO interceptar - dejar pasar directamente
+  if (externalDomains.some(domain => url.hostname.includes(domain))) {
+    return; // No interceptar, dejar que se cargue normalmente
+  }
+  
+  // NO interceptar POST, PUT, DELETE, etc. (solo GET)
   if (event.request.method !== 'GET') {
     return;
+  }
+  
+  // NO interceptar peticiones a APIs externas
+  if (url.origin !== self.location.origin && !url.pathname.startsWith('/static/')) {
+    return; // Dejar pasar peticiones externas
   }
 
   event.respondWith(

@@ -9,7 +9,7 @@ define('EMAIL_FROM', 'info@meridianltda.com'); // Email que aparecerá como remi
 define('EMAIL_FROM_NAME', 'MERIDIAN CONSULTING LTDA');
 
 // Emails de destino
-define('EMAIL_ADMIN', 'info@meridian.com.co'); // Email donde RECIBIRÁS las notificaciones
+define('EMAIL_ADMIN', 'desarrolloit@meridian.com.co'); // Email donde RECIBIRÁS las notificaciones
 define('EMAIL_ADMIN_CC', ''); // Email en copia (opcional)
 
 // Configuración SMTP (PRODUCCIÓN - GoDaddy)

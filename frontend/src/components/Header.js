@@ -39,7 +39,8 @@ const Header = () => {
                 aria-haspopup="true"
                 aria-expanded={menuOpen}
               >
-                Atención Al Usuario ▾
+                <span className="dropdown-text">Atención Al Usuario</span>
+                <span className="dropdown-arrow">▾</span>
               </button>
               <ul className="dropdown-content" role="menu" aria-label="Menú de atención al usuario">
                 <li>
@@ -74,7 +75,8 @@ const Header = () => {
                 aria-haspopup="true"
                 aria-expanded={menuOpen}
               >
-                Otros Servicios ▾
+                <span className="dropdown-text">Otros Servicios</span>
+                <span className="dropdown-arrow">▾</span>
               </button>
               <ul className="dropdown-content" role="menu" aria-label="Menú de otros servicios">
                 <li role="none"><a href="https://servicedesk.meridianltda.com/front/ticket.php" target="_blank" rel="noopener noreferrer" role="menuitem">GLPI</a></li>

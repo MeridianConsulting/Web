@@ -217,17 +217,37 @@ a {
 .dropdown-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 8px;
   background-color: #f5f7fa; /* Fondo suave */
   color: #004d80; /* Azul corporativo */
   font-weight: 700;
   font-size: 1rem;
   text-decoration: none;
   padding: 10px 20px;
-  border: none; /* 🔹 Quitamos el borde */
+  padding: 12px 24px; /* Padding más generoso para evitar compresión */
+  min-height: 44px; /* Altura mínima fija */
+  border: none;
   border-radius: 10px;
   transition: all 0.3s ease;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  white-space: nowrap; /* Evita que el texto se parta */
+  line-height: 1.2; /* Line-height fijo */
+}
+
+.dropdown-text {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.2;
+}
+
+.dropdown-arrow {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0.9em;
+  line-height: 1;
+  margin-left: 4px;
+  flex-shrink: 0; /* Evita que se comprima */
 }
 
 .dropdown-toggle:hover {
@@ -469,7 +489,8 @@ a {
   }
 
   .dropdown-toggle {
-    padding: 8px 16px;
+    padding: 10px 20px; /* Padding generoso */
+    min-height: 42px; /* Altura mínima */
     font-size: 0.95rem;
   }
 
@@ -497,7 +518,8 @@ a {
   }
 
   .dropdown-toggle {
-    padding: 8px 14px;
+    padding: 10px 18px; /* Padding generoso */
+    min-height: 40px; /* Altura mínima */
     font-size: 0.9rem;
   }
 
@@ -528,7 +550,8 @@ a {
   }
 
   .dropdown-toggle {
-    padding: 8px 10px;
+    padding: 10px 14px; /* Padding generoso */
+    min-height: 38px; /* Altura mínima */
     font-size: 0.85rem;
   }
 
@@ -581,10 +604,18 @@ a {
   .nav-links a,
   .dropdown-toggle {
     font-size: 1.1rem;
-    display: block;
-    padding: var(--spacing-sm) 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px; /* Padding generoso para móvil */
+    min-height: 48px; /* Altura mínima táctil */
     width: 100%;
     text-align: center;
+    gap: 8px; /* Espacio entre texto y flecha */
+  }
+  
+  .dropdown-arrow {
+    font-size: 1em; /* Tamaño adecuado en móvil */
   }
 
   .dropdown-content {
@@ -3730,8 +3761,8 @@ select:focus {
 .whatsapp-button {
   position: fixed;
   bottom: 20px;
-  right: 1770px;
-  background-color: #ffffff;
+  left: 20px; /* IZQUIERDA como estaba antes */
+  background-color: #ffffff; /* Fondo blanco como estaba antes */
   border-radius: 50%;
   width: 70px;
   height: 70px;
