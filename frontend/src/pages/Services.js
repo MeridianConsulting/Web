@@ -13,6 +13,7 @@ import cw3 from "../assets/img/cw_3.jpeg"; // imagen company man tarjeta
 import cw4 from "../assets/img/cw_4.jpeg"; // imagen company man modal
 import front6 from "../assets/img/front_6.jpeg"; // imagen frontera energy tarjeta
 import front3 from "../assets/img/front_3.jpeg"; // imagen frontera energy modal
+import petro2 from "../assets/img/petro_2.png"; // imagen petroservicios banner
 
 const PROJECTS = [
   {
@@ -305,6 +306,7 @@ const Services = () => {
                     p.id === "minciencias" ? minc2 : 
                     p.id === "company" ? cw3 : 
                     p.id === "frontera" ? front6 :
+                    p.id === "petro" ? petro2 :
                     bg
                   } 
                   alt={p.title} 
@@ -394,6 +396,7 @@ const Services = () => {
                 modalProject.id === "minciencias" ? minc3 : 
                 modalProject.id === "company" ? cw4 : 
                 modalProject.id === "frontera" ? front3 :
+                modalProject.id === "petro" ? petro2 :
                 bg
               })` 
             }} />
