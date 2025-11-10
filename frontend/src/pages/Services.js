@@ -11,6 +11,8 @@ import minc2 from "../assets/img/minc_2.jpeg"; // imagen minciencias tarjeta
 import minc3 from "../assets/img/minc_3.png"; // imagen minciencias modal
 import cw3 from "../assets/img/cw_3.jpeg"; // imagen company man tarjeta
 import cw4 from "../assets/img/cw_4.jpeg"; // imagen company man modal
+import front6 from "../assets/img/front_6.jpeg"; // imagen frontera energy tarjeta
+import front3 from "../assets/img/front_3.jpeg"; // imagen frontera energy modal
 
 const PROJECTS = [
   {
@@ -258,6 +260,7 @@ const Services = () => {
                   src={
                     p.id === "minciencias" ? minc2 : 
                     p.id === "company" ? cw3 : 
+                    p.id === "frontera" ? front6 :
                     bg
                   } 
                   alt={p.title} 
@@ -346,6 +349,7 @@ const Services = () => {
               backgroundImage: `url(${
                 modalProject.id === "minciencias" ? minc3 : 
                 modalProject.id === "company" ? cw4 : 
+                modalProject.id === "frontera" ? front3 :
                 bg
               })` 
             }} />

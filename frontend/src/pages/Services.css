@@ -142,7 +142,7 @@
   width: 110%;
   height: 100%;
   object-fit: cover;
-  object-position: 60% center;
+  object-position: 60% 60%; /* Ajustado hacia abajo */
   transition: transform 0.8s cubic-bezier(.2,.9,.2,1);
   transform-origin: center;
 }
@@ -368,7 +368,7 @@
 
 .modal-hero {
   background-size: cover;
-  background-position: 60% center;
+  background-position: 60% 60%; /* Ajustado hacia abajo */
   min-height: 100%;
   filter: brightness(0.8);
 }
