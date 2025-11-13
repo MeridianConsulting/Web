@@ -15,7 +15,8 @@ import cw4 from "../assets/img/cw_4.jpeg"; // imagen company man modal
 import front6 from "../assets/img/front_6.jpeg"; // imagen frontera energy tarjeta
 import front3 from "../assets/img/front_3.jpeg"; // imagen frontera energy modal
 import petro2 from "../assets/img/petro_2.png"; // imagen petroservicios banner
-
+import petro3 from "../assets/img/petro_3.png"; // imagen petroservicios modal
+import petro4 from "../assets/img/petro_4.png"; // imagen petroservicios modal 2
 const PROJECTS = [
   {
     id: "company",
@@ -397,7 +398,8 @@ const Services = () => {
                 modalProject.id === "minciencias" ? minc3 : 
                 modalProject.id === "company" ? cw4 : 
                 modalProject.id === "frontera" ? front3 :
-                modalProject.id === "petro" ? petro2 :
+                modalProject.id === "petro" ? petro4 :
+                
                 bg
               })` 
             }} />

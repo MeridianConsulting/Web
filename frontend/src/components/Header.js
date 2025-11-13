@@ -4,14 +4,29 @@ import logo from '../assets/img/logo_meridian.png';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : 'auto';
     return () => (document.body.style.overflow = 'auto');
   }, [menuOpen]);
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
-  const closeMenu = () => setMenuOpen(false);
+  const toggleMenu = () => {
+    setMenuOpen(prev => {
+      const next = !prev;
+      if (!next) setOpenDropdown(null);
+      return next;
+    });
+  };
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setOpenDropdown(null);
+  };
+
+  const toggleDropdown = (name, e) => {
+    e.preventDefault();
+    setOpenDropdown(prev => (prev === name ? null : name));
+  };
 
   return (
     <header className="main-header" role="banner">
@@ -31,13 +46,13 @@ const Header = () => {
             <li role="none"><Link to="/blog" onClick={closeMenu} role="menuitem">Blog</Link></li>
 
             {/* Nuevo menú desplegable de CONTACTO */}
-            <li className="nav-dropdown" role="none">
+            <li className={`nav-dropdown ${openDropdown === 'contacto' ? 'open' : ''}`} role="none">
               <button 
                 className="dropdown-toggle"
-                onClick={e => e.preventDefault()}
+                onClick={e => toggleDropdown('contacto', e)}
                 role="menuitem"
                 aria-haspopup="true"
-                aria-expanded={menuOpen}
+                aria-expanded={openDropdown === 'contacto'}
               >
                 <span className="dropdown-text">Atención Al Usuario</span>
                 <span className="dropdown-arrow">▾</span>
@@ -67,13 +82,13 @@ const Header = () => {
             </li>
 
             {/* Menú desplegable de OTROS SERVICIOS */}
-            <li className="nav-dropdown" role="none">
+            <li className={`nav-dropdown ${openDropdown === 'otros' ? 'open' : ''}`} role="none">
               <button 
                 className="dropdown-toggle"
-                onClick={e => e.preventDefault()}
+                onClick={e => toggleDropdown('otros', e)}
                 role="menuitem"
                 aria-haspopup="true"
-                aria-expanded={menuOpen}
+                aria-expanded={openDropdown === 'otros'}
               >
                 <span className="dropdown-text">Otros Servicios</span>
                 <span className="dropdown-arrow">▾</span>

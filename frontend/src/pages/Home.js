@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGlobe, FaCogs, FaHardHat, FaChartBar, FaLeaf, FaRecycle } from 'react-icons/fa';
 import LazyImage from '../components/LazyImage';
@@ -52,6 +52,8 @@ const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [autoplay, setAutoplay] = useState(true);
   const [scrolled, setScrolled] = useState(false);
+  const touchStartX = useRef(null);
+  const touchCurrentX = useRef(null);
   
 
   const heroSlides = [
@@ -101,6 +103,36 @@ const Home = () => {
     }
     return () => clearInterval(interval);
   }, [autoplay, currentSlide]);
+
+  const handleTouchStart = (e) => {
+    if (!e.touches || e.touches.length === 0) return;
+    touchStartX.current = e.touches[0].clientX;
+    touchCurrentX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    if (!e.touches || e.touches.length === 0) return;
+    touchCurrentX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const start = touchStartX.current;
+    const end = touchCurrentX.current;
+    const threshold = 50; // px
+    if (start == null || end == null) return;
+    const diff = start - end;
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+      setAutoplay(false);
+      setTimeout(() => setAutoplay(true), 5000);
+    }
+    touchStartX.current = null;
+    touchCurrentX.current = null;
+  };
 
   // Efecto para detectar el scroll y aplicar clase al header
   useEffect(() => {
@@ -163,7 +195,11 @@ const Home = () => {
       
       {/* Hero Slider Section */}
       <section className="hero-slider" aria-label="Presentación principal">
-        <div className="hero-slider__container">
+     <div className="hero-slider__container"
+       onTouchStart={handleTouchStart}
+       onTouchMove={handleTouchMove}
+       onTouchEnd={handleTouchEnd}
+     >
           {heroSlides.map((slide, index) => (
             <div 
               key={index} 
@@ -210,6 +246,21 @@ const Home = () => {
               <span>&#10095;</span>
             </button>
           </div>
+          {/* Mobile overlay arrows (visible only via CSS on small screens) */}
+          <button
+            className="hero-slider__mobile-arrow hero-slider__mobile-arrow--prev"
+            onClick={() => { prevSlide(); setAutoplay(false); setTimeout(() => setAutoplay(true), 5000); }}
+            aria-label="Anterior slide"
+          >
+            ‹
+          </button>
+          <button
+            className="hero-slider__mobile-arrow hero-slider__mobile-arrow--next"
+            onClick={() => { nextSlide(); setAutoplay(false); setTimeout(() => setAutoplay(true), 5000); }}
+            aria-label="Siguiente slide"
+          >
+            ›
+          </button>
           
         
           
