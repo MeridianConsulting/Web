@@ -604,6 +604,14 @@ a {
     height: 100% !important;
   }
 
+  /* Permitir scroll solo dentro del menú lateral */
+  body.menu-open .nav-links.active,
+  html.menu-open .nav-links.active {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important; /* Permitir scroll vertical táctil */
+  }
+
   .nav-links {
     position: fixed;
     top: 0;
@@ -626,6 +634,7 @@ a {
     gap: 0;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+    touch-action: pan-y; /* Permitir scroll vertical táctil */
   }
 
   .nav-links.active {

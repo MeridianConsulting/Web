@@ -18,8 +18,15 @@ const Header = () => {
       document.body.style.width = '100%';
       document.documentElement.style.overflow = 'hidden';
       
-      // Prevenir scroll con touch en móvil
+      // Prevenir scroll con touch en móvil, pero permitir scroll dentro del menú
       const preventTouchMove = (e) => {
+        // Verificar si el evento viene del menú lateral
+        const navLinks = document.querySelector('.nav-links.active');
+        if (navLinks && navLinks.contains(e.target)) {
+          // Permitir scroll dentro del menú
+          return;
+        }
+        // Bloquear scroll en el resto de la página
         e.preventDefault();
       };
       
