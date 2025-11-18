@@ -7,8 +7,46 @@ const Header = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : 'auto';
-    return () => (document.body.style.overflow = 'auto');
+    if (menuOpen) {
+      // Guardar la posición actual del scroll
+      const scrollY = window.scrollY;
+      
+      // Bloquear scroll en body y html
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      document.documentElement.style.overflow = 'hidden';
+      
+      // Prevenir scroll con touch en móvil
+      const preventTouchMove = (e) => {
+        e.preventDefault();
+      };
+      
+      document.addEventListener('touchmove', preventTouchMove, { passive: false });
+      
+      return () => {
+        // Restaurar scroll
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.documentElement.style.overflow = '';
+        
+        // Restaurar posición del scroll
+        window.scrollTo(0, scrollY);
+        
+        // Remover listener
+        document.removeEventListener('touchmove', preventTouchMove);
+      };
+    } else {
+      // Asegurar que el scroll esté habilitado cuando el menú está cerrado
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.documentElement.style.overflow = '';
+    }
   }, [menuOpen]);
 
   const toggleMenu = () => {
@@ -27,6 +65,21 @@ const Header = () => {
     e.preventDefault();
     setOpenDropdown(prev => (prev === name ? null : name));
   };
+
+  // Agregar clase al body cuando el menú está abierto
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add('menu-open');
+      document.documentElement.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+      document.documentElement.classList.remove('menu-open');
+    }
+    return () => {
+      document.body.classList.remove('menu-open');
+      document.documentElement.classList.remove('menu-open');
+    };
+  }, [menuOpen]);
 
   return (
     <header className={`main-header ${menuOpen ? 'menu-open' : ''}`} role="banner">

@@ -595,6 +595,15 @@ a {
     display: flex;
   }
 
+  /* Bloquear scroll del body cuando el menú está abierto */
+  body.menu-open,
+  html.menu-open {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
   .nav-links {
     position: fixed;
     top: 0;
@@ -616,6 +625,7 @@ a {
     opacity: 0;
     gap: 0;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
   }
 
   .nav-links.active {
