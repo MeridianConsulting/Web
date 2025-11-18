@@ -4893,3 +4893,86 @@ select:focus {
     max-width: 150px;
   }
 }
+
+/* ==================== TAWK.IO WIDGET - TAMAÑO GRANDE EN RESPONSIVE ==================== */
+/* Forzar que el widget de Tawk.io mantenga un tamaño grande en todos los dispositivos */
+#tawkchat-container,
+#tawkchat-container-wrapper,
+#tawkchat-container iframe,
+iframe[id*="tawk"],
+iframe[src*="tawk.to"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 350px !important; /* Tamaño mínimo grande */
+  height: auto !important;
+}
+
+/* Widget abierto (chat expandido) */
+#tawkchat-container.tawk-chat-open,
+#tawkchat-container.tawk-chat-open iframe,
+#tawkchat-container-wrapper.tawk-chat-open {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 350px !important;
+  height: 600px !important; /* Altura grande cuando está abierto */
+  min-height: 500px !important;
+}
+
+/* Botón flotante del chat */
+#tawkchat-container .tawk-chat-button,
+#tawkchat-container-wrapper .tawk-chat-button {
+  width: 60px !important;
+  height: 60px !important;
+  min-width: 60px !important;
+  min-height: 60px !important;
+}
+
+/* Asegurar tamaño grande en móvil */
+@media (max-width: 768px) {
+  #tawkchat-container,
+  #tawkchat-container-wrapper,
+  #tawkchat-container iframe,
+  iframe[id*="tawk"],
+  iframe[src*="tawk.to"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 350px !important; /* Mantener tamaño grande en móvil */
+  }
+
+  #tawkchat-container.tawk-chat-open,
+  #tawkchat-container.tawk-chat-open iframe,
+  #tawkchat-container-wrapper.tawk-chat-open {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 350px !important;
+    height: 600px !important; /* Altura grande en móvil también */
+    min-height: 500px !important;
+  }
+
+  #tawkchat-container .tawk-chat-button,
+  #tawkchat-container-wrapper .tawk-chat-button {
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #tawkchat-container,
+  #tawkchat-container-wrapper,
+  #tawkchat-container iframe,
+  iframe[id*="tawk"],
+  iframe[src*="tawk.to"] {
+    min-width: 100% !important; /* En pantallas muy pequeñas, usar todo el ancho */
+  }
+
+  #tawkchat-container.tawk-chat-open,
+  #tawkchat-container.tawk-chat-open iframe,
+  #tawkchat-container-wrapper.tawk-chat-open {
+    width: 100% !important;
+    min-width: 100% !important;
+    height: 70vh !important; /* Usar 70% de la altura de la pantalla */
+    min-height: 500px !important;
+  }
+}
