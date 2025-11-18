@@ -29,7 +29,7 @@ const Header = () => {
   };
 
   return (
-    <header className="main-header" role="banner">
+    <header className={`main-header ${menuOpen ? 'menu-open' : ''}`} role="banner">
       <div className="header-container">
         <div className="logo">
           <Link to="/" onClick={closeMenu} aria-label="Ir a página de inicio">
@@ -104,13 +104,22 @@ const Header = () => {
 
           {/* Botón hamburguesa */}
           <button 
-            className="menu-toggle" 
+            className={`menu-toggle ${menuOpen ? 'hidden' : ''}`}
             onClick={toggleMenu}
-            aria-label={menuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
+            aria-label="Abrir menú de navegación"
             aria-expanded={menuOpen}
             aria-controls="nav-links"
           >
-            <div className={`hamburger ${menuOpen ? 'active' : ''}`}></div>
+            <div className="hamburger"></div>
+          </button>
+
+          {/* Botón de cierre para móvil - en el header */}
+          <button 
+            className={`mobile-close-button ${menuOpen ? 'active' : ''}`}
+            onClick={closeMenu}
+            aria-label="Cerrar menú de navegación"
+          >
+            <span className="close-icon">×</span>
           </button>
 
           {/* Fondo del overlay al abrir menú */}
