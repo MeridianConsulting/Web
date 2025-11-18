@@ -697,6 +697,20 @@ a {
     text-align: center;
     gap: 8px; /* Espacio entre texto y flecha */
   }
+
+  /* Mantener estilo azul del dropdown-toggle en móvil (sin amarillo) */
+  .nav-links .dropdown-toggle {
+    background-color: #f5f7fa !important;
+    color: #004d80 !important;
+  }
+
+  .nav-links .dropdown-toggle:hover,
+  .nav-links .dropdown-toggle:active,
+  .nav-links .dropdown-toggle:focus {
+    background-color: #004d80 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 8px rgba(0, 77, 128, 0.3) !important;
+  }
   
   /* Keep arrow fixed and not compressed */
   .dropdown-arrow {
