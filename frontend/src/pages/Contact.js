@@ -182,7 +182,7 @@ const Contact = () => {
         {/* Columna izquierda */}
         <div className="contact-info">
           <p><i className="fas fa-map-marker-alt"></i> <strong>Dirección:</strong> Cl. 67 #7 - 35, Bogotá</p>
-          <p><i className="fas fa-phone-alt"></i> <strong>Teléfono:</strong> +57 (1) 123-4567</p>
+          <p><i className="fas fa-phone-alt"></i> <strong>Teléfono:</strong> Pbx - (601) 7469090</p>
           <p><i className="fas fa-envelope"></i> <strong>Email:</strong> info@meridian.com.co</p>
           <p><i className="fas fa-clock"></i> <strong>Horario:</strong> Lunes a Viernes, 7:30 AM - 5:00 PM</p>
 

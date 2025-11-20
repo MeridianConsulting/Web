@@ -111,13 +111,17 @@ const About = () => {
             >
               <h3>Misión</h3>
               <p>
-                En MERIDIAN CONSULTING LTDA. contribuimos al fortalecimiento del
-                sector energético y ambiental mediante servicios especializados en
-                geología, ingeniería de petróleos, energías renovables y control
-                técnico de operaciones. Trabajamos con excelencia, ética y
-                disciplina técnica, generando valor a nuestros clientes mediante un
-                equipo humano altamente capacitado y comprometido con la innovación,
-                sostenibilidad y seguridad.
+              En MERIDIAN CONSULTING LTDA. contribuimos al fortalecimiento 
+              del sector energético y ambiental, mediante servicios especializados
+              en geología, ingeniería de petróleos, energías renovables  y ejecución
+              y control técnico de operaciones, en todas sus etapas. trabajamos con 
+              excelencia, ética, disciplina técnica y responsabilidad, adaptándonos 
+              a diversos entornos sociales y operativos, y generando valor a nuestros 
+              clientes al cumplir sus objetivos con eficiencia y confidencialidad.
+              nos apoyamos en un equipo humano altamente capacitado, promoviendo 
+              su bienestar y desarrollo, en una cultura de innovación, mejora continua, 
+              sostenibilidad y seguridad, que nos permite entregar soluciones confiables 
+              y de alto impacto.
               </p>
             </motion.div>
           </Slide>
@@ -130,12 +134,16 @@ const About = () => {
             >
               <h3>Visión</h3>
               <p>
-                Para el año 2030, MERIDIAN CONSULTING LTDA. será un referente
-                nacional en consultoría especializada para el sector minero
-                energético, destacándose por su excelencia operativa, innovación
-                tecnológica y compromiso ético. Seremos reconocidos por cumplir con
-                precisión los objetivos de nuestros clientes, generando alianzas
-                estratégicas que impulsen el desarrollo sostenible.
+                Para el año 2030, MERIDIAN CONSULTING LTDA. se consolidará 
+                como un referente nacional en consultoría especializada para
+                el sector minero energético, destacándose por su excelencia 
+                operativa y financiera, innovación tecnologica, compromiso ético, 
+                y capacidad de adaptación a los retos técnicos, sociales y 
+                ambientales del país. seremos reconocidos por cumplir con precisión 
+                y oportunidad los objetivos de nuestros clientes, generando alianzas
+                estratégicas de alto valor, promoviendo el desarrollo de nuestro 
+                talento humano y contribuyendo al crecimiento sostenible de las 
+                comunidades y sectores donde operamos.
               </p>
             </motion.div>
           </Slide>
@@ -228,17 +236,6 @@ const About = () => {
               decisiones.
             </p>
           </div>
-          <div className="value-card">
-            <span className="value-icon">
-              <FaShieldAlt />
-            </span>
-            <h3>Integridad</h3>
-            <p>
-              Actuamos de forma ética y coherente, respetando las normas y
-              principios en todo momento, ofreciendo servicios consistentes,
-              eficaces y confiables.
-            </p>
-          </div>
         </div>
       </section>
 
@@ -288,15 +285,6 @@ const About = () => {
         Analizamos constantemente los riesgos para prevenir errores y tomar mejores
         decisiones, promoviendo ambientes de trabajo seguros, con responsabilidad
         compartida y prevención activa de incidentes.
-      </p>
-    </div>
-
-    <div className="valor-card" data-aos="zoom-in">
-      <h3>6. Colaboración y Trabajo en Equipo</h3>
-      <p>
-        Fomentamos un ambiente de cooperación donde el conocimiento y las experiencias
-        se comparten libremente, fortaleciendo las capacidades del equipo y generando
-        soluciones innovadoras que benefician a nuestros clientes y la organización.
       </p>
     </div>
   </div>
