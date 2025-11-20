@@ -7,8 +7,53 @@ const Header = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : 'auto';
-    return () => (document.body.style.overflow = 'auto');
+    if (menuOpen) {
+      // Guardar la posición actual del scroll
+      const scrollY = window.scrollY;
+      
+      // Bloquear scroll en body y html
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      document.documentElement.style.overflow = 'hidden';
+      
+      // Prevenir scroll con touch en móvil, pero permitir scroll dentro del menú
+      const preventTouchMove = (e) => {
+        // Verificar si el evento viene del menú lateral
+        const navLinks = document.querySelector('.nav-links.active');
+        if (navLinks && navLinks.contains(e.target)) {
+          // Permitir scroll dentro del menú
+          return;
+        }
+        // Bloquear scroll en el resto de la página
+        e.preventDefault();
+      };
+      
+      document.addEventListener('touchmove', preventTouchMove, { passive: false });
+      
+      return () => {
+        // Restaurar scroll
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.documentElement.style.overflow = '';
+        
+        // Restaurar posición del scroll
+        window.scrollTo(0, scrollY);
+        
+        // Remover listener
+        document.removeEventListener('touchmove', preventTouchMove);
+      };
+    } else {
+      // Asegurar que el scroll esté habilitado cuando el menú está cerrado
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.documentElement.style.overflow = '';
+    }
   }, [menuOpen]);
 
   const toggleMenu = () => {
@@ -28,8 +73,23 @@ const Header = () => {
     setOpenDropdown(prev => (prev === name ? null : name));
   };
 
+  // Agregar clase al body cuando el menú está abierto
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add('menu-open');
+      document.documentElement.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+      document.documentElement.classList.remove('menu-open');
+    }
+    return () => {
+      document.body.classList.remove('menu-open');
+      document.documentElement.classList.remove('menu-open');
+    };
+  }, [menuOpen]);
+
   return (
-    <header className="main-header" role="banner">
+    <header className={`main-header ${menuOpen ? 'menu-open' : ''}`} role="banner">
       <div className="header-container">
         <div className="logo">
           <Link to="/" onClick={closeMenu} aria-label="Ir a página de inicio">
@@ -97,20 +157,29 @@ const Header = () => {
                 <li role="none"><a href="https://servicedesk.meridianltda.com/front/ticket.php" target="_blank" rel="noopener noreferrer" role="menuitem">GLPI</a></li>
                 <li role="none"><a href="https://hseq.meridianltda.com" target="_blank" rel="noopener noreferrer" role="menuitem">Reportes HSEQ</a></li>
                 <li role="none"><a href="https://evaluacion.meridianltda.com" target="_blank" rel="noopener noreferrer" role="menuitem">Evaluación De Desempeño</a></li>
-                <li role="none"><a href="http://carnet.meridian.com/" target="_blank" rel="noopener noreferrer" role="menuitem">Carnets Virtuales</a></li>
+                <li role="none"><a href="https://carnet.meridianltda.com/" target="_blank" rel="noopener noreferrer" role="menuitem">Carnets Virtuales</a></li>
               </ul>
             </li>
           </ul>
 
           {/* Botón hamburguesa */}
           <button 
-            className="menu-toggle" 
+            className={`menu-toggle ${menuOpen ? 'hidden' : ''}`}
             onClick={toggleMenu}
-            aria-label={menuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
+            aria-label="Abrir menú de navegación"
             aria-expanded={menuOpen}
             aria-controls="nav-links"
           >
-            <div className={`hamburger ${menuOpen ? 'active' : ''}`}></div>
+            <div className="hamburger"></div>
+          </button>
+
+          {/* Botón de cierre para móvil - en el header */}
+          <button 
+            className={`mobile-close-button ${menuOpen ? 'active' : ''}`}
+            onClick={closeMenu}
+            aria-label="Cerrar menú de navegación"
+          >
+            <span className="close-icon">×</span>
           </button>
 
           {/* Fondo del overlay al abrir menú */}
