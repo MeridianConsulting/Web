@@ -11,48 +11,78 @@ const Header = () => {
       // Guardar la posición actual del scroll
       const scrollY = window.scrollY;
       
-      // Bloquear scroll en body y html
-      document.body.style.overflow = 'hidden';
+      // Bloquear scroll horizontal pero permitir vertical en el body
+      document.body.style.overflowX = 'hidden';
+      document.body.style.overflowY = 'hidden'; // Bloquear scroll del body principal
       document.body.style.position = 'fixed';
       document.body.style.top = `-${scrollY}px`;
       document.body.style.width = '100%';
-      document.documentElement.style.overflow = 'hidden';
+      document.documentElement.style.overflowX = 'hidden';
+      document.documentElement.style.overflowY = 'hidden';
       
-      // Prevenir scroll con touch en móvil, pero permitir scroll dentro del menú
+      // Prevenir scroll horizontal con touch en móvil, pero permitir scroll vertical dentro del menú
+      let touchStartX = null;
+      let touchStartY = null;
+      
+      const handleTouchStart = (e) => {
+        if (e.touches && e.touches.length > 0) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+        }
+      };
+      
       const preventTouchMove = (e) => {
         // Verificar si el evento viene del menú lateral
         const navLinks = document.querySelector('.nav-links.active');
         if (navLinks && navLinks.contains(e.target)) {
-          // Permitir scroll dentro del menú
+          // Permitir scroll vertical dentro del menú, pero bloquear horizontal
+          if (e.touches && e.touches.length > 0 && touchStartX !== null && touchStartY !== null) {
+            const deltaX = Math.abs(e.touches[0].clientX - touchStartX);
+            const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
+            
+            // Si el movimiento es principalmente horizontal, bloquearlo
+            if (deltaX > deltaY && deltaX > 10) {
+              e.preventDefault();
+            }
+            // Si es principalmente vertical, permitir (el menú tiene overflow-y: auto)
+          }
           return;
         }
         // Bloquear scroll en el resto de la página
         e.preventDefault();
       };
       
+      document.addEventListener('touchstart', handleTouchStart, { passive: true });
       document.addEventListener('touchmove', preventTouchMove, { passive: false });
       
       return () => {
         // Restaurar scroll
-        document.body.style.overflow = '';
+        document.body.style.overflowX = '';
+        document.body.style.overflowY = '';
         document.body.style.position = '';
         document.body.style.top = '';
         document.body.style.width = '';
-        document.documentElement.style.overflow = '';
+        document.documentElement.style.overflowX = '';
+        document.documentElement.style.overflowY = '';
         
         // Restaurar posición del scroll
         window.scrollTo(0, scrollY);
         
-        // Remover listener
+        // Remover listeners
+        document.removeEventListener('touchstart', handleTouchStart);
         document.removeEventListener('touchmove', preventTouchMove);
+        touchStartX = null;
+        touchStartY = null;
       };
     } else {
       // Asegurar que el scroll esté habilitado cuando el menú está cerrado
-      document.body.style.overflow = '';
+      document.body.style.overflowX = '';
+      document.body.style.overflowY = '';
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
-      document.documentElement.style.overflow = '';
+      document.documentElement.style.overflowX = '';
+      document.documentElement.style.overflowY = '';
     }
   }, [menuOpen]);
 
@@ -73,19 +103,41 @@ const Header = () => {
     setOpenDropdown(prev => (prev === name ? null : name));
   };
 
-  // Agregar clase al body cuando el menú está abierto
+  // Agregar clase al body cuando el menú está abierto y detectar clics fuera
   useEffect(() => {
     if (menuOpen) {
       document.body.classList.add('menu-open');
       document.documentElement.classList.add('menu-open');
+      
+      // Detectar clics fuera del menú para cerrarlo
+      const handleClickOutside = (e) => {
+        const navLinks = document.querySelector('.nav-links.active');
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mobileCloseButton = document.querySelector('.mobile-close-button');
+        
+        // Si el clic fue fuera del menú, fuera del botón hamburguesa y fuera del botón de cerrar
+        if (navLinks && 
+            !navLinks.contains(e.target) && 
+            !menuToggle?.contains(e.target) && 
+            !mobileCloseButton?.contains(e.target)) {
+          closeMenu();
+        }
+      };
+      
+      // Agregar listener con un pequeño delay para evitar que se cierre inmediatamente
+      setTimeout(() => {
+        document.addEventListener('click', handleClickOutside);
+      }, 100);
+      
+      return () => {
+        document.body.classList.remove('menu-open');
+        document.documentElement.classList.remove('menu-open');
+        document.removeEventListener('click', handleClickOutside);
+      };
     } else {
       document.body.classList.remove('menu-open');
       document.documentElement.classList.remove('menu-open');
     }
-    return () => {
-      document.body.classList.remove('menu-open');
-      document.documentElement.classList.remove('menu-open');
-    };
   }, [menuOpen]);
 
   return (
@@ -98,7 +150,12 @@ const Header = () => {
         </div>
 
         <nav role="navigation" aria-label="Navegación principal">
-          <ul className={`nav-links ${menuOpen ? 'active' : ''}`} role="menubar">
+          <ul 
+            className={`nav-links ${menuOpen ? 'active' : ''}`} 
+            role="menubar"
+            onClick={(e) => e.stopPropagation()}
+            onMouseDown={(e) => e.stopPropagation()}
+          >
             <li role="none"><Link to="/" onClick={closeMenu} role="menuitem">Inicio</Link></li>
             <li role="none"><Link to="/servicios" onClick={closeMenu} role="menuitem">Servicios</Link></li>
             <li role="none"><Link to="/nosotros" onClick={closeMenu} role="menuitem">Nosotros</Link></li>
@@ -182,10 +239,9 @@ const Header = () => {
             <span className="close-icon">×</span>
           </button>
 
-          {/* Fondo del overlay al abrir menú */}
+          {/* Fondo del overlay al abrir menú - ahora solo visual, no captura clics */}
           <div 
             className={`menu-overlay ${menuOpen ? 'active' : ''}`} 
-            onClick={closeMenu}
             aria-hidden="true"
           ></div>
         </nav>
