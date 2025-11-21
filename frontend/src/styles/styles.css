@@ -2723,15 +2723,24 @@ a {
   width: 100%;
   overflow: hidden;
   padding: var(--spacing-xl) 0;
+  min-height: 220px;
   /* Difuminado muy sutil en los extremos (2% y 98% para máximo espacio visible) */
   mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
   z-index: 1;
+  visibility: visible;
 }
 
 .clients-marquee {
   width: 100%;
   overflow: hidden;
+}
+
+/* Asegurar visibilidad en móviles pequeños */
+@media (max-width: 576px) {
+  .clients-marquee {
+    overflow: visible;
+  }
 }
 
 .clients-marquee__content {
@@ -2744,15 +2753,15 @@ a {
 }
 
 .client-logo {
-  height: 140px;
+  height: 200px;
   min-width: 240px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 var(--spacing-xl);
+  padding: 0 var(--spacing-md);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   background: #ffffff;
-  margin: 0 var(--spacing-md);
+  margin: 0 var(--spacing-sm);
   border-radius: 16px;
   box-shadow: 
     0 8px 20px rgba(0, 0, 0, 0.08),
@@ -2789,7 +2798,7 @@ a {
 }
 
 .client-logo img {
-  max-height: 80%;
+  max-height: 85%;
   max-width: 220px;
   width: auto;
   height: auto;
@@ -2799,7 +2808,7 @@ a {
   position: relative;
   z-index: 1;
   background-color: #ffffff;
-  padding: 10px;
+  padding: 8px;
   border-radius: 8px;
 }
 
@@ -2857,18 +2866,27 @@ a {
   .clients-marquee-container {
     mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    min-height: 200px;
+    padding: var(--spacing-lg) 0;
   }
 
   .client-logo {
-    height: 130px;
+    height: 180px;
     min-width: 200px;
     padding: 0 var(--spacing-lg);
     border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .client-logo img {
     max-width: 180px;
-    max-height: 80%;
+    max-height: 85%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
   }
 
   .client-logo:hover {
@@ -2877,26 +2895,37 @@ a {
 
   .clients-marquee__content {
     gap: 20px;
+    align-items: center;
   }
 }
 
 @media (max-width: 768px) {
   .clients-marquee-container {
-    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+    min-height: 170px;
+    padding: var(--spacing-md) 0;
+    overflow: visible;
   }
 
   .client-logo {
-    height: 110px;
+    height: 150px;
     min-width: 160px;
     padding: 0 var(--spacing-md);
     margin: 0 var(--spacing-sm);
     border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .client-logo img {
     max-width: 150px;
-    max-height: 75%;
+    max-height: 80%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
   }
 
   .client-logo:hover {
@@ -2906,6 +2935,7 @@ a {
   .clients-marquee__content {
     gap: 15px;
     animation-duration: 40s;
+    align-items: center;
   }
 
   .clients .section-title {
@@ -2914,17 +2944,57 @@ a {
 }
 
 @media (max-width: 576px) {
+  .clients {
+    overflow: visible;
+  }
+  
+  .clients-marquee-container {
+    min-height: 160px;
+    padding: var(--spacing-lg) 0;
+    overflow: visible !important;
+    /* Eliminar o reducir significativamente el mask en móviles pequeños */
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .clients-marquee {
+    overflow: visible !important;
+    width: 100%;
+  }
+  
   .client-logo {
-    height: 70px;
-    margin: 0 var(--spacing-xs);
+    height: 140px !important;
+    min-width: 150px !important;
+    margin: 0 var(--spacing-sm);
+    padding: 10px var(--spacing-md) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: #ffffff !important;
   }
   
   .client-logo img {
-    max-width: 140px;
+    max-width: 130px !important;
+    max-height: 90% !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
   
   .clients-marquee__content {
     animation-duration: 35s;
+    align-items: center !important;
+    gap: 15px;
+    display: flex !important;
+    visibility: visible !important;
+    width: max-content !important;
   }
 }
 
@@ -4646,5 +4716,199 @@ select:focus {
     font-size: 12px;
     padding: 10px 14px;
     max-width: 150px;
+  }
+}
+
+/* ===== FIX: Slider de clientes en versión responsive ===== */
+
+/* Tablet y móvil: que los logos se vean siempre y la animación funcione */
+
+@media (max-width: 768px) {
+  .clients {
+    overflow: visible !important;
+  }
+  
+  .clients-marquee-container {
+    /* Quitamos máscaras que pueden ocultar logos en algunos navegadores */
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    overflow: hidden !important;
+    min-height: 160px !important;
+    padding: var(--spacing-lg) 0 !important;
+  }
+
+  .clients-marquee {
+    overflow: hidden !important;
+    width: 100% !important;
+  }
+
+  .clients-marquee__content {
+    /* Reactivamos la animación pero más lenta para móvil */
+    animation: marquee 40s linear infinite !important;
+    gap: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .client-logo {
+    flex: 0 0 auto !important;
+    height: 140px !important;
+    min-width: 110px !important;  /* Reducido aún más para menos espacio en blanco */
+    max-width: 130px !important;
+    margin: 0 4px !important;  /* Margen mínimo */
+    padding: 4px 6px !important;  /* Padding horizontal muy reducido */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: #ffffff !important;
+  }
+
+  .client-logo img {
+    max-width: 100px !important;
+    max-height: 90% !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    padding: 0 !important;  /* Sin padding en la imagen */
+  }
+}
+
+/* Móviles muy pequeños: aún más compacto */
+@media (max-width: 480px) {
+  .clients-marquee-container {
+    min-height: 140px !important;
+  }
+  
+  .clients-marquee__content {
+    animation: marquee 35s linear infinite !important;
+    gap: 8px !important;
+  }
+  
+  .client-logo {
+    height: 120px !important;
+    min-width: 100px !important;  /* Reducido aún más */
+    max-width: 120px !important;
+    margin: 0 4px !important;  /* Margen mínimo */
+    padding: 4px 6px !important;  /* Padding horizontal muy reducido */
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .client-logo img {
+    max-width: 100px !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    padding: 0 !important;  /* Sin padding */
+  }
+}
+
+/* ==================== TAWK.TO CHAT WIDGET - Aumentar tamaño ==================== */
+/* Aumentar el tamaño del widget de chat Tawk.to para mejor visibilidad */
+/* Usar selectores más específicos y aplicar después de que Tawk.to carga */
+
+/* Estilos base que se aplicarán cuando Tawk.to se carga */
+body #tawkchat-container,
+body #tawkchat-container iframe,
+body .tawk-widget,
+body .tawk-widget-container {
+  min-width: 350px !important;
+  min-height: 500px !important;
+  width: 350px !important;
+  height: 500px !important;
+  max-width: 90vw !important;
+  max-height: 90vh !important;
+}
+
+/* Botón flotante del chat (cuando está minimizado) */
+body #tawkchat-container .tawk-min-container,
+body .tawk-min-container {
+  width: 60px !important;
+  height: 60px !important;
+  min-width: 60px !important;
+  min-height: 60px !important;
+}
+
+/* Cuando el chat está abierto, aumentar el tamaño */
+body #tawkchat-container.tawk-open,
+body #tawkchat-container.tawk-open iframe,
+body .tawk-widget.tawk-open,
+body #tawkchat-container[style*="display: block"] iframe {
+  width: 380px !important;
+  height: 600px !important;
+  min-width: 350px !important;
+  min-height: 500px !important;
+}
+
+/* Forzar tamaño después de que Tawk.to se carga dinámicamente */
+body #tawkchat-container[style] iframe,
+body #tawkchat-container iframe[style] {
+  width: 380px !important;
+  height: 600px !important;
+  min-width: 350px !important;
+  min-height: 500px !important;
+}
+
+/* Responsive: ajustar para móviles - FORZAR TAMAÑO GRANDE */
+@media (max-width: 768px) {
+  body #tawkchat-container,
+  body #tawkchat-container iframe,
+  body .tawk-widget,
+  body .tawk-widget-container,
+  body #tawkchat-container[style] iframe,
+  body #tawkchat-container iframe[style],
+  body #tawkchat-container.tawk-open,
+  body #tawkchat-container.tawk-open iframe,
+  body #tawkchat-container[style*="display: block"],
+  body #tawkchat-container[style*="display: block"] iframe {
+    width: 100% !important;
+    max-width: 100vw !important;
+    min-width: 100% !important;
+    height: 75vh !important;
+    min-height: 550px !important;
+    max-height: 85vh !important;
+  }
+  
+  /* Botón flotante más grande en móvil */
+  body #tawkchat-container .tawk-min-container,
+  body .tawk-min-container {
+    width: 70px !important;
+    height: 70px !important;
+    min-width: 70px !important;
+    min-height: 70px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  body #tawkchat-container,
+  body #tawkchat-container iframe,
+  body .tawk-widget,
+  body #tawkchat-container[style] iframe,
+  body #tawkchat-container iframe[style],
+  body #tawkchat-container.tawk-open,
+  body #tawkchat-container.tawk-open iframe,
+  body #tawkchat-container[style*="display: block"],
+  body #tawkchat-container[style*="display: block"] iframe {
+    width: 100% !important;
+    max-width: 100vw !important;
+    min-width: 100% !important;
+    height: 80vh !important;
+    min-height: 500px !important;
+    max-height: 90vh !important;
+  }
+  
+  body #tawkchat-container .tawk-min-container {
+    width: 65px !important;
+    height: 65px !important;
+    min-width: 65px !important;
+    min-height: 65px !important;
   }
 }

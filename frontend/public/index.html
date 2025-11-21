@@ -135,6 +135,82 @@
       s1.setAttribute('crossorigin', 'anonymous');
       s0.parentNode.insertBefore(s1, s0);
     })();
+    
+    // Forzar tamaño del widget después de que Tawk.to se carga
+    Tawk_API.onLoad = function() {
+      function forceTawkSize() {
+        var container = document.getElementById('tawkchat-container');
+        if (container) {
+          var iframe = container.querySelector('iframe');
+          var isMobile = window.innerWidth <= 768;
+          
+          if (iframe) {
+            if (isMobile) {
+              // En móvil: tamaño completo de pantalla
+              iframe.style.setProperty('width', '100%', 'important');
+              iframe.style.setProperty('height', '75vh', 'important');
+              iframe.style.setProperty('min-width', '100%', 'important');
+              iframe.style.setProperty('min-height', '550px', 'important');
+              iframe.style.setProperty('max-width', '100vw', 'important');
+              iframe.style.setProperty('max-height', '85vh', 'important');
+            } else {
+              // En desktop: tamaño grande
+              iframe.style.setProperty('width', '380px', 'important');
+              iframe.style.setProperty('height', '600px', 'important');
+              iframe.style.setProperty('min-width', '350px', 'important');
+              iframe.style.setProperty('min-height', '500px', 'important');
+            }
+          }
+          
+          if (isMobile) {
+            container.style.setProperty('width', '100%', 'important');
+            container.style.setProperty('height', '75vh', 'important');
+            container.style.setProperty('min-height', '550px', 'important');
+          } else {
+            container.style.setProperty('width', '380px', 'important');
+            container.style.setProperty('height', '600px', 'important');
+          }
+        }
+      }
+      
+      // Aplicar inmediatamente
+      forceTawkSize();
+      
+      // Aplicar después de delays para asegurar que se mantenga
+      setTimeout(forceTawkSize, 500);
+      setTimeout(forceTawkSize, 1000);
+      setTimeout(forceTawkSize, 2000);
+      setTimeout(forceTawkSize, 3000);
+      
+      // Observar cambios en el DOM para mantener el tamaño
+      var observer = new MutationObserver(function(mutations) {
+        forceTawkSize();
+      });
+      
+      var container = document.getElementById('tawkchat-container');
+      if (container) {
+        observer.observe(container, {
+          attributes: true,
+          attributeFilter: ['style', 'class'],
+          childList: true,
+          subtree: true
+        });
+      }
+      
+      // También observar cambios en el iframe directamente
+      setTimeout(function() {
+        var iframe = document.querySelector('#tawkchat-container iframe');
+        if (iframe) {
+          observer.observe(iframe, {
+            attributes: true,
+            attributeFilter: ['style']
+          });
+        }
+      }, 1000);
+      
+      // Forzar tamaño cuando se redimensiona la ventana
+      window.addEventListener('resize', forceTawkSize);
+    };
     </script>
 <!--End of Tawk.to Script-->
   </body>
