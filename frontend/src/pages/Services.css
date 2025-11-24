@@ -4,7 +4,11 @@
   color: #222;
   background: #f6f9fb;
   overflow-x: hidden;
+  overflow-y: visible;
   position: relative;
+  min-height: 100vh;
+  width: 100%;
+  height: auto;
 }
 
 /* ====== SCROLL PROGRESS ====== */
@@ -96,7 +100,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
   background: linear-gradient(135deg, #0a3eb1 0%, #0d6efd 50%, #0a3eb1 100%);
 }
 

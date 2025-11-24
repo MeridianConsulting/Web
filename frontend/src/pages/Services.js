@@ -150,6 +150,13 @@ const Services = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
 
+    // Asegurar que el scroll esté habilitado en la página de servicios
+    document.body.style.overflowY = 'auto';
+    document.body.style.overflowX = 'hidden';
+    document.body.style.position = 'relative';
+    document.documentElement.style.overflowY = 'auto';
+    document.documentElement.style.overflowX = 'hidden';
+
     const onScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight =
@@ -160,7 +167,16 @@ const Services = () => {
 
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      // Restaurar estilos al desmontar si es necesario
+      document.body.style.overflowY = '';
+      document.body.style.overflowX = '';
+      document.body.style.position = '';
+      document.documentElement.style.overflowY = '';
+      document.documentElement.style.overflowX = '';
+    };
   }, []);
 
   // bloquea click derecho y selección solo en proyectos (seguridad visual)
