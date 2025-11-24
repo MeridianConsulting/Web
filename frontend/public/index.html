@@ -140,9 +140,10 @@
     Tawk_API.onLoad = function() {
       function forceTawkSize() {
         var container = document.getElementById('tawkchat-container');
+        var isMobile = window.innerWidth <= 768;
+        
         if (container) {
           var iframe = container.querySelector('iframe');
-          var isMobile = window.innerWidth <= 768;
           
           if (iframe) {
             if (isMobile) {
@@ -171,6 +172,36 @@
             container.style.setProperty('height', '600px', 'important');
           }
         }
+        
+        // Forzar tamaño del botón flotante
+        function forceButtonSize() {
+          var minContainer = document.querySelector('.tawk-min-container, #tawkchat-container .tawk-min-container');
+          if (minContainer) {
+            if (isMobile) {
+              var buttonSize = window.innerWidth <= 480 ? '80px' : '85px';
+              minContainer.style.setProperty('width', buttonSize, 'important');
+              minContainer.style.setProperty('height', buttonSize, 'important');
+              minContainer.style.setProperty('min-width', buttonSize, 'important');
+              minContainer.style.setProperty('min-height', buttonSize, 'important');
+              
+              // También aplicar al botón interno si existe
+              var button = minContainer.querySelector('button');
+              if (button) {
+                button.style.setProperty('width', '100%', 'important');
+                button.style.setProperty('height', '100%', 'important');
+                button.style.setProperty('min-width', '100%', 'important');
+                button.style.setProperty('min-height', '100%', 'important');
+              }
+            } else {
+              minContainer.style.setProperty('width', '60px', 'important');
+              minContainer.style.setProperty('height', '60px', 'important');
+              minContainer.style.setProperty('min-width', '60px', 'important');
+              minContainer.style.setProperty('min-height', '60px', 'important');
+            }
+          }
+        }
+        
+        forceButtonSize();
       }
       
       // Aplicar inmediatamente
@@ -206,10 +237,36 @@
             attributeFilter: ['style']
           });
         }
+        
+        // Observar cambios en el botón flotante
+        var minContainer = document.querySelector('.tawk-min-container, #tawkchat-container .tawk-min-container');
+        if (minContainer) {
+          observer.observe(minContainer, {
+            attributes: true,
+            attributeFilter: ['style', 'class'],
+            childList: true,
+            subtree: true
+          });
+        }
       }, 1000);
       
       // Forzar tamaño cuando se redimensiona la ventana
       window.addEventListener('resize', forceTawkSize);
+      
+      // Forzar tamaño del botón periódicamente para asegurar que se mantenga
+      setInterval(function() {
+        var minContainer = document.querySelector('.tawk-min-container, #tawkchat-container .tawk-min-container');
+        if (minContainer) {
+          var isMobile = window.innerWidth <= 768;
+          if (isMobile) {
+            var buttonSize = window.innerWidth <= 480 ? '80px' : '85px';
+            minContainer.style.setProperty('width', buttonSize, 'important');
+            minContainer.style.setProperty('height', buttonSize, 'important');
+            minContainer.style.setProperty('min-width', buttonSize, 'important');
+            minContainer.style.setProperty('min-height', buttonSize, 'important');
+          }
+        }
+      }, 2000);
     };
     </script>
 <!--End of Tawk.to Script-->
