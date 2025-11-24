@@ -306,7 +306,7 @@ const About = () => {
             <div className="timeline-item">
               <div className="timeline-content">
                 <h4>2004</h4>
-                <p>Con la experiencia en manejo de datos técnicos de hidrocarburos, se incursiona en la prestación de servicios Archivísticos de Administración de Correspondencia y Administración de Archivos de gestión y Central, prestación de servicios archivísticos de Gestión de depósitos, Administración de Archivo Central y reprografía para Ecopetrol. Inicio de la edición Ecopetrol en servicios de soporte documental y gestión normativa.</p>
+                <p>Con la experiencia en manejo de datos técnicos de hidrocarburos, se incursiona en la prestación de servicios Archivísticos de Administración de Correspondencia y Administración de Archivos de gestión y Central, prestación de servicios archivísticos de Gestión de depósitos, Administración de Archivo Central y reprografía para Ecopetrol. Inicio de la relación con Ecopetrol en servicios de soporte documental y gestión normativa.</p>
               </div>
             </div>
             <div className="timeline-item">
@@ -324,7 +324,7 @@ const About = () => {
             <div className="timeline-item">
               <div className="timeline-content">
                 <h4>2005</h4>
-                <p>Soporte a compañía Mineras en Colombia para la elaboración de PMA, Programas de trabajos y obras, Reconocimiento y diagnóstico geológico y minero del proyecto, generación de sistemas SIG para el manejo de información minera, catastral y geológica.</p>
+                <p>Soporte a compañías Mineras en Colombia para la elaboración de PMA, Programas de trabajos y obras, Reconocimiento y diagnóstico geológico y minero del proyecto, generación de sistemas SIG para el manejo de información minera, catastral y geológica.</p>
               </div>
             </div>
             <div className="timeline-item">
@@ -342,7 +342,7 @@ const About = () => {
             <div className="timeline-item">
               <div className="timeline-content">
                 <h4>2007</h4>
-                <p>AMETEX S.A. - Inicio oficial de la línea Company Man (supervisión de operaciones de perforación y completamiento). Iniciamos los servicios de prestación de servicios a pozo (supervisión de operaciones de pozo, soporte a producción, manejo de Fluidos, etc) prestando soporte a la compañía HALLIBURTON LATIN AMERICA SERVICES.</p>
+                <p>AMETEX S.A. - Inicio oficial de la línea Company Man (supervisión de operaciones de perforación y completamiento). Iniciamos los servicios de prestación de servicios en pozo (supervisión de operaciones de pozo, soporte a producción, manejo de Fluidos, etc) prestando soporte a la compañía HALLIBURTON LATIN AMERICA SERVICES.</p>
               </div>
             </div>
             <div className="timeline-item">
@@ -360,19 +360,19 @@ const About = () => {
             <div className="timeline-item">
               <div className="timeline-content">
                 <h4>2010</h4>
-                <p>Participamos en la Campaña de Co. para la toma de datos multiespectrales en Colombia.</p>
+                <p>Participamos en la Campaña de Colombia para la toma de datos multiespectrales en el país.</p>
               </div>
             </div>
             <div className="timeline-item">
               <div className="timeline-content">
                 <h4>2011</h4>
-                <p>Adelantamos para FONADE y El Servicio Geológico Colombiano tareas de Cartografía geológica en planchas del Vichada y en a ;teras de minería de Boyacá.</p>
+                <p>Adelantamos para FONADE y El Servicio Geológico Colombiano tareas de Cartografía geológica en planchas del Vichada y en áreas de minería de Boyacá.</p>
               </div>
             </div>
             <div className="timeline-item">
               <div className="timeline-content">
                 <h4>2011</h4>
-                <p>Representantes en Colombia a la compañía Minera de Colombia en contratación de obras de perforación en el Valle de Aburrá, subterráneos banco de datos Repsol Exploración Colombia S.A., 2012 desarrollamos procesos de Interventoría Técnica Administrativa y financiera integral de núcleos de los pozos perforados en las cuencas de Tumaco y Cauca Patía.</p>
+                <p>Representantes en Colombia de la compañía Minera de Colombia en contratación de obras de perforación en el Valle de Aburrá y desarrollo del banco de datos para Repsol Exploración Colombia S.A. En 2012 desarrollamos procesos de Interventoría Técnica Administrativa y financiera integral de núcleos de los pozos perforados en las cuencas de Tumaco y Cauca Patía.</p>
               </div>
             </div>
             <div className="timeline-item">
@@ -390,7 +390,7 @@ const About = () => {
             <div className="timeline-item">
               <div className="timeline-content">
                 <h4>2013-2014</h4>
-                <p>Con Hocol se adelantan servicios de Consultoría de pozos exploratorios y actividades de Ecopetrol. Se continúan desarrollando tareas de soporte a Hocol en sus actividades de exploración y perforación de pozos - hay Evolución del servicio Company Man hacia ingeniería integral de pozos, incluyendo Inducción, flujo, modelamiento de presión nodal, reporte de tiempos real y post perforación - Inicio del enfoque multidisciplinario en pozos.</p>
+                <p>Con Hocol se adelantan servicios de Consultoría de pozos exploratorios y actividades de Ecopetrol. Se continúan desarrollando tareas de soporte a Hocol en sus actividades de exploración y perforación de pozos - Se da la evolución del servicio Company Man hacia ingeniería integral de pozos, incluyendo Inducción, flujo, modelamiento de presión nodal, reporte de tiempos real y post perforación - Inicio del enfoque multidisciplinario en pozos.</p>
               </div>
             </div>
             <div className="timeline-item">
@@ -426,13 +426,13 @@ const About = () => {
             <div className="timeline-item">
               <div className="timeline-content">
                 <h4>2019</h4>
-                <p>Producción, Facilidades y Data Analítica). Se firma un segundo contrato con Ecopetrol para el apoyo a la Vicepresidencia de Desarrollo de Ecopetrol con el soporte en las actividades de: Servicio para La Caracterización y Gestión del Yacimiento, Construcción de Escenarios de Subsuelo, Planeación Integrada del Desarrollo. En Las Disciplinas De (Geología, Petrofísica, Ingeniería de Yacimientos, Fluidos, Ingeniería De Pozos y Producción, Facilidades y Data Analítica) contrato vigente actualmente.</p>
+                <p>Se firma un segundo contrato con Ecopetrol para el apoyo a la Vicepresidencia de Desarrollo de Ecopetrol con el soporte en las actividades de: Servicio para La Caracterización y Gestión del Yacimiento, Construcción de Escenarios de Subsuelo, Planeación Integrada del Desarrollo. En Las Disciplinas De (Geología, Petrofísica, Ingeniería de Yacimientos, Fluidos, Ingeniería De Pozos y Producción, Facilidades y Data Analítica) contrato vigente actualmente.</p>
               </div>
             </div>
             <div className="timeline-item">
               <div className="timeline-content">
                 <h4>2020</h4>
-                <p>Soporte Integral en Yacimientos.</p>
+                <p>Continuamos con el soporte integral en Yacimientos para la Vicepresidencia de Desarrollo de Ecopetrol, consolidando nuestra experiencia en múltiples disciplinas técnicas.</p>
               </div>
             </div>
             <div className="timeline-item">
@@ -462,7 +462,7 @@ const About = () => {
             <div className="timeline-item">
               <div className="timeline-content">
                 <h4>2025</h4>
-                <p>Proceso operativo ingeniería y supervisión en campo.</p>
+                <p>Continuamos con el proceso operativo de ingeniería y supervisión en campo, ejecutando proyectos estratégicos para nuestros clientes principales en las diferentes regiones del país.</p>
               </div>
             </div>
           </Slide>
