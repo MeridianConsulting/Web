@@ -14,7 +14,7 @@ import cw3 from "../assets/img/cw_3.jpeg"; // imagen company man tarjeta
 import cw4 from "../assets/img/cw_4.jpeg"; // imagen company man modal
 import front6 from "../assets/img/front_6.jpeg"; // imagen frontera energy tarjeta
 import front3 from "../assets/img/front_3.jpeg"; // imagen frontera energy modal
-import petro2 from "../assets/img/petro_2.png"; // imagen petroservicios banner
+import petroBanner from "../assets/img/Petroservicios.jpg"; // imagen petroservicios banner
 import petro3 from "../assets/img/petro_3.png"; // imagen petroservicios modal
 import petro4 from "../assets/img/petro_4.png"; // imagen petroservicios modal 2
 const PROJECTS = [
@@ -248,7 +248,7 @@ const Services = () => {
           </div>
           
           <h1 className="hero-title" data-aos="fade-up" data-aos-delay="100">
-            Servicios y Proyectos
+            Servicios y Proyectos 
             <span className="hero-title-highlight"> MERIDIAN</span>
           </h1>
           
@@ -275,12 +275,9 @@ const Services = () => {
           </div>
           
           <div className="hero-cta" data-aos="fade-up" data-aos-delay="400">
-            <a href="#proyectos" className="btn-hero-primary">
-              Ver Proyectos
-              <span className="btn-arrow">→</span>
-            </a>
-            <a href="https://wa.me/573138174050" className="btn-hero-secondary" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/573138174050" className="btn-hero-primary" target="_blank" rel="noopener noreferrer">
               Contactar Equipo
+              <span className="btn-arrow">→</span>
             </a>
           </div>
         </div>
@@ -308,7 +305,7 @@ const Services = () => {
                     p.id === "minciencias" ? minc2 : 
                     p.id === "company" ? cw3 : 
                     p.id === "frontera" ? front6 :
-                    p.id === "petro" ? petro2 :
+                    p.id === "petro" ? petroBanner :
                     bg
                   } 
                   alt={p.title} 

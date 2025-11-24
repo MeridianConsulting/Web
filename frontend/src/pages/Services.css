@@ -264,9 +264,10 @@
   text-shadow: 0 4px 15px rgba(244, 211, 94, 0.3);
 }
 
-.stat-label {
+/* Labels de estadísticas del hero - deben ser blancos */
+.hero-stats .stat-label {
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: #ffffff !important;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -377,8 +378,10 @@
     font-size: 2.5rem;
   }
 
-  .stat-label {
+  /* Labels de estadísticas del hero en tablets - deben ser blancos */
+  .hero-stats .stat-label {
     font-size: 0.85rem;
+    color: #ffffff !important;
   }
 
   .hero-circle-1,
@@ -429,8 +432,10 @@
     font-size: 2.2rem;
   }
 
-  .stat-label {
+  /* Labels de estadísticas del hero en móvil - deben ser blancos */
+  .hero-stats .stat-label {
     font-size: 0.8rem;
+    color: #ffffff !important;
   }
 
   .hero-cta {
@@ -869,9 +874,11 @@
   font-weight: 700;
 }
 
-.stat-label {
+/* Labels de estadísticas del modal - deben ser negros/grises oscuros */
+.modal-stat .stat-label,
+.modal-stats .stat-label {
   font-size: 0.85rem;
-  color: #444;
+  color: #444 !important;
 }
 
 /* modal actions */
