@@ -372,10 +372,13 @@ a {
   transition: background-color 0.3s, color 0.3s;
 }
 
+/* Hover solo para desktop - se sobrescribe en móvil */
 .nav-links a:hover {
   background-color: #ffd700; /* Amarillo suave */
   color: #00335a; /* Azul oscuro */
 }
+
+/* En móvil, el hover se maneja en el media query específico */
 
 /* Dropdown personalizado */
 .nav-dropdown {
@@ -476,7 +479,7 @@ a {
   color: var(--color-secondary);
 }
 
-/* Efecto de hover para los items del menú */
+/* Efecto de hover para los items del menú - solo desktop */
 .nav-links li::before {
   content: '';
   position: absolute;
@@ -493,6 +496,8 @@ a {
 .nav-links li:hover::before {
   height: calc(100% + 10px);
 }
+
+/* En móvil, este efecto se desactiva en el media query */
 
 /* Menú hamburguesa */
 .menu-toggle {
@@ -722,7 +727,7 @@ a {
     z-index: 101;
     pointer-events: auto;
     box-shadow: var(--shadow-lg);
-    padding: 80px var(--spacing-md) var(--spacing-xl); /* Padding superior para el header */
+    padding: 80px var(--spacing-md) 140px var(--spacing-md); /* Padding superior e inferior aumentado para accesibilidad */
     opacity: 0;
     gap: 0;
     overflow-x: hidden !important; /* Bloquear scroll horizontal */
@@ -736,10 +741,31 @@ a {
     opacity: 1;
   }
 
+  /* Eliminar el efecto ::before en móvil que se sale del botón */
+  .nav-links li::before {
+    display: none !important;
+  }
+
   .nav-links li {
-    margin: var(--spacing-md) 0;
+    margin: 0; /* Sin margen por defecto */
     width: 100%;
     text-align: center;
+    position: relative;
+  }
+
+  /* Reducir espacio vertical entre botones simples (no dropdowns) */
+  .nav-links li:not(.nav-dropdown) {
+    margin-bottom: 8px; /* Espacio reducido entre botones simples */
+  }
+
+  /* Mantener espacio adecuado para los dropdowns */
+  .nav-links li.nav-dropdown {
+    margin-bottom: 12px; /* Un poco más de espacio para dropdowns */
+  }
+
+  /* Espacio adicional después del último dropdown para asegurar accesibilidad */
+  .nav-links li.nav-dropdown:last-of-type {
+    margin-bottom: 16px;
   }
 
   .nav-links a,
@@ -753,6 +779,35 @@ a {
     width: 100%;
     text-align: center;
     gap: 8px; /* Espacio entre texto y flecha */
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-sizing: border-box; /* Asegurar que el padding esté incluido en el ancho */
+  }
+
+  /* Hover específico para móvil: fondo azul y texto blanco */
+  .nav-links a:hover,
+  .nav-links a:active,
+  .nav-links a:focus {
+    background-color: #004d80 !important; /* Azul principal */
+    color: #ffffff !important; /* Texto blanco */
+    transform: none !important; /* Sin transformación que pueda causar problemas */
+    box-shadow: none !important; /* Sin sombra que pueda causar problemas visuales */
+  }
+
+  /* Hover para dropdown-toggle en móvil */
+  .nav-links .dropdown-toggle {
+    background-color: #f5f7fa !important; /* Fondo suave por defecto */
+    color: #004d80 !important; /* Azul corporativo */
+    box-shadow: none !important; /* Sin sombra en móvil */
+  }
+
+  .nav-links .dropdown-toggle:hover,
+  .nav-links .dropdown-toggle:active,
+  .nav-links .dropdown-toggle:focus {
+    background-color: #004d80 !important; /* Azul principal */
+    color: #ffffff !important; /* Texto blanco */
+    transform: none !important; /* Sin transformación */
+    box-shadow: none !important; /* Sin sombra */
   }
   
   /* Keep arrow fixed and not compressed */
@@ -768,14 +823,36 @@ a {
     display: none;
     box-shadow: none;
     background: rgba(255, 255, 255, 0.1);
-    margin-top: var(--spacing-sm);
+    margin-top: 8px; /* Espacio reducido pero suficiente entre toggle y contenido */
+    margin-bottom: 0; /* Sin margen inferior para mantener compacto */
     border-radius: 8px;
   }
 
   .nav-links li:hover .dropdown-content,
-  .nav-dropdown:hover .dropdown-content {
+  .nav-dropdown:hover .dropdown-content,
+  .nav-dropdown.open .dropdown-content {
     display: flex;
     flex-direction: column;
+  }
+
+  /* Hover para enlaces dentro del dropdown en móvil */
+  .nav-links .dropdown-content li {
+    margin: 0; /* Sin margen entre elementos del dropdown */
+    padding: 0; /* Sin padding extra */
+  }
+
+  .nav-links .dropdown-content a {
+    color: #004d80 !important;
+    background-color: transparent !important;
+    padding: 10px 16px !important; /* Padding interno adecuado */
+    margin: 0 !important; /* Sin margen */
+  }
+
+  .nav-links .dropdown-content a:hover,
+  .nav-links .dropdown-content a:active,
+  .nav-links .dropdown-content a:focus {
+    background-color: #004d80 !important;
+    color: #ffffff !important;
   }
 
   .navbar-logo {
