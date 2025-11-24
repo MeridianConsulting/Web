@@ -3840,14 +3840,31 @@ select:focus {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   flex: 1;
   min-height: 300px;
-  display: flex;
-  align-items: stretch;
+  height: 400px; /* Altura fija para desktop */
+  width: 100%;
+  position: relative; /* Necesario para posicionamiento absoluto del iframe */
+  display: block; /* Asegurar que sea visible */
+  visibility: visible; /* Asegurar visibilidad */
+  opacity: 1; /* Asegurar opacidad */
 }
 
 .map-container > div {
-  width: 100%;
-  height: 100%;
-  display: flex;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  display: block !important;
+  position: relative !important;
+}
+
+.map-container iframe {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  border: 0 !important;
+  display: block !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
 }
 
 .contact-form form {
@@ -3908,6 +3925,50 @@ select:focus {
   margin-right: 6px;
 }
 
+/* Responsive - Aplicar desde 770px para asegurar que el mapa se vea */
+@media (max-width: 770px) {
+  .map-container {
+    height: 400px !important;
+    min-height: 400px !important;
+    max-height: 400px !important;
+    width: 100% !important;
+    margin-top: 15px;
+    position: relative !important;
+    overflow: hidden !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    flex: none !important; /* Eliminar flex para evitar problemas de altura */
+  }
+
+  .map-container > div {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    max-height: 100% !important;
+    display: block !important;
+    position: relative !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .map-container iframe {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    max-height: 100% !important;
+    border: 0 !important;
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .contact-container {
@@ -3934,6 +3995,44 @@ select:focus {
   .contact-form h3 {
     font-size: 1.4rem;
   }
+
+  /* Asegurar que el mapa llene completamente su contenedor en móvil */
+  .map-container {
+    height: 400px !important;
+    min-height: 400px !important;
+    max-height: 400px !important;
+    width: 100% !important;
+    margin-top: 15px;
+    position: relative !important;
+    overflow: hidden !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    flex: none !important; /* Eliminar flex para evitar problemas de altura */
+  }
+
+  .map-container > div {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    max-height: 100% !important;
+    display: block !important;
+    position: relative !important;
+  }
+
+  .map-container iframe {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    max-height: 100% !important;
+    border: 0 !important;
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -3947,6 +4046,23 @@ select:focus {
 
   .form-group {
     margin-bottom: 20px;
+  }
+
+  /* Ajustar altura del mapa en móviles pequeños */
+  .map-container {
+    height: 350px !important;
+    min-height: 350px !important;
+    max-height: 350px !important;
+  }
+
+  .map-container > div {
+    height: 100% !important;
+    max-height: 100% !important;
+  }
+
+  .map-container iframe {
+    height: 100% !important;
+    max-height: 100% !important;
   }
 }
 
