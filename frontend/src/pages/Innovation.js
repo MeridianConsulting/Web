@@ -152,6 +152,16 @@ const Innovation = () => {
           <div className="tech-card">Plataformas CRM</div>
           <div className="tech-card">Google Workspace</div>
           <div className="tech-card">Gestión Documental</div>
+          <div className="tech-card">Python</div>
+          <div className="tech-card">Simuladores de flujo en medios porosos</div>
+          <div className="tech-card">Eclipse</div>
+          <div className="tech-card">CMG</div>
+          <div className="tech-card">tNavigator</div>
+          <div className="tech-card">Desarrollo de software</div>
+          <div className="tech-card">Análisis de datos</div>
+          <div className="tech-card">Petrel</div>
+          <div className="tech-card">Machine Learning</div>
+          <div className="tech-card">Bases de datos avanzadas</div>
         </div>
       </section>
     </div>
