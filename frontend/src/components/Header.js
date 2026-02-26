@@ -215,6 +215,7 @@ const Header = () => {
                 <li role="none"><a href="https://hseq.meridianltda.com" target="_blank" rel="noopener noreferrer" role="menuitem">Reportes HSEQ</a></li>
                 <li role="none"><a href="https://evaluacion.meridianltda.com" target="_blank" rel="noopener noreferrer" role="menuitem">Evaluación De Desempeño</a></li>
                 <li role="none"><a href="https://carnet.meridianltda.com/" target="_blank" rel="noopener noreferrer" role="menuitem">Carnets Virtuales</a></li>
+                <li role="none"><a href="https://aapp02.novacloud.com.co/Portal_Meridian_Consulting/Acceso/Login.aspx" target="_blank" rel="noopener noreferrer" role="menuitem">Soy Meridian</a></li>
               </ul>
             </li>
           </ul>
