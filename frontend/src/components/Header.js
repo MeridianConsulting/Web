@@ -156,11 +156,24 @@ const Header = () => {
             onClick={(e) => e.stopPropagation()}
             onMouseDown={(e) => e.stopPropagation()}
           >
-            <li role="none"><Link to="/" onClick={closeMenu} role="menuitem">Inicio</Link></li>
             <li role="none"><Link to="/servicios" onClick={closeMenu} role="menuitem">Servicios</Link></li>
             <li role="none"><Link to="/nosotros" onClick={closeMenu} role="menuitem">Nosotros</Link></li>
             <li role="none"><Link to="/innovacion" onClick={closeMenu} role="menuitem">Innovación</Link></li>
             <li role="none"><Link to="/blog" onClick={closeMenu} role="menuitem">Blog</Link></li>
+
+            {/* Portal Empleados - enlace destacado entre Blog y Atención al usuario */}
+            <li className="nav-portal-empleados" role="none">
+              <a
+                href="https://aapp02.novacloud.com.co/Portal_Meridian_Consulting/Acceso/Login.aspx"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="portal-empleados-btn"
+                onClick={closeMenu}
+                role="menuitem"
+              >
+                Portal Empleados
+              </a>
+            </li>
 
             {/* Nuevo menú desplegable de CONTACTO */}
             <li className={`nav-dropdown ${openDropdown === 'contacto' ? 'open' : ''}`} role="none">
@@ -215,7 +228,6 @@ const Header = () => {
                 <li role="none"><a href="https://hseq.meridianltda.com" target="_blank" rel="noopener noreferrer" role="menuitem">Reportes HSEQ</a></li>
                 <li role="none"><a href="https://evaluacion.meridianltda.com" target="_blank" rel="noopener noreferrer" role="menuitem">Evaluación De Desempeño</a></li>
                 <li role="none"><a href="https://carnet.meridianltda.com/" target="_blank" rel="noopener noreferrer" role="menuitem">Carnets Virtuales</a></li>
-                <li role="none"><a href="https://aapp02.novacloud.com.co/Portal_Meridian_Consulting/Acceso/Login.aspx" target="_blank" rel="noopener noreferrer" role="menuitem">Soy Meridian</a></li>
               </ul>
             </li>
           </ul>
