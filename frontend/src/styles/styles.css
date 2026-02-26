@@ -154,7 +154,6 @@ a {
   border-bottom: 1px solid rgba(51, 97, 157, 0.08);
   width: 100%;
   box-sizing: border-box;
-  overflow-x: hidden; /* Evita scroll horizontal */
 }
 
 .Informacion{
